@@ -100,6 +100,8 @@ footer{
     background-color:ghostwhite;
     height: 200px;
     border-top: 2px dashed #000;
+    position: absolute;
+    top:100vh;
 }
 
 .footer-header{
@@ -129,3 +131,41 @@ footer ul li{
     left:80vw;
 
 }
+
+
+/*CONTACT FORM*/
+
+
+.contact-form-container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .contact-form {
+    width: 100%;
+  }
+  
+  .form-group {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  
+  .submit-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+  }
