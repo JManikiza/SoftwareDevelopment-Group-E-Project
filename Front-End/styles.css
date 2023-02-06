@@ -100,8 +100,7 @@ footer{
     background-color:ghostwhite;
     height: 200px;
     border-top: 2px dashed #000;
-    position: absolute;
-    top:100vh;
+
 }
 
 .footer-header{
