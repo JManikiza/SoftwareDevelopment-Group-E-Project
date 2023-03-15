@@ -6,11 +6,11 @@ Overall, this web application provides a comprehensive solution for patients to 
 
  The team's collaborative efforts and expertise in web development have culminated in a platform that is easy to use, efficient, and reliable.
 
-Contributers include:
+Contributors include:
 
 - Jimmy Le
 - Wallyson Alves Da Silva
-- Mohamed Yousef Mohamed
+- Mohamed Yusuf Mohamed
 - Adam Younis
 - Laurence Baboolal
 - Joven Anthony Manikiza
