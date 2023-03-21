@@ -1,11 +1,9 @@
+//React Imports
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './App';
-
-import {
-  Button
-} from 'govuk-react';
+//.Gov Imports
+import {Button} from 'govuk-react';
 
 function App() {
   return ( 
