@@ -5,21 +5,24 @@ import ReactDOM from 'react-dom';
 // GovUK imports
 import { TopNav , Footer, PhaseBanner, Breadcrumbs, Panel, Button } from 'govuk-react';
 
+// Custom imports
+import CustomTopNav from './components/CustomTopNav';
+import TimeStatus from './components/TimeStatus';
 
 function App() {
   return (
     <div>
-      <TopNav
-        serviceName="My GovUK React Page"
-        homepageUrl="#"
-        navigation={
-          <div>
-            <Button>Home</Button>
-            <Button>About</Button>
-            <Button>Contact</Button>
-          </div>
-        }
-      />
+<TopNav
+  company={<TopNav.Anchor href="https://example.com" target="new"><TopNav.IconTitle>GOV.UK</TopNav.IconTitle></TopNav.Anchor>}
+  serviceTitle={<TopNav.NavLink href="https://example.com" target="new">Service Title</TopNav.NavLink>}
+>
+  <TopNav.NavLink href="https://example.com?q=catdog">
+    Navigation item #1
+  </TopNav.NavLink>
+  <TopNav.NavLink href="https://example.com?q=dogcat">
+    Navigation item #2
+  </TopNav.NavLink>
+</TopNav>
 
       <PhaseBanner level="Alpha">
         <p>
@@ -41,9 +44,10 @@ function App() {
       </Panel>
 
       <Footer>
-        <Footer.Link href="#">Terms and conditions</Footer.Link>
-        <Footer.Link href="#">Privacy policy</Footer.Link>
+        <Footer.Link href="#">Terms and conditions&nbsp;</Footer.Link>
+        <Footer.Link href="#">Privacy policy&nbsp;</Footer.Link>
         <Footer.Link href="#">Accessibility statement</Footer.Link>
+        <TimeStatus/>
       </Footer>
     </div>
   );
