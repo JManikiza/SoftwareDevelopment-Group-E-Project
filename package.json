@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "govuk-react": "^0.10.5"
+  }
+}
