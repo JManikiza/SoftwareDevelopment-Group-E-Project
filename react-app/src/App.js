@@ -27,7 +27,7 @@ function App() {
 
       <PhaseBanner level="Alpha">
         <p>
-          <strong>Alpha</strong>
+          <strong>Alpha 0.0.1</strong>
           {' '}
           This is a new service – your <a href="#">feedback</a> will help us to improve it.
         </p>
