@@ -1,6 +1,8 @@
 import Crown from "@govuk-react/icon-crown";
 import { TopNav } from "govuk-react";
 import { Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import React from "react";
 
 function Navigation() {
   return (
@@ -19,19 +21,15 @@ function Navigation() {
           </TopNav.NavLink>
         }
       >
-        <TopNav.NavLink href="">
-          <Link to="/" style={{ color: "white" }}>
-            Home
-          </Link>
-        </TopNav.NavLink>
+        <Link to="/">
+          <TopNav.NavLink>Home</TopNav.NavLink>
+        </Link>
         <TopNav.NavLink href="https://example.com?q=dogcat">
           Login
         </TopNav.NavLink>
-        <TopNav.NavLink href="">
-          <Link to="/Registration" style={{ color: "white" }}>
-            Register
-          </Link>
-        </TopNav.NavLink>
+        <Link to="/Registration">
+          <TopNav.NavLink href="">Register</TopNav.NavLink>
+        </Link>
       </TopNav>
     </div>
   );
