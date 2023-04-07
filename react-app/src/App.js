@@ -12,10 +12,9 @@ import NationalIN from "./Components/RegisterPageComponents/NationalIN";
 import Gender from "./Components/RegisterPageComponents/Gender";
 import Contact from "./Components/RegisterPageComponents/Contact";
 import Address from "./Components/RegisterPageComponents/Address";
-import DoctorAppointment from "./Pages/DoctorAppointment";
-import DoctorDashBoard from "./Pages/DoctorDashBoard";
-import DoctorViewandUpdate from "./Pages/DoctorViewandUpdate";
-
+import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
+import DoctorDashBoard from "./Pages/DoctorPages/DoctorDashBoard";
+import DoctorViewandUpdate from './Pages/DoctorPages/DoctorViewandUpdate';
 // Custom imports
 
 function App() {
@@ -35,7 +34,7 @@ function App() {
         <Route path="/Address" element={<Address />} />
         <Route path="/DoctorDashBoard" element={<DoctorDashBoard/>}/>
         <Route path="/DoctorAppointment" element={<DoctorAppointment/>}/>
-        <Route path="/" element={<DoctorViewandUpdate/>}/>
+        <Route path="/DoctorViewandUpdate" element={<DoctorViewandUpdate/>}/>
       </Routes>
 
       <FooterNav />
