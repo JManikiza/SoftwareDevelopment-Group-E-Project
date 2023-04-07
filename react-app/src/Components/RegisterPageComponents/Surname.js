@@ -1,11 +1,16 @@
-import { Heading, Button, Input, Main } from "govuk-react";
+import { Heading, Button, Input, Main, Breadcrumbs } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 function Surname() {
   const navigate = useNavigate();
   return (
     <div>
       <Main>
-        <Heading className="govuk-label govuk-label--1">
+        <Breadcrumbs>
+          <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
+        </Breadcrumbs>
+        <Heading>
           What is your surname?
           <Input />
         </Heading>

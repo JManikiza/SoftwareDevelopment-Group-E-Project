@@ -1,4 +1,4 @@
-import { DateField, Heading, Button, Main } from "govuk-react";
+import { DateField, Heading, Button, Main, Breadcrumbs } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 
 function DateOfBirth() {
@@ -6,6 +6,13 @@ function DateOfBirth() {
   return (
     <div>
       <Main>
+        <Breadcrumbs>
+          <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
+        </Breadcrumbs>
+
         <DateField
           input={{
             onBlur: function noRefCheck() {},
@@ -29,7 +36,7 @@ function DateOfBirth() {
         >
           <Heading>What is your date of birth?</Heading>
         </DateField>
-        <Button onClick={() => navigate("/NationalIN")} start>
+        <Button onClick={() => navigate("/Gender")} start>
           Save and Continue
         </Button>
       </Main>
