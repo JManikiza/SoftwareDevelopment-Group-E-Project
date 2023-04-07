@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./Components/Navigation";
 import FooterNav from "./Components/FooterNav";
 import HomePage from "./Pages/HomePage";
-import Registration from "./Pages/Registration";
+// import Registration from "./Pages/Registration";
 import FirstName from "./Components/RegisterPageComponents/FirstName";
 import Surname from "./Components/RegisterPageComponents/Surname";
 import DateOfBirth from "./Components/RegisterPageComponents/DateOfBirth";
@@ -12,6 +12,9 @@ import NationalIN from "./Components/RegisterPageComponents/NationalIN";
 import Gender from "./Components/RegisterPageComponents/Gender";
 import Contact from "./Components/RegisterPageComponents/Contact";
 import Address from "./Components/RegisterPageComponents/Address";
+import DoctorAppointment from "./Pages/DoctorAppointment";
+import DoctorDashBoard from "./Pages/DoctorDashBoard";
+import DoctorViewandUpdate from "./Pages/DoctorViewandUpdate";
 
 // Custom imports
 
@@ -30,6 +33,9 @@ function App() {
         <Route path="/Gender" element={<Gender />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Address" element={<Address />} />
+        <Route path="/DoctorDashBoard" element={<DoctorDashBoard/>}/>
+        <Route path="/DoctorAppointment" element={<DoctorAppointment/>}/>
+        <Route path="/" element={<DoctorViewandUpdate/>}/>
       </Routes>
 
       <FooterNav />
