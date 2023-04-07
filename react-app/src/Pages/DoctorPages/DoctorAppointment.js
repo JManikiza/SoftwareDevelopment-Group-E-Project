@@ -7,12 +7,12 @@ function DoctorAppointment() {
 <Main>
 
 <Breadcrumbs>
-  <Breadcrumbs.Link to="/">
+  <Breadcrumbs.Link href="/">
     HomePage
   </Breadcrumbs.Link>
-  <Breadcrumbs.Link to="/DoctorDashBoard">
+  <Breadcrumbs.Link href="/DoctorDashBoard">
   Doctor DashBoard</Breadcrumbs.Link>
-  <Breadcrumbs.Link to="/DoctorDashBoard">
+  <Breadcrumbs.Link href="/DoctorDashBoard">
   Doctor Appointment</Breadcrumbs.Link>
   </Breadcrumbs>
   <br/>  <br/>

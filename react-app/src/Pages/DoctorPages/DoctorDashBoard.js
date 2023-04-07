@@ -8,10 +8,10 @@ function DoctorDashBoard(){
 
         <div>
           <Breadcrumbs>
-  <Breadcrumbs.Link to="/">
+  <Breadcrumbs.Link href="/">
     HomePage
   </Breadcrumbs.Link>
-  <Breadcrumbs.Link to="/DoctorDashBoard">
+  <Breadcrumbs.Link href="/DoctorDashBoard">
   Doctor DashBoard</Breadcrumbs.Link>
   </Breadcrumbs>
   <br/>  <br/>
@@ -46,6 +46,7 @@ welcome To the dashboard  </H3>
 
 </GridRow>
 </Main>
+
 <br/>
 <br/>
 <br/>

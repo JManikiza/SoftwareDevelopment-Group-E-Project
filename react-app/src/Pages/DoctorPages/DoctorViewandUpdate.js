@@ -9,9 +9,9 @@ function DoctorViewandUpdate(){
         <Breadcrumbs.Link to="/">
     HomePage
   </Breadcrumbs.Link>
-  <Breadcrumbs.Link to="/DoctorDashBoard">
+  <Breadcrumbs.Link href="/DoctorDashBoard">
   Doctor DashBoard</Breadcrumbs.Link>
-  <Breadcrumbs.Link to="/DoctorDashBoard">
+  <Breadcrumbs.Link href="/DoctorViewandUpdate">
   Doctor View and Update Medical Records</Breadcrumbs.Link>
   </Breadcrumbs>
   
