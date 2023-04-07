@@ -1,7 +1,6 @@
 import Crown from "@govuk-react/icon-crown";
 import { TopNav } from "govuk-react";
 import { Link } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
 import React from "react";
 
 function Navigation() {
@@ -9,14 +8,14 @@ function Navigation() {
     <div>
       <TopNav
         company={
-          <TopNav.Anchor href="https://example.com" target="new">
+          <TopNav.Anchor target="new">
             <TopNav.IconTitle icon={<Crown height="32" width="36" />}>
               GOV.UK
             </TopNav.IconTitle>
           </TopNav.Anchor>
         }
         serviceTitle={
-          <TopNav.NavLink href="https://example.com" target="new">
+          <TopNav.NavLink target="new">
             Group E - Web Application
           </TopNav.NavLink>
         }
@@ -24,10 +23,8 @@ function Navigation() {
         <Link to="/">
           <TopNav.NavLink>Home</TopNav.NavLink>
         </Link>
-        <TopNav.NavLink href="https://example.com?q=dogcat">
-          Login
-        </TopNav.NavLink>
-        <Link to="/Registration">
+        <TopNav.NavLink>Login</TopNav.NavLink>
+        <Link to="/FirstName">
           <TopNav.NavLink href="">Register</TopNav.NavLink>
         </Link>
       </TopNav>
