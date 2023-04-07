@@ -23,7 +23,9 @@ function Navigation() {
         <Link to="/">
           <TopNav.NavLink>Home</TopNav.NavLink>
         </Link>
-        <TopNav.NavLink>Login</TopNav.NavLink>
+        <Link to="/login">
+          <TopNav.NavLink>Login</TopNav.NavLink>
+        </Link>
         <Link to="/NhsNumber">
           <TopNav.NavLink href="">Register</TopNav.NavLink>
         </Link>

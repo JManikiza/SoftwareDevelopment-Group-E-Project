@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./Components/Navigation";
 import FooterNav from "./Components/FooterNav";
 import HomePage from "./Pages/HomePage";
+import Login from "./Pages/Login";
 // import Registration from "./Pages/Registration";
 import FirstName from "./Components/RegisterPageComponents/FirstName";
 import Surname from "./Components/RegisterPageComponents/Surname";
@@ -25,6 +26,7 @@ function App() {
       {/* route for the links to different pages */}
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/NhsNumber" element={<NhsNumber />} />
         <Route path="/FirstName" element={<FirstName />} />
         <Route path="/Surname" element={<Surname />} />
