@@ -1,5 +1,5 @@
 // GovUK imports
-import {PhaseBanner, Breadcrumbs,Panel, Button
+import {PhaseBanner, Breadcrumbs,Panel, Button, SectionBreak
 } from "govuk-react";
 
 
@@ -7,11 +7,7 @@ import {PhaseBanner, Breadcrumbs,Panel, Button
 function HomePage() {
   return (
     <div>
-      <Breadcrumbs>
-        <Breadcrumbs.Link href="#">Breadcrumb A</Breadcrumbs.Link>
-        <Breadcrumbs.Link href="#">Breadcrumb B</Breadcrumbs.Link>
-        <Breadcrumbs.Link href="#">Breadcrumb C</Breadcrumbs.Link>
-      </Breadcrumbs>
+      <SectionBreak level="XLARGE" visible={false}/>
 
       <Panel title="Welcome to Group E's GovUK React page">
         <p>
@@ -21,12 +17,20 @@ function HomePage() {
         </p>
       </Panel>
 
+
+      <SectionBreak level="XLARGE" visible={false}/>
+      <SectionBreak level="XLARGE" visible={false}/>
+      <SectionBreak level="LARGE" visible={true}/>
+
+
+
       <PhaseBanner level="Alpha">
         <p>
           <strong>Alpha 0.0.1</strong> This is a new service – your{" "}
           <a href="#">feedback</a> will help us to improve it.
         </p>
       </PhaseBanner>
+
     </div>
   );
 }

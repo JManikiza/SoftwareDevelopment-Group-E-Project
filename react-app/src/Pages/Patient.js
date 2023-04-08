@@ -1,11 +1,15 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
 import {Main, Button, Heading, InsetText, Details,
         ListItem,UnorderedList, Paragraph, ButtonArrow
         } from "govuk-react";
+import { useNavigate } from "react-router-dom";
+
 
 
 function Patient(){
+
+const navigate = useNavigate();
+
 return(
     <div>
         <Main>
@@ -28,11 +32,16 @@ return(
                 </UnorderedList>
             </Details>
 
-            <Button icon={<ButtonArrow />} start>
+{/* ----------------------------------------------------------------------------------------------
+
+            BUTTONS STILL NEED THEIR NAVIGATION ADDING
+
+------------------------------------------------------------------------------------------------- */}
+            <Button onClick={() => navigate("/")}  icon={<ButtonArrow />} start>
                 GP Services
             </Button>
 
-            <Button icon={<ButtonArrow />} start>
+            <Button onClick={() => navigate("/Profile")}  icon={<ButtonArrow />} start>
                 Profile
             </Button>
 

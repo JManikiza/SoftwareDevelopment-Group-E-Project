@@ -24,7 +24,11 @@ import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
 import DoctorDashBoard from "./Pages/DoctorPages/DoctorDashBoard";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 
-// Patient page imports
+
+/**
+ * Patient page imports 
+ * Currently only here until it links to login page or testing purposes
+ *  */ 
 import Patient from "./Pages/Patient";
 import SummaryList from "./Components/PatientPageComponents/SummaryList";
 

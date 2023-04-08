@@ -1,16 +1,36 @@
-import {Table, Link, Heading, Main} from 'govuk-react';
+import {Table, Link, Heading, Main, 
+        SectionBreak, Pagination, BackLink} from 'govuk-react';
 
 
 import { useNavigate } from "react-router-dom";
 
 function SummaryList() {
+
+  const navigate = useNavigate();
+
   return (
 <div>
-  <Main>
-    <Heading>Profile</Heading>
+{/*   
+  <Pagination>
+    <Pagination.PaginationAnchor to="" nextPage>
+      GP Services  
+    </Pagination.PaginationAnchor>
+  </Pagination> */}
 
-    <Table caption="Profile">
-      
+
+  <Main>
+      <BackLink
+
+  onClick={() => navigate("/Patient")}
+>
+  Back
+</BackLink>
+    <SectionBreak level="LARGE" visible={false}/>
+    <Heading>Profile</Heading>
+    <SectionBreak level="SMALL" visible={false}/>
+    <Table>
+    <SectionBreak level="SMALL" visible={true}/>
+
 
       <Table.Row>
         <Table.CellHeader>
@@ -74,6 +94,7 @@ function SummaryList() {
       </Table.Row>
     </Table>
     </Main>
+
     </div>
   );
 }
