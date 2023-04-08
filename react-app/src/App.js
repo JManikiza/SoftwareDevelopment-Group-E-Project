@@ -1,7 +1,6 @@
 // React imports
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
 
 // Layout import
 import Navigation from "./Components/Navigation";
@@ -29,10 +28,6 @@ import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 import Patient from "./Pages/Patient";
 import SummaryList from "./Components/PatientPageComponents/SummaryList";
 
-// Patient page imports
-import Patient from "./Pages/Patient";
-import SummaryList from "./Components/PatientPageComponents/SummaryList";
-
 // Custom imports
 
 
@@ -53,10 +48,16 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Address" element={<Address />} />
 
+
+
+//----------------------------------------------------------------------------------
         <Route path="/DoctorDashBoard" element={<DoctorDashBoard />} />
         <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
         <Route path="/DoctorViewandUpdate" element={<DoctorViewandUpdate />} />
 
+
+
+//-------------------------------------------------------------------
         <Route path="/Patient" element={<Patient />}/>
         <Route path="/SummaryList" element={<SummaryList />} />
 
