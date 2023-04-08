@@ -20,7 +20,7 @@ function SummaryList() {
           Fetched data of Full Name
         </Table.Cell>
         <Table.Cell>
-          <Link to="#" children="change"/>
+          <Link to="#" children="Change"/>
         </Table.Cell>
       </Table.Row>
 
@@ -31,7 +31,7 @@ function SummaryList() {
           Fetched data of D.O.B
         </Table.Cell>
         <Table.Cell>
-          <Link to="#" children="change"/>
+          <Link to="#" children="Change"/>
         </Table.Cell>
       </Table.Row>
 
@@ -44,7 +44,7 @@ function SummaryList() {
           Fetched data of Address
         </Table.Cell>
         <Table.Cell>
-          <Link to="#" children="change"/>
+          <Link to="#" children="Change"/>
         </Table.Cell>
       </Table.Row>
 
@@ -57,7 +57,7 @@ function SummaryList() {
           Fetched data of Email
         </Table.Cell>
         <Table.Cell>
-          <Link to="#" children="change"/>
+          <Link to="#" children="Change"/>
         </Table.Cell>
       </Table.Row>
 
@@ -69,7 +69,7 @@ function SummaryList() {
           Fetched data of Contact No.
         </Table.Cell>
         <Table.Cell>
-          <Link to="#" children="change"/>
+          <Link to="#" children="Change"/>
         </Table.Cell>
       </Table.Row>
     </Table>

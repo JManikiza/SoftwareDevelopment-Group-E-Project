@@ -59,7 +59,7 @@ function App() {
 
 //-------------------------------------------------------------------
         <Route path="/Patient" element={<Patient />}/>
-        <Route path="/SummaryList" element={<SummaryList />} />
+        <Route path="/Profile" element={<SummaryList />} />
 
       </Routes>
 
