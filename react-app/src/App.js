@@ -7,10 +7,13 @@ import HomePage from "./Pages/HomePage";
 import Navigation from "./Components/Navigation";
 import FooterNav from "./Components/FooterNav";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 // import Registration from "./Pages/Registration";
 =======
+=======
+>>>>>>> Stashed changes
 
 // Registration page imports
 import Registration from "./Pages/Registration";
@@ -28,6 +31,14 @@ import DoctorDashBoard from "./Pages/DoctorPages/DoctorDashBoard";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 =======
 
+// Patient page imports
+import Patient from "./Pages/Patient";
+import SummaryList from "./Components/PatientPageComponents/SummaryList";
+
+<<<<<<< Updated upstream
+
+>>>>>>> Stashed changes
+=======
 // Patient page imports
 import Patient from "./Pages/Patient";
 import SummaryList from "./Components/PatientPageComponents/SummaryList";
@@ -54,14 +65,20 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Address" element={<Address />} />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <Route path="/DoctorDashBoard" element={<DoctorDashBoard />} />
         <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
         <Route path="/DoctorViewandUpdate" element={<DoctorViewandUpdate />} />
 =======
+=======
+>>>>>>> Stashed changes
 
         <Route path="/Patient" element={<Patient />}/>
         <Route path="/SummaryList" element={<SummaryList />} />
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </Routes>
 
