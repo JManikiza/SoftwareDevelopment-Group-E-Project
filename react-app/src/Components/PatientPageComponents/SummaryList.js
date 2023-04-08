@@ -1,5 +1,5 @@
 import {Table, Link, Heading, Main, 
-        SectionBreak, Pagination, BackLink} from 'govuk-react';
+        SectionBreak, BackLink, Pagination} from 'govuk-react';
 
 
 import { useNavigate } from "react-router-dom";
@@ -10,12 +10,7 @@ function SummaryList() {
 
   return (
 <div>
-{/*   
-  <Pagination>
-    <Pagination.PaginationAnchor to="" nextPage>
-      GP Services  
-    </Pagination.PaginationAnchor>
-  </Pagination> */}
+
 
 
   <Main>
@@ -25,6 +20,18 @@ function SummaryList() {
 >
   Back
 </BackLink>
+
+
+{/* <Pagination>
+  <PaginationAnchor
+    href="#next"
+    nextPage
+    pageTitle="2 of 12"
+  >
+    Next page
+  </PaginationAnchor>
+</Pagination> */}
+
     <SectionBreak level="LARGE" visible={false}/>
     <Heading>Profile</Heading>
     <SectionBreak level="SMALL" visible={false}/>
