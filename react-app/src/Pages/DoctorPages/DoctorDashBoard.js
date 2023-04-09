@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { H3,H6,Main,GridCol,GridRow,Button,Breadcrumbs } from "govuk-react";
+import { H3,H6,Main,GridCol,GridRow,Button,Breadcrumbs,ButtonArrow } from "govuk-react";
 // Create a button variable and add CSS
 
 function DoctorDashBoard(){
@@ -28,19 +28,29 @@ welcome To the dashboard  </H3>
 <br/><br/><br/>
             </>
 <GridRow style={{textAlign: "center"}}>
-  <GridCol>
+  <GridCol style={{alignContent:"center"}}>
     <div>
-
-    <Button buttonColour="#1d70b8" onClick={()=>Navigate("/DoctorAppointment")}>
-  Doctor Appointments</Button>
+    <Button
+  icon={<ButtonArrow /> }
+  onClick={()=>Navigate("/DoctorAppointment")}
+  style={{width:"100%",height:"50px"}}
+>
+Doctor Appointments
+</Button>
+  
     </div>
   </GridCol>
   <GridCol>
     <div >
-
-    <Button buttonColour="#1d70b8" onClick={()=>Navigate("/DoctorViewandUpdate")}>
-  view Patient Records and update it
+    <Button
+  icon={<ButtonArrow />}
+  onClick={()=>Navigate("/DoctorViewandUpdate")}
+  style={{width:"82%",height:"50px"}}
+>
+view Patient Records and update it
 </Button>
+  
+
     </div>
   </GridCol>
 
@@ -48,6 +58,8 @@ welcome To the dashboard  </H3>
 </Main>
 
 <br/>
+<br/>
+<br/> <br/>
 <br/>
 <br/>
 
