@@ -29,8 +29,9 @@ import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
  * Patient page imports 
  * Currently only here until it links to login page or testing purposes
  *  */ 
-import Patient from "./Pages/Patient";
-import SummaryList from "./Components/PatientPageComponents/SummaryList";
+import Patient from "./Pages/PatientPages/Patient";
+import Profile from "./Pages/PatientPages/Profile";
+import GPServices from "./Pages/PatientPages/GPServices";
 
 // Custom imports
 
@@ -62,8 +63,9 @@ function App() {
 
 
 //-------------------------------------------------------------------
-        <Route path="/Patient" element={<Patient />}/>
-        <Route path="/Profile" element={<SummaryList />} />
+        <Route path="/Patient" element={<Patient />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/GPServices" element={<GPServices />} />
 
       </Routes>
 

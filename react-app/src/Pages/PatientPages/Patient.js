@@ -28,16 +28,11 @@ return(
                 <UnorderedList>
                     <ListItem>View the current details we have of you</ListItem>
                     <ListItem>Update any details you may need to change</ListItem>
-                    <ListItem></ListItem>
                 </UnorderedList>
             </Details>
 
-{/* ----------------------------------------------------------------------------------------------
 
-            BUTTONS STILL NEED THEIR NAVIGATION ADDING
-
-------------------------------------------------------------------------------------------------- */}
-            <Button onClick={() => navigate("/")}  icon={<ButtonArrow />} start>
+            <Button onClick={() => navigate("/GPServices")}  icon={<ButtonArrow />} start>
                 GP Services
             </Button>
 
