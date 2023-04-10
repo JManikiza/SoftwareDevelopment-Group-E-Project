@@ -1,4 +1,10 @@
-import {Table, Link, Heading, Main, 
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
+
+import {Link, Heading, Main, 
         SectionBreak, Pagination} from 'govuk-react';
 
 import { useNavigate } from "react-router-dom";

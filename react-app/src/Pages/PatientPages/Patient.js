@@ -1,6 +1,12 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
+
 import React from "react";
 import {Main, Button, Heading, InsetText, Details,
-        ListItem,UnorderedList, Paragraph, ButtonArrow
+        ListItem,UnorderedList, Paragraph, ButtonArrow, Breadcrumbs
         } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +19,10 @@ const navigate = useNavigate();
 return(
     <div>
         <Main>
+            <Breadcrumbs>
+                <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
+            </Breadcrumbs>
+            
             <Heading>Hello (Prop name here).</Heading>
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">

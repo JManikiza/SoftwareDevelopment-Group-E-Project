@@ -1,7 +1,11 @@
-import React from 'react';
-import {Table, Link, Heading, Main, 
-        SectionBreak, Pagination} from 'govuk-react';
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
 
+import React from 'react';
+import {Table, Link, Heading, Main, SectionBreak, Pagination} from 'govuk-react';
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,8 +15,6 @@ function Profile(){
 
   return (
     <div>
-
-
 
       <Main>
  

@@ -1,3 +1,16 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+* Wallyson Alves Da Silva
+* Mohamed Yusef Mohamed
+*
+* Please add your names if you have
+* partaken in coding this page.
+* I would also recommend adding your names above
+* the pages you have solely created
+*/
+
 // React imports
 import React from "react";
 import { Routes, Route } from "react-router-dom";
@@ -32,7 +45,9 @@ import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 import Patient from "./Pages/PatientPages/Patient";
 import Profile from "./Pages/PatientPages/Profile";
 import GPServices from "./Pages/PatientPages/GPServices";
-
+import NameChangeStart from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeStart";
+import NameChangeCircumstances from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeCircumstances";
+import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeDetails";
 // Custom imports
 
 
@@ -66,6 +81,9 @@ function App() {
         <Route path="/Patient" element={<Patient />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/GPServices" element={<GPServices />} />
+        <Route path="/NameChangeStart" element={<NameChangeStart />} />
+        <Route path="/NameChangeCircumstances" element={<NameChangeCircumstances />} />
+        <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
 
       </Routes>
 
