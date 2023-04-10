@@ -43,7 +43,7 @@ function Profile(){
               Fetched data of Full Name
             </Table.Cell>
             <Table.Cell>
-              <Link to="/PatientNameChange" children="Change"/>
+              <Link onClick={() => navigate("/NameChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 

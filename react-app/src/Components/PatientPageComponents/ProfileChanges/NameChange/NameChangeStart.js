@@ -48,7 +48,7 @@ function NameChangeStart(){
                 Before you start
             </Heading>
 
-            <InsetText>You will be asked to give us:</InsetText>
+            <InsetText>You will be asked to give:</InsetText>
 
             <UnorderedList>
                 <ListItem>details of any changes to your name, including dates</ListItem>
