@@ -1,3 +1,12 @@
+/**
+* Author(s) of this code: 
+*
+* Wallyson Alves Da Silva
+*/
+
+import React, { useState } from "react";
+import { useNavigate} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import {
   InputField,
   Heading,
@@ -6,10 +15,29 @@ import {
   Breadcrumbs,
   H1,
 } from "govuk-react";
-import { useNavigate } from "react-router-dom";
+
+
 
 function Contact() {
-  const navigate = useNavigate();
+    //used state to save value of the name
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setNumber] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const fName = location.state.fName;
+    const sName = location.state.sName;
+    const gender = location.state.gender;
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      navigate('/Address',{ state:{fName, sName, gender, email, phoneNumber}})
+      console.log(fName);
+      console.log(sName);
+      console.log(gender);
+      console.log(email);
+      console.log(phoneNumber);
+    }
+
   return (
     <div>
       <Main>
@@ -21,14 +49,17 @@ function Contact() {
           <Breadcrumbs.Link href="/DateOfBirth">Date of birth</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/Gender">Gender</Breadcrumbs.Link>
         </Breadcrumbs>
+
+        <form onSubmit={handleSubmit}>
         <H1>Contact details</H1>
-        <InputField>Email</InputField>
+        <InputField value={email} onChange={(e) => setEmail(e.target.value)}>Email</InputField>
         <br />
-        <InputField>Phone Number</InputField>
+        <InputField value={phoneNumber} onChange={(e) => setNumber(e.target.value)}>Phone Number</InputField>
         <br />
-        <Button onClick={() => navigate("/Address")} start>
+        <Button type="submit" start>
           Save and Continue
         </Button>
+        </form>
       </Main>
     </div>
   );

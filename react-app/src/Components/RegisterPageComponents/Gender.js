@@ -1,7 +1,31 @@
+/**
+* Author(s) of this code: 
+*
+* Wallyson Alves Da Silva
+*/
+//go to contact next
+import React, { useState } from "react";
+import { useNavigate} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { Select, Heading, Button, Main, Breadcrumbs } from "govuk-react";
-import { useNavigate } from "react-router-dom";
+
+
 function Gender() {
+  //used state to save value of the name
+  const [gender, setValue] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const fName = location.state.fName;
+  const sName = location.state.sName;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/Contact',{ state:{fName, sName, gender}})
+    console.log(fName);
+    console.log(sName);
+    console.log(gender);
+  }
+
   return (
     <div>
       <Main>
@@ -12,6 +36,9 @@ function Gender() {
           <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/DateOfBirth">Date of birth</Breadcrumbs.Link>
         </Breadcrumbs>
+
+
+        <form onSubmit={handleSubmit}>
         <Heading>Describe your gender type</Heading>
         <Select
           input={{
@@ -20,14 +47,15 @@ function Gender() {
           }}
         >
           <option value="0"></option>
-          <option value="1">Female</option>
-          <option value="2">Male</option>
-          <option value="3">Other</option>
+          <option value={gender} onChange={(e) => setValue('Female')}>Female</option>
+          <option value={gender} onChange={(e) => setValue('Male')}>Male</option>
+          <option value={gender} onChange={(e) => setValue('other')}>Other</option>
         </Select>
         <br />
-        <Button onClick={() => navigate("/Contact")} start>
+        <Button start>
           Save and Continue
         </Button>
+        </form>
       </Main>
     </div>
   );
