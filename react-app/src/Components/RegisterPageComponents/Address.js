@@ -1,39 +1,53 @@
 /**
-* Author(s) of this code: 
-*
-* Wallyson Alves Da Silva
-*/
+ * Author(s) of this code:
+ *
+ * Wallyson Alves Da Silva
+ */
 
 import React, { useState } from "react";
-import { useNavigate} from "react-router-dom";
-import { useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { InputField, Heading, Button, Main, Breadcrumbs } from "govuk-react";
 
 function Address() {
+  //used state to save value of the name
+  const [address1, setaddress1] = useState("");
+  const [address2, setaddress2] = useState("");
+  const [townCity, setLocation] = useState("");
+  const [county, setCounty] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const nhsNumber = location.state.nhsNumber;
+  const fName = location.state.fName;
+  const sName = location.state.sName;
+  const gender = location.state.gender;
+  const email = location.state.email;
+  const phoneNumber = location.state.phoneNumber;
 
-      //used state to save value of the name
-      const [address1, setaddress1] = useState('');
-      const [address2, setaddress2] = useState('');
-      const [townCity, setLocation] = useState('');
-      const [county, setCounty] = useState('');
-      const [postCode, setPostCode] = useState('');
-      const navigate = useNavigate();
-      const location = useLocation();
-      const fName = location.state.fName;
-      const sName = location.state.sName;
-      const gender = location.state.gender;
-      const email = location.state.email;
-      const phoneNumber = location.state.phoneNumber;
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        navigate('/DetailsSummary',{ state:{fName, sName, gender, email, phoneNumber, address1,address2,townCity,county,postCode}})
-        console.log(fName);
-        console.log(sName);
-        console.log(gender);
-        console.log(email);
-        console.log(phoneNumber);
-      }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/DetailsSummary", {
+      state: {
+        nhsNumber,
+        fName,
+        sName,
+        gender,
+        email,
+        phoneNumber,
+        address1,
+        address2,
+        townCity,
+        county,
+        postCode,
+      },
+    });
+    console.log(nhsNumber);
+    console.log(fName);
+    console.log(sName);
+    console.log(gender);
+    console.log(email);
+    console.log(phoneNumber);
+  };
   return (
     <div>
       <Main>
@@ -48,14 +62,39 @@ function Address() {
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>
-        <Heading>Address details</Heading>
-        <InputField value={address1} onChange={(e) => setaddress1(e.target.value)}>Address line 1</InputField>
-        <InputField value={address2} onChange={(e) => setaddress2(e.target.value)}>Address line 2(optional)</InputField>
-        <InputField value={townCity} onChange={(e) => setLocation(e.target.value)}>Town or city</InputField>
-        <InputField value={county} onChange={(e) => setCounty(e.target.value)}>County(optional)</InputField>
-        <InputField value={postCode} onChange={(e) => setPostCode(e.target.value)}>Postcode</InputField>
-        <br />
-        <Button start>Submit</Button>
+          <Heading>Address details</Heading>
+          <InputField
+            value={address1}
+            onChange={(e) => setaddress1(e.target.value)}
+          >
+            Address line 1
+          </InputField>
+          <InputField
+            value={address2}
+            onChange={(e) => setaddress2(e.target.value)}
+          >
+            Address line 2(optional)
+          </InputField>
+          <InputField
+            value={townCity}
+            onChange={(e) => setLocation(e.target.value)}
+          >
+            Town or city
+          </InputField>
+          <InputField
+            value={county}
+            onChange={(e) => setCounty(e.target.value)}
+          >
+            County(optional)
+          </InputField>
+          <InputField
+            value={postCode}
+            onChange={(e) => setPostCode(e.target.value)}
+          >
+            Postcode
+          </InputField>
+          <br />
+          <Button start>Submit</Button>
         </form>
       </Main>
     </div>

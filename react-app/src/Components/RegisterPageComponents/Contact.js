@@ -1,12 +1,11 @@
 /**
-* Author(s) of this code: 
-*
-* Wallyson Alves Da Silva
-*/
+ * Author(s) of this code:
+ *
+ * Wallyson Alves Da Silva
+ */
 
 import React, { useState } from "react";
-import { useNavigate} from "react-router-dom";
-import { useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   InputField,
   Heading,
@@ -16,27 +15,29 @@ import {
   H1,
 } from "govuk-react";
 
-
-
 function Contact() {
-    //used state to save value of the name
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setNumber] = useState('');
-    const navigate = useNavigate();
-    const location = useLocation();
-    const fName = location.state.fName;
-    const sName = location.state.sName;
-    const gender = location.state.gender;
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      navigate('/Address',{ state:{fName, sName, gender, email, phoneNumber}})
-      console.log(fName);
-      console.log(sName);
-      console.log(gender);
-      console.log(email);
-      console.log(phoneNumber);
-    }
+  //used state to save value of the name
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setNumber] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const nhsNumber = location.state.nhsNumber;
+  const fName = location.state.fName;
+  const sName = location.state.sName;
+  const gender = location.state.gender;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/Address", {
+      state: { nhsNumber, fName, sName, gender, email, phoneNumber },
+    });
+    console.log(nhsNumber);
+    console.log(fName);
+    console.log(sName);
+    console.log(gender);
+    console.log(email);
+    console.log(phoneNumber);
+  };
 
   return (
     <div>
@@ -51,14 +52,21 @@ function Contact() {
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>
-        <H1>Contact details</H1>
-        <InputField value={email} onChange={(e) => setEmail(e.target.value)}>Email</InputField>
-        <br />
-        <InputField value={phoneNumber} onChange={(e) => setNumber(e.target.value)}>Phone Number</InputField>
-        <br />
-        <Button type="submit" start>
-          Save and Continue
-        </Button>
+          <H1>Contact details</H1>
+          <InputField value={email} onChange={(e) => setEmail(e.target.value)}>
+            Email
+          </InputField>
+          <br />
+          <InputField
+            value={phoneNumber}
+            onChange={(e) => setNumber(e.target.value)}
+          >
+            Phone Number
+          </InputField>
+          <br />
+          <Button type="submit" start>
+            Save and Continue
+          </Button>
         </form>
       </Main>
     </div>
