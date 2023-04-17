@@ -16,13 +16,23 @@ function Gender() {
   const nhsNumber = location.state.nhsNumber;
   const fName = location.state.fName;
   const sName = location.state.sName;
-
+  const day = location.state.day;
+  const month = location.state.month;
+  const year = location.state.year;
+  // sets the value choosen in the select drop down option
+  const handleSelectChange = (e) => {
+    setValue(e.target.value);
+  };
+  // handle the states values and parse to the next page
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/Contact", { state: { nhsNumber, fName, sName, gender } });
+    navigate("/Contact", {
+      state: { nhsNumber, fName, sName, day, month, year, gender },
+    });
     console.log(nhsNumber);
     console.log(fName);
     console.log(sName);
+    console.log(day + " " + month + " " + year);
     console.log(gender);
   };
 
@@ -42,19 +52,13 @@ function Gender() {
           <Select
             input={{
               name: "group1",
-              onChange: function noRefCheck() {},
+              onChange: handleSelectChange,
             }}
           >
-            <option value="0"></option>
-            <option value={gender} onChange={(e) => setValue("Female")}>
-              Female
-            </option>
-            <option value={gender} onChange={(e) => setValue("Male")}>
-              Male
-            </option>
-            <option value={gender} onChange={(e) => setValue("other")}>
-              Other
-            </option>
+            <option value="">Please select an option</option>
+            <option value={"Female"}>Female</option>
+            <option value={"Male"}>Male</option>
+            <option value={"Other"}>Other</option>
           </Select>
           <br />
           <Button start>Save and Continue</Button>

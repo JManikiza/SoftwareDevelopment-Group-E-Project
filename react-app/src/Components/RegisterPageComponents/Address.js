@@ -20,6 +20,9 @@ function Address() {
   const nhsNumber = location.state.nhsNumber;
   const fName = location.state.fName;
   const sName = location.state.sName;
+  const day = location.state.day;
+  const month = location.state.month;
+  const year = location.state.year;
   const gender = location.state.gender;
   const email = location.state.email;
   const phoneNumber = location.state.phoneNumber;
@@ -31,6 +34,9 @@ function Address() {
         nhsNumber,
         fName,
         sName,
+        day,
+        month,
+        year,
         gender,
         email,
         phoneNumber,
@@ -94,7 +100,9 @@ function Address() {
             Postcode
           </InputField>
           <br />
-          <Button start>Submit</Button>
+          <Button type="submit" start>
+            Submit
+          </Button>
         </form>
       </Main>
     </div>

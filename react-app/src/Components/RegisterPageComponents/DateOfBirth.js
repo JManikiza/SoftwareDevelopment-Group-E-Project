@@ -9,20 +9,43 @@ import { DateField, Heading, Button, Main, Breadcrumbs } from "govuk-react";
 
 function DateOfBirth() {
   //used state to save value of the name
-  const [date, setValue] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const nhsNumber = location.state.nhsNumber;
   const fName = location.state.fName;
   const sName = location.state.sName;
 
+  //seting the state values for the date in different variables
+  const handleInputChange = (e, inputName) => {
+    const inputValue = e.target.value;
+
+    switch (inputName) {
+      case "dayInputName":
+        setDay(inputValue);
+        break;
+      case "monthInputName":
+        setMonth(inputValue);
+        break;
+      case "yearInputName":
+        setYear(inputValue);
+        break;
+      default:
+        break;
+    }
+  };
+  // handle the states values and parse to the next page
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/Gender", { state: { nhsNumber, fName, sName, date } });
+    navigate("/Gender", {
+      state: { nhsNumber, fName, sName, day, month, year },
+    });
     console.log(nhsNumber);
     console.log(fName);
     console.log(sName);
-    console.log(date);
+    console.log(day + " " + month + " " + year);
   };
 
   return (
@@ -37,8 +60,6 @@ function DateOfBirth() {
 
         <form onSubmit={handleSubmit}>
           <DateField
-            value={date}
-            onChange={(e) => setValue(e.target.value)}
             input={{
               onBlur: function noRefCheck() {},
               onChange: function noRefCheck() {},
@@ -46,16 +67,24 @@ function DateOfBirth() {
             }}
             inputNames={{
               day: "dayInputName",
+              month: "monthInputName",
+              year: "yearInputName",
             }}
             inputs={{
               day: {
                 autoComplete: "bday-day",
+                value: day,
+                onChange: (e) => handleInputChange(e, "dayInputName"),
               },
               month: {
                 autoComplete: "bday-month",
+                value: month,
+                onChange: (e) => handleInputChange(e, "monthInputName"),
               },
               year: {
                 autoComplete: "bday-year",
+                value: year,
+                onChange: (e) => handleInputChange(e, "yearInputName"),
               },
             }}
           >

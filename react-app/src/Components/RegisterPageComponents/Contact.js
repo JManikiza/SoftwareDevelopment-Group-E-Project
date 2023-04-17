@@ -24,12 +24,25 @@ function Contact() {
   const nhsNumber = location.state.nhsNumber;
   const fName = location.state.fName;
   const sName = location.state.sName;
+  const day = location.state.day;
+  const month = location.state.month;
+  const year = location.state.year;
   const gender = location.state.gender;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/Address", {
-      state: { nhsNumber, fName, sName, gender, email, phoneNumber },
+      state: {
+        nhsNumber,
+        fName,
+        sName,
+        day,
+        month,
+        year,
+        gender,
+        email,
+        phoneNumber,
+      },
     });
     console.log(nhsNumber);
     console.log(fName);

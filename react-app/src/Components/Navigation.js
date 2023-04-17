@@ -27,7 +27,7 @@ function Navigation() {
           <TopNav.NavLink>Login</TopNav.NavLink>
         </Link>
         <Link to="/NhsNumber">
-          <TopNav.NavLink href="">Register</TopNav.NavLink>
+          <TopNav.NavLink>Register</TopNav.NavLink>
         </Link>
       </TopNav>
     </div>

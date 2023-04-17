@@ -15,7 +15,7 @@ function Surname() {
   const location = useLocation();
   const nhsNumber = location.state.nhsNumber;
   const fName = location.state.fName;
-
+  // handle the states values and parse to the next page
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/DateOfBirth", { state: { nhsNumber, fName, sName } });
@@ -40,6 +40,7 @@ function Surname() {
               type="text"
               value={sName}
               onChange={(e) => setValue(e.target.value)}
+              required
             />
           </Heading>
           <Button type="submit" start>
