@@ -50,6 +50,7 @@ import NameChangeCircumstances from "./Components/PatientPageComponents/ProfileC
 import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeDetails";
 // Custom imports
 
+import Temp from "./Pages/Temp";
 
 function App() {
   return (
@@ -85,6 +86,9 @@ function App() {
         <Route path="/NameChangeStart" element={<NameChangeStart />} />
         <Route path="/NameChangeCircumstances" element={<NameChangeCircumstances />} />
         <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
+//-------------------------------------------------------------------
+      
+        <Route path="/temp" element={<Temp />} />
 
       </Routes>
 
