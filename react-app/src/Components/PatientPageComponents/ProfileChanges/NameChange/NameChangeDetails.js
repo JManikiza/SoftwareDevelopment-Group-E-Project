@@ -4,10 +4,14 @@
 * Joven Manikiza
 */
 
-import { Main, Heading, SectionBreak, Breadcrumbs, Paragraph, MultiChoice, Radio } from "govuk-react";
+import { Main, Heading, SectionBreak, Breadcrumbs,
+     Paragraph, MultiChoice, Radio, Button } from "govuk-react";
+import { useNavigate } from "react-router-dom";
 
 
 function NameChangeDetails(){
+
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -35,7 +39,17 @@ function NameChangeDetails(){
                     <Radio inline name="name">Both</Radio>
                 </MultiChoice>
 
+{/* THIS NAVIGATE WILL TRANSFORM DEPENDING ON THE RADIO THE USER DECIDES */}
 
+                <Button onClick={() => navigate("/")}>
+                    Continue
+                </Button>
+
+                 <SectionBreak level="SMALL" visible={false}/>
+                
+                <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
+                    Cancel
+                </Button>                
 
 
             </Main>

@@ -10,8 +10,9 @@ import {Main, Button, Heading, InsetText, Details,
         } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 
-
-
+// NOTE TO SELF, I HAVE BUTTONS ON EVERY PAGE AND 
+// ALL I NEED TO DO IS CHANGE THE NAVIGATE PAGE. CONDENSE IT.
+ 
 function Patient(){
 
 const navigate = useNavigate();
@@ -22,7 +23,7 @@ return(
             <Breadcrumbs>
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
-            
+
             <Heading>Hello (Prop name here).</Heading>
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">
