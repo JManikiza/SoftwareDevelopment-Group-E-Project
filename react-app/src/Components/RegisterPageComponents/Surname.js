@@ -1,7 +1,29 @@
+/**
+ * Author(s) of this code:
+ *
+ * Wallyson Alves Da Silva
+ */
+
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Heading, Button, Input, Main, Breadcrumbs } from "govuk-react";
-import { useNavigate } from "react-router-dom";
+
 function Surname() {
+  //used state to save value of the name
+  const [sName, setValue] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const nhsNumber = location.state.nhsNumber;
+  const fName = location.state.fName;
+  // handle the states values and parse to the next page
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/DateOfBirth", { state: { nhsNumber, fName, sName } });
+    console.log(nhsNumber);
+    console.log(fName);
+    console.log(sName);
+  };
+
   return (
     <div>
       <Main>
@@ -10,13 +32,21 @@ function Surname() {
           <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
         </Breadcrumbs>
-        <Heading>
-          What is your surname?
-          <Input />
-        </Heading>
-        <Button onClick={() => navigate("/DateOfBirth")} start>
-          Save and Continue
-        </Button>
+
+        <form onSubmit={handleSubmit}>
+          <Heading>
+            What is your surname?
+            <Input
+              type="text"
+              value={sName}
+              onChange={(e) => setValue(e.target.value)}
+              required
+            />
+          </Heading>
+          <Button type="submit" start>
+            Save and Continue
+          </Button>
+        </form>
       </Main>
     </div>
   );

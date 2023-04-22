@@ -23,7 +23,6 @@ import Login from "./Pages/Login";
 
 
 // Registration page imports
-import Registration from "./Pages/Registration";
 import FirstName from "./Components/RegisterPageComponents/FirstName";
 import Surname from "./Components/RegisterPageComponents/Surname";
 import DateOfBirth from "./Components/RegisterPageComponents/DateOfBirth";
@@ -31,6 +30,7 @@ import NhsNumber from "./Components/RegisterPageComponents/NhsNumber";
 import Gender from "./Components/RegisterPageComponents/Gender";
 import Contact from "./Components/RegisterPageComponents/Contact";
 import Address from "./Components/RegisterPageComponents/Address";
+import DetailsSummary from "./Components/RegisterPageComponents/DetailsSummary";
 
 // Doctor page imports
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
@@ -50,6 +50,7 @@ import NameChangeCircumstances from "./Components/PatientPageComponents/ProfileC
 import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeDetails";
 // Custom imports
 
+import Temp from "./Pages/Temp";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
         <Route path="/Gender" element={<Gender />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Address" element={<Address />} />
+        <Route exact path="/DetailsSummary" element={<DetailsSummary />} />
 
 
 
@@ -84,6 +86,9 @@ function App() {
         <Route path="/NameChangeStart" element={<NameChangeStart />} />
         <Route path="/NameChangeCircumstances" element={<NameChangeCircumstances />} />
         <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
+//-------------------------------------------------------------------
+      
+        <Route path="/temp" element={<Temp />} />
 
       </Routes>
 
