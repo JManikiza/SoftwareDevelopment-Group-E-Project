@@ -7,7 +7,7 @@ import {
   InsetText,
   Link,
 } from "govuk-react";
-
+import Navigation from "../Navigation";
 function LoginForm() {
   //const [email, setEmail] = useState("");
   //const [password, setPassword] = useState("");
@@ -17,7 +17,10 @@ function LoginForm() {
   };
 
   return (
-    <Main>
+    <div>
+            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+<Main>
+
       <form onSubmit={submitFormHandler}>
         <Fieldset>
           <Fieldset.Legend size="LARGE">Login</Fieldset.Legend>
@@ -53,7 +56,7 @@ function LoginForm() {
         <Link href="#">here</Link>
       </InsetText>
       <br />
-    </Main>
+    </Main></div>
   );
 }
 

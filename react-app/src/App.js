@@ -54,7 +54,6 @@ import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges
 function App() {
   return (
     <div>
-      <Navigation />
 
       {/* route for the links to different pages */}
       <Routes>

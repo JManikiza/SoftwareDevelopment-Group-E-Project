@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { InputField, Heading, Button, Main, Breadcrumbs } from "govuk-react";
-
+import Navigation from "../Navigation";
 function Address() {
   //used state to save value of the name
   const [address1, setaddress1] = useState("");
@@ -56,6 +56,8 @@ function Address() {
   };
   return (
     <div>
+      <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>

@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { H3,H6,Main,GridCol,GridRow,Button,Breadcrumbs,ButtonArrow } from "govuk-react";
 // Create a button variable and add CSS
-
+import Navigation from "../../Components/Navigation";
 function DoctorDashBoard(){
     const Navigate=useNavigate();
     return (
 
         <div>
+ <Navigation pageLink1="/" PageName1="Home" pageLink2="/DoctorViewandUpdate" PageName2="Doctor view and update" pageLink3="/DoctorAppointment" PageName3="Doctor List Of Appointments"/>
+
           <Breadcrumbs>
   <Breadcrumbs.Link href="/">
     HomePage
@@ -55,6 +57,7 @@ view Patient Records and update it
   </GridCol>
 
 </GridRow>
+
 </Main>
 
 <br/>

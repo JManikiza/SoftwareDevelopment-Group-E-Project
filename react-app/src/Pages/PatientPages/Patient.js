@@ -8,6 +8,7 @@ import React from "react";
 import {Main, Button, Heading, InsetText, Details,
         ListItem,UnorderedList, Paragraph, ButtonArrow, Breadcrumbs
         } from "govuk-react";
+        import Navigation from "../../Components/Navigation";
 import { useNavigate } from "react-router-dom";
 
 
@@ -18,6 +19,8 @@ const navigate = useNavigate();
 
 return(
     <div>
+        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
         <Main>
             <Breadcrumbs>
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>

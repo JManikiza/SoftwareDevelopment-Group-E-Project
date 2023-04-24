@@ -6,7 +6,7 @@
 //import test
 import { Table, Main, Button, Heading } from "govuk-react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-
+import Navigation from "../Navigation";
 function DetailsSummary() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,6 +52,8 @@ function DetailsSummary() {
 
   return (
     <div>
+      <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
       <Main>
         <form>
           <Heading>Summary List</Heading>

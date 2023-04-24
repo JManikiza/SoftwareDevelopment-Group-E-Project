@@ -1,10 +1,13 @@
 import { Main,Breadcrumbs,H3 } from "govuk-react";
-
+import Navigation from "../../Components/Navigation";
 function DoctorViewandUpdate(){
     return(
 
         <div>
+ <Navigation pageLink1="/" PageName1="Home" pageLink2="/DoctorDashBoard" PageName2="Doctor DashBoard" pageLink3="/DoctorAppointment" PageName3="Doctor List Of Appointments"/>
+
         <Main>
+
             <Breadcrumbs>
         <Breadcrumbs.Link to="/">
     HomePage

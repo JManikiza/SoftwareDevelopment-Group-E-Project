@@ -1,9 +1,12 @@
 
 import { Main,Table,Breadcrumbs,H3 } from "govuk-react";
+import Navigation from "../../Components/Navigation";
 function DoctorAppointment() {
     
     return(
         <div>
+ <Navigation pageLink1="/" PageName1="Home" pageLink2="/DoctorDashBoard" PageName2="Doctor DashBoard" pageLink3="/DoctorViewandUpdate" PageName3="Doctor View and Update"/>
+
 <Main>
 
 <Breadcrumbs>
@@ -12,7 +15,7 @@ function DoctorAppointment() {
   </Breadcrumbs.Link>
   <Breadcrumbs.Link href="/DoctorDashBoard">
   Doctor DashBoard</Breadcrumbs.Link>
-  <Breadcrumbs.Link href="/DoctorDashBoard">
+  <Breadcrumbs.Link href="/DoctorAppointment">
   Doctor Appointment</Breadcrumbs.Link>
   </Breadcrumbs>
   <br/>  <br/>

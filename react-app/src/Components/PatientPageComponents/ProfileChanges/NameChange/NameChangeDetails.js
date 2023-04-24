@@ -5,12 +5,14 @@
 */
 
 import { Main, Heading, SectionBreak, Breadcrumbs, Paragraph, MultiChoice, Radio } from "govuk-react";
-
+import Navigation from "../../../Navigation";
 
 function NameChangeDetails(){
 
     return (
         <div>
+            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
             <Main>
 
                 <Breadcrumbs>

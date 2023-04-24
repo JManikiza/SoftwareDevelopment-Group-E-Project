@@ -6,13 +6,14 @@
 
 import { Checkbox, Heading, Main, Button, SectionBreak, Breadcrumbs } from "govuk-react";
 import { useNavigate } from "react-router-dom";
-
+import Navigation from "../../../Navigation";
 function NameChangeCircumstances(){
 
     const navigate = useNavigate();
    
     return(
         <div>
+            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
 
             <Main>
 

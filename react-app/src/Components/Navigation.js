@@ -3,7 +3,7 @@ import { TopNav } from "govuk-react";
 import { Link } from "react-router-dom";
 import React from "react";
 
-function Navigation() {
+function Navigation(props) {
   return (
     <div>
       <TopNav
@@ -20,14 +20,14 @@ function Navigation() {
           </TopNav.NavLink>
         }
       >
-        <Link to="/">
-          <TopNav.NavLink>Home</TopNav.NavLink>
+        <Link to={props.pageLink1}>
+          <TopNav.NavLink>{props.PageName1}</TopNav.NavLink>
         </Link>
-        <Link to="/login">
-          <TopNav.NavLink>Login</TopNav.NavLink>
+        <Link to={props.pageLink2}>
+          <TopNav.NavLink>{props.PageName2}</TopNav.NavLink>
         </Link>
-        <Link to="/NhsNumber">
-          <TopNav.NavLink>Register</TopNav.NavLink>
+        <Link to={props.pageLink3}>
+          <TopNav.NavLink>{props.PageName3}</TopNav.NavLink>
         </Link>
       </TopNav>
     </div>
