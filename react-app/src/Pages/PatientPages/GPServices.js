@@ -33,14 +33,8 @@ function GPServices() {
         <SectionBreak level="SMALL" visible={false}/>
 
 <Tabs>
-  <Tabs.Title>
-    Contents
-  </Tabs.Title>
   <Tabs.List>
-    <Tabs.Tab
-      href="#0"
-      selected
-    >
+    <Tabs.Tab href="#0" selected >
       Doctors Available
     </Tabs.Tab>
     <Tabs.Tab href="#1">
@@ -53,23 +47,20 @@ function GPServices() {
       De-Register from GP
     </Tabs.Tab>
   </Tabs.List>
-  <Tabs.Panel
-    id="0"
-    selected
-  >
+  <Tabs.Panel id="0" selected >
     <H2>
-      Past day
+      Doctors here at the GP
     </H2>
-    <Table head={<Table.Row><Table.CellHeader>Case manager</Table.CellHeader><Table.CellHeader>Cases opened</Table.CellHeader><Table.CellHeader>Cases closed</Table.CellHeader></Table.Row>}>
+    <Table head={<Table.Row><Table.CellHeader>Doctor name</Table.CellHeader><Table.CellHeader>Doctor Bio</Table.CellHeader><Table.CellHeader>Doctor Specialization</Table.CellHeader></Table.Row>}>
       <Table.Row>
         <Table.Cell>
           David Francis
         </Table.Cell>
         <Table.Cell>
-          3
+          I'm a good doctor
         </Table.Cell>
         <Table.Cell>
-          0
+          Pediatrics
         </Table.Cell>
       </Table.Row>
       <Table.Row>
@@ -77,10 +68,10 @@ function GPServices() {
           Paul Farmer
         </Table.Cell>
         <Table.Cell>
-          1
+          I'm a better doctor
         </Table.Cell>
         <Table.Cell>
-          0
+          Bone & Tissue 
         </Table.Cell>
       </Table.Row>
       <Table.Row>
@@ -88,10 +79,10 @@ function GPServices() {
           Rita Patel
         </Table.Cell>
         <Table.Cell>
-          2
+          I'm the best doctor
         </Table.Cell>
         <Table.Cell>
-          0
+          Ear & Eyes
         </Table.Cell>
       </Table.Row>
     </Table>
