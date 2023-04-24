@@ -60,6 +60,18 @@ function Profile(){
             </Table.Cell>
           </Table.Row>
 
+          <Table.Row>
+            <Table.CellHeader>
+              Gender
+            </Table.CellHeader>
+            <Table.Cell>
+              Fetched data of gender
+            </Table.Cell>
+            <Table.Cell>
+              <Link onClick={() => navigate("/GenderChangeStart")} children="Change"/>
+            </Table.Cell>
+          </Table.Row>
+
 
           <Table.Row>
             <Table.CellHeader>
@@ -95,6 +107,18 @@ function Profile(){
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/NumberChangeStart")} children="Change"/>
+            </Table.Cell>
+          </Table.Row>
+
+          <Table.Row>
+            <Table.CellHeader>
+              Password
+            </Table.CellHeader>
+            <Table.Cell>
+              *************
+            </Table.Cell>
+            <Table.Cell>
+              <Link onClick={() => navigate("/PasswordChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 

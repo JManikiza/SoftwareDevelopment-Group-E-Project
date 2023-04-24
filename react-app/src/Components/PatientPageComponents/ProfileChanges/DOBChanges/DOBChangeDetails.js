@@ -9,7 +9,7 @@ import { Main, Heading, SectionBreak, Breadcrumbs,
 import { useNavigate } from "react-router-dom";
 
 
-function NameChangeDetails(){
+function DOBChangeDetails(){
 
     const navigate = useNavigate();
 
@@ -49,4 +49,4 @@ function NameChangeDetails(){
 
 }
 
-export default NameChangeDetails;
+export default DOBChangeDetails;

@@ -1,8 +1,14 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
+
 import { Button, Heading, Main, Paragraph, SectionBreak } from "govuk-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function NameChangeConfirmation(){
+function DOBChangeConfirmation(){
 
     const navigate = useNavigate();
     return (
@@ -14,7 +20,7 @@ function NameChangeConfirmation(){
                 </Heading>
 
                 <Heading size="MEDIUM">Previous details were:</Heading>
-                
+
                 <SectionBreak></SectionBreak>
 
                 <Paragraph>Date of birth: (Props DOB here)</Paragraph>
@@ -37,4 +43,4 @@ function NameChangeConfirmation(){
     );
 }
 
-export default NameChangeConfirmation;
+export default DOBChangeConfirmation;

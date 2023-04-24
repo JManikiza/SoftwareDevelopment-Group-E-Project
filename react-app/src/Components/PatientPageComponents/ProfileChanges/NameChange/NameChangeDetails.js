@@ -40,7 +40,7 @@ function NameChangeDetails(){
 
 {/* THIS NAVIGATE WILL TRANSFORM DEPENDING ON THE RADIO THE USER DECIDES */}
 
-                <Button onClick={() => navigate("/")}>
+                <Button onClick={() => navigate("/NameChangeBothNames")}>
                     Continue
                 </Button>
 

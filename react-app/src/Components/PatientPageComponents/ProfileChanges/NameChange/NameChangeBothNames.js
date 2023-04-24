@@ -1,8 +1,16 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
 
 import React from "react";
-import { InputField } from "govuk-react";
+import { InputField,  Main, Button, SectionBreak } from "govuk-react";
+import { useNavigate } from "react-router-dom";
 
 function NameChangeBothNames(){
+
+    const navigate = useNavigate();
     
     return(
         <div>
@@ -29,7 +37,7 @@ function NameChangeBothNames(){
                         Your new last name:
                 </InputField>
 
-                <Button onClick={() => navigate("")}>
+                <Button onClick={() => navigate("/NameChangeConfirmation")}>
                     Continue
                 </Button>
 

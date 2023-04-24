@@ -1,8 +1,16 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
 
 import React from "react";
-import { DateField } from "govuk-react";
+import { DateField, Main, Button, SectionBreak } from "govuk-react";
+import { useNavigate } from "react-router-dom";
 
-function NameChangeFirstName(){
+function DOBChangeEnter(){
+
+    const navigate = useNavigate();
     
     return(
         <div>
@@ -31,4 +39,4 @@ function NameChangeFirstName(){
     );
 }
 
-export default NameChangeFirstName;
+export default DOBChangeEnter;

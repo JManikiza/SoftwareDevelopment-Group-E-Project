@@ -1,8 +1,16 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
 
 import React from "react";
-import { InputField, Link } from "govuk-react";
+import { InputField, Link, Main, Button, SectionBreak } from "govuk-react";
+import { useNavigate } from "react-router-dom";
 
 function PasswordChangeEnter(){
+
+    const navigate = useNavigate();
     
     return(
         <div>
@@ -18,9 +26,12 @@ function PasswordChangeEnter(){
                 >
                     Previous password
                 </InputField>
+
+                <SectionBreak level="SMALL" visible={false}/>
+
                 
                 <InputField
-                    hint="Keep it secret. Keep it safe. We recommend using three random words, some digits and special characters.<br>Example - Cushion1Statue!Mirror4"
+                    hint="Keep it secret. Keep it safe. We recommend using three random words, some digits and special characters. Example - Cushion1Statue!Mirror4"
                     input={{
                         autoComplete: 'new password',
                         name: 'password',
@@ -32,6 +43,9 @@ function PasswordChangeEnter(){
 
               <Link onClick={() => navigate("/ForgottenPassword")} children="Forgotten My Password!"/>
 
+                 <SectionBreak level="SMALL" visible={false}/>
+
+                
                 <Button onClick={() => navigate("/PasswordChangeConfirmation")}>
                     Continue
                 </Button>
