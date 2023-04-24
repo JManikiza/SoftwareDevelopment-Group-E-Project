@@ -34,6 +34,8 @@ function GenderChangeStart(){
 
                 <UnorderedList>
                     <ListItem>Gender has changed</ListItem>
+                    <ListItem>Gender in system is incorrect</ListItem>
+
                 </UnorderedList>
 
             <Button onClick={() => navigate("/GenderChangeDetails")}  icon={<ButtonArrow />} start>

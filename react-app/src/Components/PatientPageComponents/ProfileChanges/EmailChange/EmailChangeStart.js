@@ -33,11 +33,8 @@ function EmailChangeStart(){
                 </InsetText>
 
                 <UnorderedList>
-                    <ListItem>Email has changed</ListItem>
-                    <ListItem>
-                        marital or civil partnership 
-                        status has changed
-                    </ListItem>
+                    <ListItem>Email address has changed</ListItem>
+                    <ListItem>Email address in the system is incorrect </ListItem>
                 </UnorderedList>
 
             <Button onClick={() => navigate("/EmailChangeDetails")}  icon={<ButtonArrow />} start>

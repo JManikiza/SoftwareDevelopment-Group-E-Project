@@ -33,11 +33,8 @@ function NumberChangeStart(){
                 </InsetText>
 
                 <UnorderedList>
-                    <ListItem>Name has changed</ListItem>
-                    <ListItem>
-                        marital or civil partnership 
-                        status has changed
-                    </ListItem>
+                    <ListItem>Contact number has changed</ListItem>
+                    <ListItem>Contact number in the system is incorrect</ListItem>
                 </UnorderedList>
 
             <Button onClick={() => navigate("/NumberChangeDetails")}  icon={<ButtonArrow />} start>

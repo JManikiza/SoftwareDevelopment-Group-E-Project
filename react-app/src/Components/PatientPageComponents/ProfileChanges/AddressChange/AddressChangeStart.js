@@ -34,10 +34,7 @@ function AddressChangeStart(){
 
                 <UnorderedList>
                     <ListItem>Address has changed</ListItem>
-                    <ListItem>
-                        marital or civil partnership 
-                        status has changed
-                    </ListItem>
+                    <ListItem>Address is currently incorrect</ListItem>
                 </UnorderedList>
 
             <Button onClick={() => navigate("/AddressChangeDetails")}  icon={<ButtonArrow />} start>
