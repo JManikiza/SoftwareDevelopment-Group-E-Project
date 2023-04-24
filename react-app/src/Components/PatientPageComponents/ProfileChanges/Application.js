@@ -1,4 +1,4 @@
-import { Main } from "govuk-react";
+import { Main,Pagination } from "govuk-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,18 @@ function Application(){
 
         <div>
             <Main>
+
+                <Pagination>
+
+                    <Pagination.Anchor onClick={() => navigate("/Patient")} previousPage>
+                        Profile
+                    </Pagination.Anchor>
+
+                    <Pagination.Anchor onClick={() => navigate("/GPServices")} nextPage>
+                        GP Services
+                    </Pagination.Anchor>
+
+                </Pagination>
 
                 <Panel title="Application Confirmation">
                   <p>No. (number ++)</p>

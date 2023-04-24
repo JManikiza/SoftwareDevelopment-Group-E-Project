@@ -56,7 +56,7 @@ function Profile(){
               Fetched data of D.O.B
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/DOBChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 
@@ -69,7 +69,7 @@ function Profile(){
               Fetched data of Address
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/AddressChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 
@@ -82,7 +82,7 @@ function Profile(){
               Fetched data of Email
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/EmailChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 
@@ -94,7 +94,7 @@ function Profile(){
               Fetched data of Contact No.
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/NumberChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 

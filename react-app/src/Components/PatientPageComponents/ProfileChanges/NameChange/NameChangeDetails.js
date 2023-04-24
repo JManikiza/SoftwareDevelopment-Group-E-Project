@@ -21,7 +21,6 @@ function NameChangeDetails(){
                     <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link>Profile</Breadcrumbs.Link>
                     <Breadcrumbs.Link>Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link>Circumstances</Breadcrumbs.Link>
                 </Breadcrumbs>
                 
                 <Heading>About you</Heading>

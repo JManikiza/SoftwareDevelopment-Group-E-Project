@@ -18,7 +18,7 @@ function DOBChangeStart(){
             <Main>
 
                 <Breadcrumbs>
-                    <Breadcrumbs.Link>Home P , age</Breadcrumbs.Link>
+                    <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link>Profile</Breadcrumbs.Link>
                 </Breadcrumbs>
 
@@ -28,17 +28,13 @@ function DOBChangeStart(){
                 </Heading>
 
                 <InsetText>
-                    Use this form to tell the NHS 
+                    Use this form to tell the NHS
                     about a change in your personal 
                     details if your:
                 </InsetText>
 
                 <UnorderedList>
-                    <ListItem>Name has changed</ListItem>
-                    <ListItem>
-                        marital or civil partnership 
-                        status has changed
-                    </ListItem>
+                    <ListItem>Date of birth in the system is wrong</ListItem>
                 </UnorderedList>
 
             <Button onClick={() => navigate("/NameChangeCircumstances")}  icon={<ButtonArrow />} start>
@@ -52,8 +48,7 @@ function DOBChangeStart(){
             <InsetText>You will be asked to give:</InsetText>
 
             <UnorderedList>
-                <ListItem>details of any changes to your name, including dates</ListItem>
-                <ListItem>details of any changes to your marital or civil partnership status, including dates</ListItem>
+                <ListItem>details of any changes to your date of birth</ListItem>
                 <ListItem>you may be asked to upload document(s) as proof, have any ready </ListItem>
                 <ListItem>you may be asked for your NHS number, keep it ready</ListItem>
             </UnorderedList>
@@ -65,4 +60,4 @@ function DOBChangeStart(){
     );
 }
 
-export default NameChangeStart;
+export default DOBChangeStart;

@@ -46,7 +46,6 @@ import Patient from "./Pages/PatientPages/Patient";
 import Profile from "./Pages/PatientPages/Profile";
 import GPServices from "./Pages/PatientPages/GPServices";
 import NameChangeStart from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeStart";
-import NameChangeCircumstances from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeCircumstances";
 import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeDetails";
 // Custom imports
 
@@ -84,7 +83,6 @@ function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/GPServices" element={<GPServices />} />
         <Route path="/NameChangeStart" element={<NameChangeStart />} />
-        <Route path="/NameChangeCircumstances" element={<NameChangeCircumstances />} />
         <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
 //-------------------------------------------------------------------
       
