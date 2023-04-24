@@ -42,7 +42,7 @@ function NameChangeStart(){
                     </ListItem>
                 </UnorderedList>
 
-            <Button onClick={() => navigate("/NameChangeCircumstances")}  icon={<ButtonArrow />} start>
+            <Button onClick={() => navigate("/NameChangeDetails")}  icon={<ButtonArrow />} start>
                 Start now
             </Button>
 

@@ -57,7 +57,19 @@ function Profile(){
               Fetched data of D.O.B
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/DOBChangeStart")} children="Change"/>
+            </Table.Cell>
+          </Table.Row>
+
+          <Table.Row>
+            <Table.CellHeader>
+              Gender
+            </Table.CellHeader>
+            <Table.Cell>
+              Fetched data of gender
+            </Table.Cell>
+            <Table.Cell>
+              <Link onClick={() => navigate("/GenderChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 
@@ -70,7 +82,7 @@ function Profile(){
               Fetched data of Address
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/AddressChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 
@@ -83,7 +95,7 @@ function Profile(){
               Fetched data of Email
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/EmailChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 
@@ -95,7 +107,19 @@ function Profile(){
               Fetched data of Contact No.
             </Table.Cell>
             <Table.Cell>
-              <Link to="#" children="Change"/>
+              <Link onClick={() => navigate("/NumberChangeStart")} children="Change"/>
+            </Table.Cell>
+          </Table.Row>
+
+          <Table.Row>
+            <Table.CellHeader>
+              Password
+            </Table.CellHeader>
+            <Table.Cell>
+              *************
+            </Table.Cell>
+            <Table.Cell>
+              <Link onClick={() => navigate("/PasswordChangeStart")} children="Change"/>
             </Table.Cell>
           </Table.Row>
 

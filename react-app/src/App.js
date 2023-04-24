@@ -45,11 +45,48 @@ import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 import Patient from "./Pages/PatientPages/Patient";
 import Profile from "./Pages/PatientPages/Profile";
 import GPServices from "./Pages/PatientPages/GPServices";
+import Application from "./Components/PatientPageComponents/ProfileChanges/Application";
+
 import NameChangeStart from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeStart";
-import NameChangeCircumstances from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeCircumstances";
 import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeDetails";
+import NameChangeFirstName from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeFirstName";
+import NameChangeLastName from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeLastName";
+import NameChangeBothNames from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeBothNames";
+import NameChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeConfirmation";
+
+import AddressChangeStart from "./Components/PatientPageComponents/ProfileChanges/AddressChange/AddressChangeStart";
+import AddressChangeDetails from "./Components/PatientPageComponents/ProfileChanges/AddressChange/AddressChangeDetails";
+import AddressChangeEnter from "./Components/PatientPageComponents/ProfileChanges/AddressChange/AddressChangeEnter";
+import AddressChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/AddressChange/AddressChangeConfirmation";
+
+import DOBChangeStart from "./Components/PatientPageComponents/ProfileChanges/DOBChanges/DOBChangeStart";
+import DOBChangeDetails from "./Components/PatientPageComponents/ProfileChanges/DOBChanges/DOBChangeDetails";
+import DOBChangeEnter from "./Components/PatientPageComponents/ProfileChanges/DOBChanges/DOBChangeEnter";
+import DOBChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/DOBChanges/DOBChangeConfirmation";
+
+import EmailChangeStart from "./Components/PatientPageComponents/ProfileChanges/EmailChange/EmailChangeStart";
+import EmailChangeDetails from "./Components/PatientPageComponents/ProfileChanges/EmailChange/EmailChangeDetails";
+import EmailChangeEnter from "./Components/PatientPageComponents/ProfileChanges/EmailChange/EmailChangeEnter";
+import EmailChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/EmailChange/EmailChangeConfirmation";
+
+import GenderChangeStart from "./Components/PatientPageComponents/ProfileChanges/GenderChange/GenderChangeStart";
+import GenderChangeDetails from "./Components/PatientPageComponents/ProfileChanges/GenderChange/GenderChangeDetails";
+import GenderChangeEnter from "./Components/PatientPageComponents/ProfileChanges/GenderChange/GenderChangeEnter";
+import GenderChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/GenderChange/GenderChangeConfirmation";
+
+import NumberChangeStart from "./Components/PatientPageComponents/ProfileChanges/NumberChange/NumberChangeStart";
+import NumberChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NumberChange/NumberChangeDetails";
+import NumberChangeEnter from "./Components/PatientPageComponents/ProfileChanges/NumberChange/NumberChangeEnter";
+import NumberChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/NumberChange/NumberChangeConfirmation";
+
+import PasswordChangeStart from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeStart";
+import PasswordChangeDetails from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeDetails";
+import PasswordChangeEnter from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeEnter";
+import PasswordChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeConfirmation";
+
 // Custom imports
 
+import Temp from "./Pages/Temp";
 
 function App() {
   return (
@@ -81,9 +118,56 @@ function App() {
         <Route path="/Patient" element={<Patient />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/GPServices" element={<GPServices />} />
+        <Route path="/Application" element={<Application />} />
+
         <Route path="/NameChangeStart" element={<NameChangeStart />} />
-        <Route path="/NameChangeCircumstances" element={<NameChangeCircumstances />} />
         <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
+        <Route path="/NameChangeFirstName" element={<NameChangeFirstName/>} />
+        <Route path="/NameChangeLastName" element={<NameChangeLastName/>} />
+        <Route path="/NameChangeBothNames" element={<NameChangeBothNames/>} />
+        <Route path="/NameChangeConfirmation" element={<NameChangeConfirmation/>} />
+
+        <Route path="/AddressChangeStart" element={<AddressChangeStart/>} />
+        <Route path="/AddressChangeDetails" element={<AddressChangeDetails/>} />
+        <Route path="/AddressChangeEnter" element={<AddressChangeEnter/>} />
+        <Route path="/AddressChangeConfirmation" element={<AddressChangeConfirmation/>} />
+
+        <Route path="/DOBChangeStart" element={<DOBChangeStart/>} />
+        <Route path="/DOBChangeDetails" element={<DOBChangeDetails/>} />
+        <Route path="/DOBChangeEnter" element={<DOBChangeEnter/>} />
+        <Route path="/DOBChangeConfirmation" element={<DOBChangeConfirmation/>} />
+
+        <Route path="/EmailChangeStart" element={<EmailChangeStart/>} />
+        <Route path="/EmailChangeDetails" element={<EmailChangeDetails/>} />
+        <Route path="/EmailChangeEnter" element={<EmailChangeEnter/>} />
+        <Route path="/EmailChangeConfirmation" element={<EmailChangeConfirmation/>} />
+
+        <Route path="/GenderChangeStart" element={<GenderChangeStart/>} />
+        <Route path="/GenderChangeDetails" element={<GenderChangeDetails/>} />
+        <Route path="/GenderChangeEnter" element={<GenderChangeEnter/>} />
+        <Route path="/GenderChangeConfirmation" element={<GenderChangeConfirmation/>} />
+
+        <Route path="/NumberChangeStart" element={<NumberChangeStart/>} />
+        <Route path="/NumberChangeDetails" element={<NumberChangeDetails/>} />
+        <Route path="/NumberChangeEnter" element={<NumberChangeEnter/>} />
+        <Route path="/NumberChangeConfirmation" element={<NumberChangeConfirmation/>} />
+
+        <Route path="/PasswordChangeStart" element={<PasswordChangeStart/>} />
+        <Route path="/PasswordChangeDetails" element={<PasswordChangeDetails/>} />
+        <Route path="/PasswordChangeEnter" element={<PasswordChangeEnter/>} />
+        <Route path="/PasswordChangeConfirmation" element={<PasswordChangeConfirmation/>} />
+
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------------
+      
+        <Route path="/temp" element={<Temp />} />
 
       </Routes>
 
