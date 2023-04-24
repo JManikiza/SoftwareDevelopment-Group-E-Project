@@ -7,13 +7,15 @@
 import React from "react";
 import { MultiChoice, Radio, Main, Button, SectionBreak } from "govuk-react";
 import { useNavigate } from "react-router-dom";
-
+import Navigation from "../../../Navigation";
 function GenderChangeEnter(){
 
     const navigate = useNavigate();
     
     return(
         <div>
+                                    <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
             <Main>
                 
                 <MultiChoice label="What is your gender?">

@@ -8,13 +8,15 @@ import { Main, Heading, SectionBreak, Breadcrumbs,
      Paragraph, MultiChoice, Radio, Button } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 
-
+import Navigation from "../../../Navigation";
 function EmailChangeDetails(){
 
     const navigate = useNavigate();
 
     return (
         <div>
+                        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
             <Main>
 
                 <Breadcrumbs>

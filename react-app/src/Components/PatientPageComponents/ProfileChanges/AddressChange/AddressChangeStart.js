@@ -7,6 +7,7 @@
 import React from "react";
 import {Main, Heading, InsetText, UnorderedList, ListItem, Button, ButtonArrow, Breadcrumbs} from "govuk-react";
 import { useNavigate } from "react-router-dom";
+import Navigation from "../../../Navigation";
 
 function AddressChangeStart(){
 
@@ -14,6 +15,8 @@ function AddressChangeStart(){
     return (
 
         <div>
+                                                <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
             <Main>
 
                 <Breadcrumbs>

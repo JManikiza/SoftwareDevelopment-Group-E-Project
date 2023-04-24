@@ -1,7 +1,7 @@
 import { Main,Pagination, Panel } from "govuk-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import Navigation from "../../Navigation";
 function Application(){
 
     const navigate = useNavigate();
@@ -9,6 +9,8 @@ function Application(){
     return (
 
         <div>
+                                    <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+
             <Main>
 
                 <Pagination>
