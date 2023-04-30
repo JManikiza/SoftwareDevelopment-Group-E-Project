@@ -30,7 +30,9 @@ import NhsNumber from "./Components/RegisterPageComponents/NhsNumber";
 import Gender from "./Components/RegisterPageComponents/Gender";
 import Contact from "./Components/RegisterPageComponents/Contact";
 import Address from "./Components/RegisterPageComponents/Address";
+import Password from "./Components/RegisterPageComponents/Password";
 import DetailsSummary from "./Components/RegisterPageComponents/DetailsSummary";
+import RegistrationComplete from "./Components/RegisterPageComponents/RegistrationComplete";
 
 // Doctor page imports
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
@@ -103,7 +105,9 @@ function App() {
         <Route path="/Gender" element={<Gender />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Address" element={<Address />} />
+        <Route path="/Password" element={<Password />} />
         <Route exact path="/DetailsSummary" element={<DetailsSummary />} />
+        <Route path="/RegistrationComplete" element={<RegistrationComplete />} />
 
 
 
