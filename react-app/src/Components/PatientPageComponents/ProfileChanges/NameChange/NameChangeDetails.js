@@ -4,7 +4,7 @@
 * Joven Manikiza
 */
 
-import { Main, Heading, SectionBreak, Breadcrumbs, Paragraph, MultiChoice, Radio } from "govuk-react";
+import { Main, Heading, Breadcrumbs, Paragraph, MultiChoice, Radio } from "govuk-react";
 import Navigation from "../../../Navigation";
 
 function NameChangeDetails(){

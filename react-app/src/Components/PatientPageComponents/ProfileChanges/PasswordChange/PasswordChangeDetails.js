@@ -5,7 +5,7 @@
 */
 
 import { Main, Heading, SectionBreak, Breadcrumbs,
-     Paragraph, MultiChoice, Radio, Button } from "govuk-react";
+     Paragraph, Button } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
