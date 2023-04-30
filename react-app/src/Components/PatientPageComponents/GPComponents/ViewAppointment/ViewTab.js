@@ -1,46 +1,30 @@
 
-import { Table, H2, Tabs } from "govuk-react";
+import { Table, H2, Link } from "govuk-react";
+import { useNavigate } from "react-router-dom";
 
 function ViewTab(){
+
+  const navigate = useNavigate();
 
     return(
       <div>
         <br/>
     <H2>
-      View or Cancel an appointment
+      View/Cancel Appointment
     </H2>
-    <Table head={<Table.Row><Table.CellHeader>Case manager</Table.CellHeader><Table.CellHeader>Cases opened</Table.CellHeader><Table.CellHeader>Cases closed</Table.CellHeader></Table.Row>}>
+    <Table head={<Table.Row><Table.CellHeader>Appointment</Table.CellHeader><Table.CellHeader>DD/MM/YY</Table.CellHeader><Table.CellHeader>Time 24H</Table.CellHeader><Table.CellHeader></Table.CellHeader></Table.Row>}>
       <Table.Row>
         <Table.Cell>
-          David Francis
+          Dr.Francis
         </Table.Cell>
         <Table.Cell>
-          98
+          09/05/23
         </Table.Cell>
         <Table.Cell>
-          95
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
-          Paul Farmer
+          11:30
         </Table.Cell>
         <Table.Cell>
-          122
-        </Table.Cell>
-        <Table.Cell>
-          133
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
-          Rita Patel
-        </Table.Cell>
-        <Table.Cell>
-          126
-        </Table.Cell>
-        <Table.Cell>
-          142
+          <Link onClick={() => navigate("/CancelAppointment")} children="Cancel"/>
         </Table.Cell>
       </Table.Row>
     </Table>

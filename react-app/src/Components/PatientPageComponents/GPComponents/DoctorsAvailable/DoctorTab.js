@@ -9,40 +9,22 @@ function DoctorTab(){
     <H2>
       Doctors Available
     </H2>
-    <Table head={<Table.Row><Table.CellHeader>Names</Table.CellHeader><Table.CellHeader>Spec</Table.CellHeader><Table.CellHeader>Cases closed</Table.CellHeader></Table.Row>}>
+    <Table head={<Table.Row><Table.CellHeader>Name</Table.CellHeader><Table.CellHeader>Specialisation</Table.CellHeader><Table.CellHeader>Email</Table.CellHeader><Table.CellHeader>Contact No.</Table.CellHeader></Table.Row>}>
       <Table.Row>
         <Table.Cell>
-          David Francis
+          Dr.Francis
         </Table.Cell>
         <Table.Cell>
-          3
+          Haematologist
         </Table.Cell>
         <Table.Cell>
-          0
+          JFrancis@GP.co.uk
+        </Table.Cell>
+        <Table.Cell>
+          0123456789
         </Table.Cell>
       </Table.Row>
-      <Table.Row>
-        <Table.Cell>
-          Paul Farmer
-        </Table.Cell>
-        <Table.Cell>
-          1
-        </Table.Cell>
-        <Table.Cell>
-          0
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
-          Rita Patel
-        </Table.Cell>
-        <Table.Cell>
-          2
-        </Table.Cell>
-        <Table.Cell>
-          0
-        </Table.Cell>
-      </Table.Row>
+      
     </Table>
   </div>
     

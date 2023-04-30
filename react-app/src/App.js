@@ -166,16 +166,6 @@ function App() {
         <Route path="/PasswordChangeEnter" element={<PasswordChangeEnter/>} />
         <Route path="/PasswordChangeConfirmation" element={<PasswordChangeConfirmation/>} />
 
-        
- <Route path="/Doctors-available" element={<GPTabs section="" />} />
-  <Route path="/Book-appointment" element={<BookTab/>} />
-  <Route path="/View-or-cancel-appointments" element={<GPTabs section="ViewTab" />} />
-  <Route path="/De-register" element={<GPTabs section="DRTab" />} />
- 
-
-
-
-
 
 
 
