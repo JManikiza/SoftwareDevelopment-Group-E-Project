@@ -28,7 +28,7 @@ function HomePage() {
 
       <PhaseBanner level="Alpha">
         <p>
-          <strong>Alpha 0.0.1</strong> This is a new service – your{" "}
+          <strong>Alpha 1.2.1</strong> This is a new service – your{" "}
           <a href="#">feedback</a> will help us to improve it.
         </p>
       </PhaseBanner>
