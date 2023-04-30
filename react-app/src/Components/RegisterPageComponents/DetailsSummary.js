@@ -7,6 +7,8 @@
 import { Table, Main, Button, Heading } from "govuk-react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import Navigation from "../Navigation";
+import jq from "jquery";
+
 function DetailsSummary() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ function DetailsSummary() {
   const townCity = location.state.townCity;
   const county = location.state.county;
   const postCode = location.state.postCode;
+  const userPassword = location.state.userPassword;
 
   //this method will transfer the states back to the previous pages if customer devices to presse the anchor "change"
   const handleSubmit = (path) => (e) => {
@@ -46,9 +49,36 @@ function DetailsSummary() {
         townCity,
         county,
         postCode,
+        userPassword
       },
     });
   };
+  
+  //method do add to the database
+  function getPatientData() {
+    var addNewpatient = {
+      nhsNo: location.state.nhsNumber,
+      ForeName: fName,
+      SurName: sName,
+    };
+
+    jq.ajax({
+      type: "POST",
+      url: "http://localhost:4000/AddNewPatient.php",
+      mode: "no-core",
+      data: addNewpatient,
+      success(data) {
+        console.log(data);
+        if (data === "no patients") {
+          alert("no patients")
+        } else {
+          alert(data);
+          var json = jq.parseJSON(data);
+          alert(json[0].Postcode);
+        }
+      },
+    });
+  }
 
   return (
     <div>
@@ -174,7 +204,7 @@ function DetailsSummary() {
               </Table.Cell>
             </Table.Row>
             <br />
-            <Button type="submit" start>
+            <Button onClick={getPatientData} start>
               Register
             </Button>
           </Table>

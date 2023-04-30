@@ -29,7 +29,7 @@ function Address() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/DetailsSummary", {
+    navigate("/Password", {
       state: {
         nhsNumber,
         fName,
