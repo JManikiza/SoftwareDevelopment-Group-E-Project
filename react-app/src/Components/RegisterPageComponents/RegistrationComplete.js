@@ -1,16 +1,26 @@
+import { WHITE } from "govuk-colours";
 import Navigation from "../Navigation";
-import { Main,H1, Panel } from "govuk-react";
+import { Link } from "govuk-react";
+import { Main, Panel, InsetText, H1 } from "govuk-react";
 
 function RegistrationComplete(){
     return(
         <div>
             <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
             <Main>
-                <Panel title="Registration Complete">
-        <div>
-        Your reference number<br/><strong>HDJ2123F</strong>
-        </div>
-        </Panel>
+                <Panel >
+                <div>
+                    <br/>
+                    <H1 style={{color: WHITE}}>Registration Complete</H1>
+                    <br/>
+                    <br/>
+                </div>
+            </Panel>
+            <InsetText margin={3}>
+                Login Now&nbsp;
+            <Link href="/Login">here</Link>
+            </InsetText>
+            <br />
         </Main>
         </div>
     )

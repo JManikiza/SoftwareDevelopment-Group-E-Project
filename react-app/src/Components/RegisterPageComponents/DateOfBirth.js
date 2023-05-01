@@ -58,6 +58,7 @@ function DateOfBirth() {
           <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Date of birth</Breadcrumbs.Link>
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>

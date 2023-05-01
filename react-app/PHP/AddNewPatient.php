@@ -1,25 +1,32 @@
 <?php
 	header('Access-Control-Allow-Origin: *');
-    
+    //retriving data from react js passed throught the POST method
     $nhsNo = $_POST['nhsNo'];
 	$FName = $_POST['ForeName'];
     $SName = $_POST['SurName'];
+    $Date = $_POST['Date'];
+    $Gender = $_POST['gender'];
+    $Email = $_POST['email'];
+    $PhoneNumber = $_POST['phoneNumber'];
+    $PostCode = $_POST['postCode'];
+    $pw = $_POST['password'];
+    
 	$pdo = new \PDO("sqlite:LocalDataBase.db");
-	$st = $pdo->query("SELECT * from patients where NHSNumber='".$nhsNo."'" );
-	$st->execute();
-	$patients = [];
-	while ($patient = $st->fetchObject()) {
-	$patients[]=$patient;
-	}
-	if(empty($patients)){
-	   echo json_encode("no patients");
-        $insertDb = $pdo->query(
-            "INSERT INTO patients 
-            VALUES ("'.$nhsNo.'",' ','','','','','','','','');");
-	   $insertDb->execute();
-	}
-	else
-	{
-	   echo json_encode($patients);
-	}
+
+    $st = $pdo->prepare("SELECT * FROM patients WHERE NHSNumber = ?");
+    $st->execute([$nhsNo]);
+    $patient = $st->fetchObject();
+    if ($patient) {
+    // Patient already exists in the database, do not insert again
+    echo json_encode($patient);
+    } else {
+    // Patient does not exist in the database, insert new patient
+    $insertDb = $pdo->prepare(
+        "INSERT INTO patients 
+        VALUES (?, 'gpID', ?, ?, ?, ?, ?, ?, ?, ?)"
+    );
+    $insertDb->execute([$nhsNo, $FName, $SName, $Email, $Date, $Gender, $PostCode, $pw, $PhoneNumber]);
+    echo json_encode("Patient added successfully");
+    }   
+
 ?>

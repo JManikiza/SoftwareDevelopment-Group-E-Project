@@ -68,6 +68,7 @@ function Password() {
           <Breadcrumbs.Link href="/Gender">Gender</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/Contact">Contact details</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/Address">Address</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Password</Breadcrumbs.Link>
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>

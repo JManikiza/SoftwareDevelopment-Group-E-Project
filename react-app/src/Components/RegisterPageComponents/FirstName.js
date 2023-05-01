@@ -29,6 +29,7 @@ function InputLabel() {
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link >First Name</Breadcrumbs.Link>
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>

@@ -9,7 +9,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../Navigation";
 import {
   InputField,
-  Heading,
   Main,
   Button,
   Breadcrumbs,
@@ -65,6 +64,7 @@ function Contact() {
           <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/DateOfBirth">Date of birth</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/Gender">Gender</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Conctact Details</Breadcrumbs.Link>
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>

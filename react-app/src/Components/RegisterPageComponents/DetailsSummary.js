@@ -14,21 +14,22 @@ function DetailsSummary() {
   const navigate = useNavigate();
 
   //catch the state values passed from previous pages
-  const nhsNumber = location.state.nhsNumber;
-  const fName = location.state.fName;
-  const sName = location.state.sName;
-  const day = location.state.day;
-  const month = location.state.month;
-  const year = location.state.year;
-  const gender = location.state.gender;
-  const email = location.state.email;
-  const phoneNumber = location.state.phoneNumber;
-  const address1 = location.state.address1;
-  const address2 = location.state.address2;
-  const townCity = location.state.townCity;
-  const county = location.state.county;
-  const postCode = location.state.postCode;
-  const userPassword = location.state.userPassword;
+  const nhsNumber = location.state?.nhsNumber;
+  const fName = location.state?.fName;
+  const sName = location.state?.sName;
+  const day = location.state?.day;
+  const month = location.state?.month;
+  const year = location.state?.year;
+  const gender = location.state?.gender;
+  const email = location.state?.email;
+  const phoneNumber = location.state?.phoneNumber;
+  const address1 = location.state?.address1;
+  const address2 = location.state?.address2;
+  const townCity = location.state?.townCity;
+  const county = location.state?.county;
+  const postCode = location.state?.postCode;
+  const userPassword = location.state?.userPassword;
+  var newGender = null
 
   //this method will transfer the states back to the previous pages if customer devices to presse the anchor "change"
   const handleSubmit = (path) => (e) => {
@@ -55,11 +56,24 @@ function DetailsSummary() {
   };
   
   //method do add to the database
-  function getPatientData() {
+  function addPatientData() {
+    if(gender === "female"){
+       newGender = 1
+    }else if(gender === "male"){
+       newGender = 2
+    }else{
+       newGender = 3
+    } 
     var addNewpatient = {
-      nhsNo: location.state.nhsNumber,
+      nhsNo: nhsNumber,
       ForeName: fName,
       SurName: sName,
+      Date: day + "/" + month +"/"+year,
+      gender: newGender,
+      email: email,
+      phoneNumber: phoneNumber,
+      postCode: postCode,
+      password: userPassword
     };
 
     jq.ajax({
@@ -69,13 +83,32 @@ function DetailsSummary() {
       data: addNewpatient,
       success(data) {
         console.log(data);
-        if (data === "no patients") {
+/*         if (data === "no patients") {
           alert("no patients")
         } else {
           alert(data);
           var json = jq.parseJSON(data);
           alert(json[0].Postcode);
-        }
+        } */
+      },
+    });
+    navigate("/RegistrationComplete",  {
+      state: {
+        nhsNumber,
+        fName,
+        sName,
+        day,
+        month,
+        year,
+        gender,
+        email,
+        phoneNumber,
+        address1,
+        address2,
+        townCity,
+        county,
+        postCode,
+        userPassword
       },
     });
   }
@@ -204,7 +237,7 @@ function DetailsSummary() {
               </Table.Cell>
             </Table.Row>
             <br />
-            <Button onClick={getPatientData} start>
+            <Button type="submit" onClick={addPatientData} start>
               Register
             </Button>
           </Table>

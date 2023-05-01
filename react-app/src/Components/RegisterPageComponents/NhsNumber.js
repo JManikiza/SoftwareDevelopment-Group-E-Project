@@ -25,6 +25,7 @@ function NhsNumber() {
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
+          <Breadcrumbs.Link >NHS Number</Breadcrumbs.Link>
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>

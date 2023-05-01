@@ -47,6 +47,7 @@ function Gender() {
           <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
           <Breadcrumbs.Link href="/DateOfBirth">Date of birth</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Gender</Breadcrumbs.Link>
         </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>
