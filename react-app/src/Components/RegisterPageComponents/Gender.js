@@ -11,6 +11,8 @@ import Navigation from "../Navigation";
 function Gender() {
   //used state to save value of the name
   const [gender, setValue] = useState("");
+  const [valueValid, setValid] = useState("");
+  const [valueSelected, setSelected] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const nhsNumber = location.state.nhsNumber;
@@ -21,7 +23,15 @@ function Gender() {
   const year = location.state.year;
   // sets the value choosen in the select drop down option
   const handleSelectChange = (e) => {
-    setValue(e.target.value);
+    const inputValue = e.target.value;
+    if(inputValue === ""){
+      setValid("Please select an option");
+      setSelected(false);
+    }else {
+      setValid("");
+      setSelected(true);
+      setValue(inputValue);
+    }
   };
   // handle the states values and parse to the next page
   const handleSubmit = (e) => {
@@ -52,6 +62,7 @@ function Gender() {
 
         <form onSubmit={handleSubmit}>
           <Heading>Describe your gender type</Heading>
+          {valueValid && <p style={{ color: 'red' }}>{valueValid}</p>}
           <Select
             input={{
               name: "group1",
@@ -64,7 +75,7 @@ function Gender() {
             <option value={"Other"}>Other</option>
           </Select>
           <br />
-          <Button start>Save and Continue</Button>
+          <Button disabled={!valueSelected} start>Save and Continue</Button>
         </form>
       </Main>
     </div>

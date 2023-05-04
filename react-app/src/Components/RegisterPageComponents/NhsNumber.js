@@ -25,12 +25,11 @@ function NhsNumber() {
     } else {
       setValid(true);
     }
-    console.log(validNhs);
   };
   //handls submit button and moves to the next page transfering the state value of the nhs number inserted by the user
-  const handleSubmit = (e) => {
+  const handleSubmit = (path) => (e) => {
     e.preventDefault();
-    navigate("/FirstName", { state: { nhsNumber } });
+    navigate(path, { state: { nhsNumber } });
     console.log(nhsNumber);
   };
 
@@ -51,7 +50,7 @@ function NhsNumber() {
           <Breadcrumbs.Link>NHS Number</Breadcrumbs.Link>
         </Breadcrumbs>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit("/FirstName")}>
           <InputField
             value={nhsNumber}
             onChange={handleChange}

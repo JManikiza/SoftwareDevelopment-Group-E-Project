@@ -9,11 +9,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../Navigation";
 import { InputField, Main, Button, Breadcrumbs, H1 } from "govuk-react";
 
+
 function Contact() {
   //used state to save value of the name
   const [email, setEmail] = useState("");
   const [validEmail, setValid] = useState(false);
-  const [phoneNumber, setNumber] = useState("");
+  const [phoneNumber, setMobileNumber] = useState("");
+  const [mobileError, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const nhsNumber = location.state.nhsNumber;
@@ -34,6 +36,19 @@ function Contact() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setValid(emailRegex.test(inputValue));
   };
+
+  const handleMobileChange = (e) => {
+    const inputValue = e.target.value;
+    setMobileNumber(inputValue);
+    const MobileRegex = /^((\+44)|(0))\d{10}$/; // regex pattern for UK phone number
+
+    if (!MobileRegex.test(inputValue)) {
+      setError('Please enter a valid UK phone number Example: 07123456789');
+    } else {
+      setError('');
+    }
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -86,9 +101,10 @@ function Contact() {
             Email
           </InputField>
           <br />
+          {mobileError && <p style={{ color: 'red' }}>{mobileError}</p>}
           <InputField
             value={phoneNumber}
-            onChange={(e) => setNumber(e.target.value)}
+            onChange={handleMobileChange}
           >
             Phone Number
           </InputField>
