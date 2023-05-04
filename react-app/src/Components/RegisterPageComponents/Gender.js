@@ -53,10 +53,10 @@ function Gender() {
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/DateOfBirth">Date of birth</Breadcrumbs.Link>
+          <Breadcrumbs.Link >NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link >First Name</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Surname</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Date of birth</Breadcrumbs.Link>
           <Breadcrumbs.Link >Gender</Breadcrumbs.Link>
         </Breadcrumbs>
 
@@ -72,7 +72,7 @@ function Gender() {
             <option value="">Please select an option</option>
             <option value={"Female"}>Female</option>
             <option value={"Male"}>Male</option>
-            <option value={"Other"}>Other</option>
+           
           </Select>
           <br />
           <Button disabled={!valueSelected} start>Save and Continue</Button>

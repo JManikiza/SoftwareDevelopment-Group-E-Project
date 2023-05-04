@@ -28,7 +28,7 @@ function DetailsSummary() {
   const townCity = location.state?.townCity;
   const county = location.state?.county;
   const postCode = location.state?.postCode;
-  const userPassword = location.state?.userPassword;
+  const userPassword = location.state?.userPassword1;
   var newGender = null
 
   //this method will transfer the states back to the previous pages if customer devices to presse the anchor "change"
@@ -57,9 +57,9 @@ function DetailsSummary() {
   
   //method do add to the database
   function addPatientData() {
-    if(gender === "female"){
+    if(gender === "Female"){
        newGender = 1
-    }else if(gender === "male"){
+    }else if(gender === "Male"){
        newGender = 2
     }else{
        newGender = 3
@@ -68,7 +68,7 @@ function DetailsSummary() {
       nhsNo: nhsNumber,
       ForeName: fName,
       SurName: sName,
-      Date: day + "/" + month +"/"+year,
+      Date: year + month +day,
       gender: newGender,
       email: email,
       phoneNumber: phoneNumber,

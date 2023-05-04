@@ -87,11 +87,11 @@ function Contact() {
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/DateOfBirth">Date of birth</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/Gender">Gender</Breadcrumbs.Link>
+          <Breadcrumbs.Link >NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link >First Name</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Surname</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Date of birth</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Gender</Breadcrumbs.Link>
           <Breadcrumbs.Link>Conctact Details</Breadcrumbs.Link>
         </Breadcrumbs>
 

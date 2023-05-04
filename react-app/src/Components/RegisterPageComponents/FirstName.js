@@ -24,7 +24,7 @@ function InputLabel() {
     // if the name does not contain only letters user it will not be able to go through that page
     const regex = /^[a-zA-Z]+$/;
     if (!regex.test(inputValue) || !inputValue.trim()) {
-      // If input value is empty or contains only spaces, set name to empty string
+      // If input value is empty or contains only spaces
       setValid(false);
     } else {
       // Otherwise, update the name state with the input value
@@ -47,7 +47,7 @@ function InputLabel() {
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/NhsNumber" onSubmit={handleSubmit} >NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link >NHS Number</Breadcrumbs.Link>
           <Breadcrumbs.Link >First Name</Breadcrumbs.Link>
         </Breadcrumbs>
 
