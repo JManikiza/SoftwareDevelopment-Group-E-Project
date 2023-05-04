@@ -16,7 +16,6 @@ import React from "react";
 import { Routes, Route} from "react-router-dom";
 
 // Layout import
-import Navigation from "./Components/Navigation";
 import FooterNav from "./Components/FooterNav";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -36,7 +35,6 @@ import RegistrationComplete from "./Components/RegisterPageComponents/Registrati
 
 // Doctor page imports
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
-import DoctorDashBoard from "./Pages/DoctorPages/DoctorDashBoard";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 
 
@@ -117,7 +115,6 @@ function App() {
 
 
 //----------------------------------------------------------------------------------
-        <Route path="/DoctorDashBoard" element={<DoctorDashBoard />} />
         <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
         <Route path="/DoctorViewandUpdate" element={<DoctorViewandUpdate />} />
 
