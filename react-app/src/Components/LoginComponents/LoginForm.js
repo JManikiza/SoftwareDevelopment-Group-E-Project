@@ -15,7 +15,6 @@ import AuthContext from "./AuthContext";
 function LoginForm() {
   const navigate = useNavigate();
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,12 +28,8 @@ function LoginForm() {
       setTimeout(() => {
         navigate("/Patient");
       }, 1000);
-      
     }
   }, [isLoggedIn, navigate]);
-
-  
-
 
   const submitFormHandler = (e) => {
     e.preventDefault();
@@ -55,6 +50,7 @@ function LoginForm() {
           let patientName = response[0].Forename + " " + response[0].Surname;
           let nhsNo = response[0].NHSNumber;
           localStorage.setItem("patientName", patientName);
+          localStorage.setItem("nhsNo", nhsNo);
           console.log("Patient name: " + patientName);
           console.log("NHS no: " + nhsNo);
 
@@ -64,7 +60,6 @@ function LoginForm() {
           setTimeout(() => {
             navigate("/Patient");
           }, 2000); // 2 second delay
-        
         }
       },
       error: function (error) {
@@ -97,13 +92,14 @@ function LoginForm() {
     }
   };
 
+  // if user already logged in, display redirect message
   if (isLoggedIn) {
     return (
       <Main>
         <InsetText margin={3}>Redirecting...</InsetText>
       </Main>
     );
-  } 
+  }
 
   return (
     <div>
@@ -149,7 +145,7 @@ function LoginForm() {
           <Link href="/stafflogin">here</Link>
         </InsetText>
         <br />
-        <br /> 
+        <br />
       </Main>
     </div>
   );
