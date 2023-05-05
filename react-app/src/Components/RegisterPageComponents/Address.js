@@ -15,6 +15,8 @@ function Address() {
   const [townCity, setLocation] = useState("");
   const [county, setCounty] = useState("");
   const [postCode, setPostCode] = useState("");
+  const [postCodeValid,setValid] = useState(false);
+  const [PostCodeError, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const nhsNumber = location.state.nhsNumber;
@@ -27,6 +29,22 @@ function Address() {
   const email = location.state.email;
   const phoneNumber = location.state.phoneNumber;
 
+
+  const handlePostcodeChange = (e) => {
+    const inputValue = e.target.value;
+    setPostCode(inputValue);
+
+    const postcodeRegex = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i; // regex pattern for UK postcode
+    if (!postcodeRegex.test(inputValue)) {
+      setError('Please enter a valid UK postcode');
+      setValid(false);
+    } else {
+      setError('');
+      setValid(true);
+      setPostCode(inputValue);
+    }
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/Password", {
@@ -47,13 +65,8 @@ function Address() {
         postCode,
       },
     });
-    console.log(nhsNumber);
-    console.log(fName);
-    console.log(sName);
-    console.log(gender);
-    console.log(email);
-    console.log(phoneNumber);
   };
+
   return (
     <div>
       <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
@@ -61,12 +74,12 @@ function Address() {
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/DateOfBirth">Date of birth</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/Gender">Gender</Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/Contact">Contact details</Breadcrumbs.Link>
+          <Breadcrumbs.Link >NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link >First Name</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Surname</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Date of birth</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Gender</Breadcrumbs.Link>
+          <Breadcrumbs.Link >Contact details</Breadcrumbs.Link>
           <Breadcrumbs.Link >Address</Breadcrumbs.Link>
         </Breadcrumbs>
 
@@ -96,14 +109,15 @@ function Address() {
           >
             County(optional)
           </InputField>
+          {PostCodeError && <p style={{color: 'red'}}>{PostCodeError}</p>}
           <InputField
             value={postCode}
-            onChange={(e) => setPostCode(e.target.value)}
+            onChange={handlePostcodeChange}
           >
-            Postcode
+            Postcode*
           </InputField>
           <br />
-          <Button type="submit" start>
+          <Button type="submit" disabled={!postCodeValid} start>
             Submit
           </Button>
         </form>

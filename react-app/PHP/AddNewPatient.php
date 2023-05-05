@@ -10,6 +10,7 @@
     $PhoneNumber = $_POST['phoneNumber'];
     $PostCode = $_POST['postCode'];
     $pw = $_POST['password'];
+    $pwhash = password_hash($pw, PASSWORD_DEFAULT); //encrypts the password 
     
 	$pdo = new \PDO("sqlite:LocalDataBase.db");
 
@@ -25,7 +26,7 @@
         "INSERT INTO patients 
         VALUES (?, 'gpID', ?, ?, ?, ?, ?, ?, ?, ?)"
     );
-    $insertDb->execute([$nhsNo, $FName, $SName, $Email, $Date, $Gender, $PostCode, $pw, $PhoneNumber]);
+    $insertDb->execute([$nhsNo, $FName, $SName, $Email, $Date, $Gender, $PostCode, $pwhash, $PhoneNumber]);
     echo json_encode("Patient added successfully");
     }   
 
