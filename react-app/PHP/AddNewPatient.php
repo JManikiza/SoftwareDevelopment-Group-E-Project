@@ -24,7 +24,7 @@
     // Patient does not exist in the database, insert new patient
     $insertDb = $pdo->prepare(
         "INSERT INTO patients 
-        VALUES (?, 'gpID', ?, ?, ?, ?, ?, ?, ?, ?)"
+        VALUES (?, 'gpID', ?, ?, ?, ?, ?, ?, ?, ?,?)"
     );
     $insertDb->execute([$nhsNo, $FName, $SName, $Email, $Date, $Gender, $PostCode, $pwhash, $PhoneNumber]);
     echo json_encode("Patient added successfully");
