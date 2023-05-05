@@ -4,6 +4,7 @@
  * Joven Manikiza
  * Wallyson Alves Da Silva
  * Mohamed Yusef Mohamed
+ * Jimmy Le
  *
  * Please add your names if you have
  * partaken in coding this page.
@@ -16,11 +17,10 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Layout import
-import Navigation from "./Components/Navigation";
 import FooterNav from "./Components/FooterNav";
 import HomePage from "./Pages/HomePage";
 
-// Login page imports
+//Login page imports
 import Login from "./Pages/Login";
 import StaffLogin from "./Pages/StaffLogin";
 import AuthContext from "./Components/LoginComponents/AuthContext";
@@ -39,7 +39,6 @@ import RegistrationComplete from "./Components/RegisterPageComponents/Registrati
 
 // Doctor page imports
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
-import DoctorDashBoard from "./Pages/DoctorPages/DoctorDashBoard";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 
 /**
@@ -88,10 +87,11 @@ import PasswordChangeDetails from "./Components/PatientPageComponents/ProfileCha
 import PasswordChangeEnter from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeEnter";
 import PasswordChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeConfirmation";
 
-import BookConfirm from "./Components/PatientPageComponents/GPComponents/BookAppointment/BookConfirm";
-import CancelConfirm from "./Components/PatientPageComponents/GPComponents/ViewAppointment/CancelConfirm";
-import DRConfirm from "./Components/PatientPageComponents/GPComponents/De-Register/DRConfirm";
-
+import DRTab from "./Components/PatientPageComponents/GPComponents/De-Register/DRTab";
+import DoctorTab from "./Components/PatientPageComponents/GPComponents/DoctorsAvailable/DoctorTab";
+import ViewTab from "./Components/PatientPageComponents/GPComponents/ViewAppointment/ViewTab";
+import BookTab from "./Components/PatientPageComponents/GPComponents/BookAppointment/BookTab";
+import GPTabs from "./Components/PatientPageComponents/GPComponents/GPTabs";
 // Custom imports
 
 import Temp from "./Pages/Temp";
@@ -107,6 +107,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/stafflogin" element={<StaffLogin />} />
+          //----------------------------------------------------------------------------------
           <Route path="/NhsNumber" element={<NhsNumber />} />
           <Route path="/FirstName" element={<FirstName />} />
           <Route path="/Surname" element={<Surname />} />
@@ -121,7 +122,6 @@ function App() {
             element={<RegistrationComplete />}
           />
           //----------------------------------------------------------------------------------
-          <Route path="/DoctorDashBoard" element={<DoctorDashBoard />} />
           <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
           <Route
             path="/DoctorViewandUpdate"
