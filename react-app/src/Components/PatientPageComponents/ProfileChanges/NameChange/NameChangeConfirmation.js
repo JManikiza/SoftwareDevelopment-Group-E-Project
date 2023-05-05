@@ -1,37 +1,107 @@
 /**
-* Author(s) of this code: 
-*
-* Joven Manikiza
-*/
+ * Author(s) of this code:
+ *
+ * Joven Manikiza
+ */
 
-import { Button, Heading, Main, Paragraph, SectionBreak } from "govuk-react";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Heading,
+  Main,
+  Paragraph,
+  SectionBreak,
+  Table,
+} from "govuk-react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
-function NameChangeConfirmation(){
+function NameChangeConfirmation() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const forename = location.state.forename;
+  const surname = location.state.surname;
 
-    const navigate = useNavigate();
-    return (
-        <div>
-                                    <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+  const [data, setData] = useState({});
 
-            <Main>
+  useEffect(() => {
+    fetch("http://localhost:4000/getData.php")
+      .then((response) => response.json())
+      .then((data) => {
+        setData({
+          previousForename: data[0].Forename,
+          previousSurname: data[0].Surname,
+        });
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
-                <Heading>
-                    Confirm your changes
-                </Heading>
+  console.log("forename:", forename);
+  console.log("surname:", surname);
 
-                <Heading size="MEDIUM">Previous details were:</Heading>
-                <SectionBreak></SectionBreak>
+  const payload = {
+    forename: forename,
+    surname: surname,
+  };
 
-                <Paragraph>First name: (Props First name here)</Paragraph>
-                <Paragraph>Last name: (Props Last name here)</Paragraph>
+  const updateFullName = () => {
+    fetch("http://localhost:4000/updateFullName.php", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+      credentials: "include",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update full name");
+        }
+        navigate("/Application");
+      })
+      .catch((error) => console.error(error));
+  };
 
-                <Heading size="MEDIUM">New details are:</Heading>
+  return (
+    <div>
+      <Navigation
+        pageLink1="/"
+        PageName1="home"
+        pageLink2="/login"
+        PageName2="Login"
+        pageLink3="/NhsNumber"
+        PageName3="Register"
+      />
 
-                <Paragraph>First name: (Props First name here)</Paragraph>
-                <Paragraph>Last name: (Props Last name here)</Paragraph>
+      <Main>
+        <Heading>Confirm your changes</Heading>
+
+        <Heading size="MEDIUM">Previous details were:</Heading>
+        <SectionBreak></SectionBreak>
+
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>Forename:</Table.CellHeader>
+            <Table.Cell>{data.previousForename}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Surname:</Table.CellHeader>
+            <Table.Cell>{data.previousSurname}</Table.Cell>
+          </Table.Row>
+        </Table>
+
+        <Heading size="MEDIUM">New details are:</Heading>
+
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>Forename:</Table.CellHeader>
+            <Table.Cell>{forename}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Surname:</Table.CellHeader>
+            <Table.Cell>{surname}</Table.Cell>
+          </Table.Row>
+        </Table>
 
                 <Button onClick={ () => navigate("/Application")}>
                     Confirm

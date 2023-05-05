@@ -31,25 +31,6 @@ function NameChangeDetails() {
       .catch((error) => console.error(error));
   }, []);
 
-  const handleRadioChange = (event) => {
-    setSelectedRadio(event.target.value);
-  };
-
-  const handleContinueClick = () => {
-    switch (selectedRadio) {
-      case "first":
-        navigate("/NameChangeFirstName");
-        break;
-      case "last":
-        navigate("/NameChangeLastName");
-        break;
-      case "both":
-        navigate("/NameChangeBothNames");
-        break;
-      default:
-        break;
-    }
-  };
 
   return (
     <div>
@@ -86,41 +67,10 @@ function NameChangeDetails() {
             <Table.Cell>{data.surname}</Table.Cell>
           </Table.Row>
         </Table>
-
-        <MultiChoice label="What name(s) would you like to change?">
-          <Radio
-            inline
-            name="name"
-            value="first"
-            onChange={handleRadioChange}
-            checked={selectedRadio === "first"}
-          >
-            First
-          </Radio>
-          <Radio
-            inline
-            name="name"
-            value="last"
-            onChange={handleRadioChange}
-            checked={selectedRadio === "last"}
-          >
-            Last
-          </Radio>
-          <Radio
-            inline
-            name="name"
-            value="both"
-            onChange={handleRadioChange}
-            checked={selectedRadio === "both"}
-          >
-            Both
-          </Radio>
-        </MultiChoice>
-
-       
+      
 
 
-<Button onClick={handleContinueClick}>
+<Button onClick={() => navigate("/NameChangeBothNames")}>
   Continue
 </Button>
 
