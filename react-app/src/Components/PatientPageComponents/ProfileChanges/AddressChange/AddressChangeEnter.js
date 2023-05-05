@@ -4,46 +4,64 @@
 * Joven Manikiza
 */
 
-import React from "react";
+import React, { useState } from "react";
 import { InputField, Main, Button, SectionBreak } from "govuk-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
-function AddressChangeEnter(){
+function AddressChangeEnter() {
+  const navigate = useNavigate();
+  const [address, setAddress] = useState("");
+  const location = useLocation();
+console.log(location.state);
 
-    const navigate = useNavigate();
-    
-    return(
-        <div>
-                                                <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+navigate("/AddressChangeConfirmation", { state: { address: address } });
+      console.log(address);
+  };
 
-            <Main>
-                
-                <InputField
-                    hint={<>You'll find this on the last line on your address</>}
-                    input={{  name: 'Postcode' }}
-                    meta={{
-                    error: 'Your postcode must not contain special characters',
-                    touched: true
-                    }}>
-                        
-                        Your new postcode:
-                </InputField>
+  return (
+    <div>
+      <Navigation
+        pageLink1="/"
+        PageName1="home"
+        pageLink2="/login"
+        PageName2="Login"
+        pageLink3="/NhsNumber"
+        PageName3="Register"
+      />
 
-                <Button onClick={() => navigate("/AddressChangeConfirmation")}>
-                    Continue
-                </Button>
+      <Main>
+        <form onSubmit={handleSubmit}>
+          <InputField
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            hint={<>You'll find this on the last line on your address</>}
+            input={{ name: "newAddress" }}
+            meta={{
+              touched: true,
+            }}
+          >
+            Your new postcode:
+          </InputField>
 
-                 <SectionBreak level="SMALL" visible={false}/>
-                
-                <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
-                    Cancel
-                </Button>
+          <Button>
+            Continue
+          </Button>
 
-                </Main>
-                </div>
+          <SectionBreak level="SMALL" visible={false} />
 
-    );
+          <Button
+            onClick={() => navigate("/Profile")}
+            buttonColour="GREY"
+          >
+            Cancel
+          </Button>
+        </form>
+      </Main>
+    </div>
+  );
 }
 
 export default AddressChangeEnter;

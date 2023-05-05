@@ -4,19 +4,33 @@
 * Joven Manikiza
 */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Main, Button, Heading, InsetText, Details,
         ListItem,UnorderedList, Paragraph, ButtonArrow, Breadcrumbs
         } from "govuk-react";
         import Navigation from "../../Components/Navigation";
 import { useNavigate } from "react-router-dom";
-
+import { data } from "jquery";
 // NOTE TO SELF, I HAVE BUTTONS ON EVERY PAGE AND 
 // ALL I NEED TO DO IS CHANGE THE NAVIGATE PAGE. CONDENSE IT.
  
 function Patient(){
 
 const navigate = useNavigate();
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    fetch('http://localhost:4000/getData.php')
+      .then(response => response.json())
+      .then(data => {
+        setData({
+          Forename: data[0].Forename
+        });
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+
 
 return(
     <div>
@@ -27,7 +41,7 @@ return(
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
 
-            <Heading>Hello (Prop name here).</Heading>
+            <Heading>Hello {data.Forename}.</Heading>
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">
                 <Paragraph>You'll be able to do the following:</Paragraph>

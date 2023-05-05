@@ -4,46 +4,133 @@
 * Joven Manikiza
 */
 
-import { Main, Heading, Breadcrumbs, Paragraph, MultiChoice, Radio } from "govuk-react";
+import { Main, Table, Button, Heading, Breadcrumbs, Paragraph, MultiChoice, Radio } from "govuk-react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import NameChangeFirstName from "./NameChangeFirstName";
+import NameChangeLastName from "./NameChangeLastName";
+import NameChangeBothNames from "./NameChangeBothNames";
 
-function NameChangeDetails(){
+function NameChangeDetails() {
+  const navigate = useNavigate();
+  const [data, setData] = useState({});
+  const [selectedRadio, setSelectedRadio] = useState("");
 
-    return (
-        <div>
-            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+  useEffect(() => {
+    fetch("http://localhost:4000/getData.php")
+      .then((response) => response.json())
+      .then((data) => {
+        setData({
+          forename: data[0].Forename,
+          surname: data[0].Surname,
+          NHSNo: data[0].NHSNumber,
+          address: data[0].Postcode,
+        });
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
-            <Main>
+  const handleRadioChange = (event) => {
+    setSelectedRadio(event.target.value);
+  };
 
-                <Breadcrumbs>
-                    <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
-                    <Breadcrumbs.Link>Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link>Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link>Circumstances</Breadcrumbs.Link>
-                </Breadcrumbs>
-                
-                <Heading>About you</Heading>
+  const handleContinueClick = () => {
+    switch (selectedRadio) {
+      case "first":
+        navigate("/NameChangeFirstName");
+        break;
+      case "last":
+        navigate("/NameChangeLastName");
+        break;
+      case "both":
+        navigate("/NameChangeBothNames");
+        break;
+      default:
+        break;
+    }
+  };
 
-                <Paragraph>NHS number: (Props NHS number here)</Paragraph>
-                <Paragraph>First name: (Props First name here)</Paragraph>
-                <Paragraph>Last name: (Props Last name here)</Paragraph>
-                <Paragraph>Date of birth: (Props DOB here)</Paragraph>
+  return (
+    <div>
+      <Navigation
+        pageLink1="/"
+        PageName1="home"
+        pageLink2="/login"
+        PageName2="Login"
+        pageLink3="/NhsNumber"
+        PageName3="Register"
+      />
+
+      <Main>
+        <Breadcrumbs>
+          <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
+          <Breadcrumbs.Link>Profile</Breadcrumbs.Link>
+          <Breadcrumbs.Link>Start</Breadcrumbs.Link>
+          <Breadcrumbs.Link>Circumstances</Breadcrumbs.Link>
+        </Breadcrumbs>
+
+        <Heading>About you</Heading>
+
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>NHS number:</Table.CellHeader>
+            <Table.Cell>{data.NHSNo}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>First name:</Table.CellHeader>
+            <Table.Cell>{data.forename}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Last name:</Table.CellHeader>
+            <Table.Cell>{data.surname}</Table.Cell>
+          </Table.Row>
+        </Table>
+
+        <MultiChoice label="What name(s) would you like to change?">
+          <Radio
+            inline
+            name="name"
+            value="first"
+            onChange={handleRadioChange}
+            checked={selectedRadio === "first"}
+          >
+            First
+          </Radio>
+          <Radio
+            inline
+            name="name"
+            value="last"
+            onChange={handleRadioChange}
+            checked={selectedRadio === "last"}
+          >
+            Last
+          </Radio>
+          <Radio
+            inline
+            name="name"
+            value="both"
+            onChange={handleRadioChange}
+            checked={selectedRadio === "both"}
+          >
+            Both
+          </Radio>
+        </MultiChoice>
+
+       
 
 
+<Button onClick={handleContinueClick}>
+  Continue
+</Button>
 
-                <MultiChoice label="What name(s) would you like to change?">
-                    <Radio inline name="name">First</Radio>
-                    <Radio inline name="name">Last</Radio>
-                    <Radio inline name="name">Both</Radio>
-                </MultiChoice>
+<Button onClick={() => navigate("/Profile")} buttonColour="GREY">
+  Cancel
+</Button>
 
-
-
-
-            </Main>
-        </div>
-    );
-
+</Main>
+</div>
+);
 }
 
 export default NameChangeDetails;

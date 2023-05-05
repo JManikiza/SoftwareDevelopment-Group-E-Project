@@ -4,14 +4,30 @@
 * Joven Manikiza
 */
 
-import { Main, Heading, SectionBreak, Breadcrumbs,
+import { Table, Main, Heading, SectionBreak, Breadcrumbs,
      Paragraph, Button } from "govuk-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navigation from "../../../Navigation";
 function EmailChangeDetails(){
 
     const navigate = useNavigate();
+  const [data, setData] = useState({});
+
+useEffect(() => {
+  fetch('http://localhost:4000/getData.php')
+    .then(response => response.json())
+    .then(data => {
+      setData({
+        NHSNo: data[0].NHSNumber,
+        forename: data[0].Forename,
+        surname: data[0].Surname,
+        email: data[0].EmailAddress
+      });
+    })
+    .catch(error => console.error(error));
+}, []);
 
     return (
         <div>
@@ -27,13 +43,24 @@ function EmailChangeDetails(){
                 
                 <Heading>About you</Heading>
 
-                <Paragraph>NHS number: (Props NHS number here)</Paragraph>
-                <Paragraph>First name: (Props First name here)</Paragraph>
-                <Paragraph>Last name: (Props Last name here)</Paragraph>
-
-                <Paragraph>Current Email: (Props email)</Paragraph>
-
-
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>NHS number:</Table.CellHeader>
+            <Table.Cell>{data.NHSNo}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>First name:</Table.CellHeader>
+            <Table.Cell>{data.forename}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Last name:</Table.CellHeader>
+            <Table.Cell>{data.surname}</Table.Cell>
+          </Table.Row>
+                    <Table.Row>
+            <Table.CellHeader>Current email:</Table.CellHeader>
+            <Table.Cell>{data.email}</Table.Cell>
+          </Table.Row>
+        </Table>
                 <Button onClick={() => navigate("/EmailChangeEnter")}>
                     Continue
                 </Button>

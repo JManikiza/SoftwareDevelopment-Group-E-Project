@@ -86,11 +86,10 @@ import PasswordChangeDetails from "./Components/PatientPageComponents/ProfileCha
 import PasswordChangeEnter from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeEnter";
 import PasswordChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeConfirmation";
 
-import DRTab from "./Components/PatientPageComponents/GPComponents/De-Register/DRTab";
-import DoctorTab from "./Components/PatientPageComponents/GPComponents/DoctorsAvailable/DoctorTab";
-import ViewTab from "./Components/PatientPageComponents/GPComponents/ViewAppointment/ViewTab";
-import BookTab from "./Components/PatientPageComponents/GPComponents/BookAppointment/BookTab";
-import GPTabs from "./Components/PatientPageComponents/GPComponents/GPTabs";
+import BookConfirm from "./Components/PatientPageComponents/GPComponents/BookAppointment/BookConfirm";
+import CancelConfirm from "./Components/PatientPageComponents/GPComponents/ViewAppointment/CancelConfirm";
+import DRConfirm from "./Components/PatientPageComponents/GPComponents/De-Register/DRConfirm";
+
 // Custom imports
 
 import Temp from "./Pages/Temp";
@@ -166,8 +165,9 @@ function App() {
         <Route path="/PasswordChangeEnter" element={<PasswordChangeEnter/>} />
         <Route path="/PasswordChangeConfirmation" element={<PasswordChangeConfirmation/>} />
 
-
-
+        <Route path="/BookConfirm" element={<BookConfirm />}/>
+        <Route path="/CancelConfirm" element={<CancelConfirm />}/>
+        <Route path="/DRConfirm" element={<DRConfirm />}/>
 
 
 //-------------------------------------------------------------------
