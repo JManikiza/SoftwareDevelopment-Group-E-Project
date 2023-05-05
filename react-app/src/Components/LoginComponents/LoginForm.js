@@ -21,31 +21,32 @@ function LoginForm() {
 
   const submitFormHandler = (e) => {
     e.preventDefault();
-  
+
     jq.ajax({
       url: "http://localhost:4000/patientlogindata.php",
       type: "POST",
       data: {
-          email: email,
-          password: password
+        email: email,
+        password: password,
       },
       dataType: "json",
-      success: function(response) {
-          if (response === "no patients") {
-              console.error("No patients found.");
-          } else {
-              console.log("Patient name: " + response[0].Forename + " " + response[0].Surname);
-              
-          }
+      success: function (response) {
+        if (response === "no patients") {
+          console.error("No patients found.");
+        } else {
+          let patientName = response[0].Forename + " " + response[0].Surname;
+          let nhsNo = response[0].NHSNumber;
+          localStorage.setItem("patientName", patientName);
+          console.log("Patient name: " + patientName);
+          console.log("NHS no: " + nhsNo);
+        }
       },
-      error: function(xhr, status, error) {
-          console.log(error);
-          // handle error here
-      }
-  });
-  
-   
-  }
+      error: function (error) {
+        console.log(error);
+        // handle error here
+      },
+    });
+  };
 
   const emailHandler = (e) => {
     const input = e.target.value;
