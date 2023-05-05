@@ -1,5 +1,11 @@
 <?php
-	header('Access-Control-Allow-Origin: *');
+	/**
+ * Author(s) of this code:
+ *
+ * Wallyson Alves Da Silva
+ */
+    
+    header('Access-Control-Allow-Origin: *');
     //retriving data from react js passed throught the POST method
     $nhsNo = $_POST['nhsNo'];
 
@@ -13,6 +19,4 @@
         echo json_encode("This NHS number is already registered");
     } else {
         echo json_encode("Nhs number not found, Save and Continue");
-    }   
-
-?>
+    }
