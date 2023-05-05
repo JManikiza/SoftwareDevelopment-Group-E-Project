@@ -10,7 +10,7 @@ import {Main, Button, Heading, InsetText, Details,
         } from "govuk-react";
         import Navigation from "../../Components/Navigation";
 import { useNavigate } from "react-router-dom";
-
+import Logout from "../../Components/LoginComponents/Logout";
 // NOTE TO SELF, I HAVE BUTTONS ON EVERY PAGE AND 
 // ALL I NEED TO DO IS CHANGE THE NAVIGATE PAGE. CONDENSE IT.
  
@@ -23,7 +23,7 @@ let patientName = localStorage.getItem("patientName");
 return(
     <div>
         <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
-
+        <Logout />
         <Main>
             <Breadcrumbs>
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>

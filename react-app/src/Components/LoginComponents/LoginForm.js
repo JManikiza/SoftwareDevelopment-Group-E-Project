@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import jq from "jquery";
 import {
@@ -10,14 +10,31 @@ import {
   Link,
 } from "govuk-react";
 
+import AuthContext from "./AuthContext";
+
 function LoginForm() {
   const navigate = useNavigate();
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [validEmail, setValidEmail] = useState(false);
   const [validPw, setValidPw] = useState(false);
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setTimeout(() => {
+        navigate("/Patient");
+      }, 1000);
+      
+    }
+  }, [isLoggedIn, navigate]);
+
+  
+
 
   const submitFormHandler = (e) => {
     e.preventDefault();
@@ -41,9 +58,13 @@ function LoginForm() {
           console.log("Patient name: " + patientName);
           console.log("NHS no: " + nhsNo);
 
+          setIsLoggedIn(true);
+          console.log("isLoggedIn:", true);
+
           setTimeout(() => {
             navigate("/Patient");
           }, 2000); // 2 second delay
+        
         }
       },
       error: function (error) {
@@ -75,6 +96,14 @@ function LoginForm() {
       setValidPw(false);
     }
   };
+
+  if (isLoggedIn) {
+    return (
+      <Main>
+        <InsetText margin={3}>Redirecting...</InsetText>
+      </Main>
+    );
+  } 
 
   return (
     <div>
@@ -120,7 +149,7 @@ function LoginForm() {
           <Link href="/stafflogin">here</Link>
         </InsetText>
         <br />
-        <br />
+        <br /> 
       </Main>
     </div>
   );
