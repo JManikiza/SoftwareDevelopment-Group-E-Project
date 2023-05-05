@@ -52,8 +52,6 @@ import Application from "./Components/PatientPageComponents/ProfileChanges/Appli
 
 import NameChangeStart from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeStart";
 import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeDetails";
-import NameChangeFirstName from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeFirstName";
-import NameChangeLastName from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeLastName";
 import NameChangeBothNames from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeBothNames";
 import NameChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeConfirmation";
 
@@ -87,11 +85,6 @@ import PasswordChangeDetails from "./Components/PatientPageComponents/ProfileCha
 import PasswordChangeEnter from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeEnter";
 import PasswordChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeConfirmation";
 
-import DRTab from "./Components/PatientPageComponents/GPComponents/De-Register/DRTab";
-import DoctorTab from "./Components/PatientPageComponents/GPComponents/DoctorsAvailable/DoctorTab";
-import ViewTab from "./Components/PatientPageComponents/GPComponents/ViewAppointment/ViewTab";
-import BookTab from "./Components/PatientPageComponents/GPComponents/BookAppointment/BookTab";
-import GPTabs from "./Components/PatientPageComponents/GPComponents/GPTabs";
 // Custom imports
 
 import Temp from "./Pages/Temp";
@@ -134,11 +127,7 @@ function App() {
           <Route path="/Application" element={<Application />} />
           <Route path="/NameChangeStart" element={<NameChangeStart />} />
           <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
-          <Route
-            path="/NameChangeFirstName"
-            element={<NameChangeFirstName />}
-          />
-          <Route path="/NameChangeLastName" element={<NameChangeLastName />} />
+
           <Route
             path="/NameChangeBothNames"
             element={<NameChangeBothNames />}

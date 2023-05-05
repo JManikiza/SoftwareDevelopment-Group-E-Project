@@ -8,8 +8,6 @@ import { Main, Table, Button, Heading, Breadcrumbs, Paragraph, MultiChoice, Radi
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
-import NameChangeFirstName from "./NameChangeFirstName";
-import NameChangeLastName from "./NameChangeLastName";
 import NameChangeBothNames from "./NameChangeBothNames";
 
 function NameChangeDetails() {

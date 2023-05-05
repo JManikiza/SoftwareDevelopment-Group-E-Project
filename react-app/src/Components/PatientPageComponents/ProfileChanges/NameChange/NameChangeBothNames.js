@@ -28,7 +28,7 @@ function NameChangeBothNames() {
           <InputField
             hint={<>You'll find this on your Deed Poll confirmation letter</>}
             value={forename}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => setForename(e.target.value)}
             input={{ name: "forename" }}
             meta={{ touched: true }}
           >
@@ -37,7 +37,7 @@ function NameChangeBothNames() {
           <InputField
             hint={<>You'll find this on your Deed poll confirmation letter or marriage certificate</>}
             value={surname}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) => setSurname(e.target.value)}
             input={{ name: "surname" }}
             meta={{ touched: true }}
           >
