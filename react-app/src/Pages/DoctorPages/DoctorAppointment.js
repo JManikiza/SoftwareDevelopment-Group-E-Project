@@ -29,7 +29,7 @@ function DoctorAppointment() {
         } else {
           var json = jq.parseJSON(data);
           setAppointmentData(json);
-          
+
         }
       },
     });
@@ -38,18 +38,13 @@ function DoctorAppointment() {
   return(
     <div>
       <Navigation
-       pageLink1="/" PageName1="Home" pageLink2="/DoctorDashBoard"
-        PageName2="Doctor DashBoard" pageLink3="/DoctorViewandUpdate"
+       pageLink1="/" PageName1="Home" pageLink2="/DoctorAppointment" 
+        PageName2="Doctor View and Update" pageLink3="/DoctorViewandUpdate"
          PageName3="Doctor View and Update"/>
 
       <Main>
         <Breadcrumbs>
-          <Breadcrumbs.Link href="/">
-            HomePage
-          </Breadcrumbs.Link>
-          <Breadcrumbs.Link href="/DoctorDashBoard">
-            Doctor DashBoard
-          </Breadcrumbs.Link>
+
           <Breadcrumbs.Link href="/DoctorAppointment">
             Doctor Appointment
           </Breadcrumbs.Link>
