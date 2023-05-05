@@ -38,8 +38,8 @@ function DoctorAppointment() {
   return(
     <div>
       <Navigation
-       pageLink1="/" PageName1="Home" pageLink2="/DoctorDashBoard"
-        PageName2="Doctor DashBoard" pageLink3="/DoctorViewandUpdate"
+       pageLink1="/" PageName1="Home" pageLink2="/DoctorAppointment" 
+        PageName2="Doctor View and Update" pageLink3="/DoctorViewandUpdate"
          PageName3="Doctor View and Update"/>
 
       <Main>
