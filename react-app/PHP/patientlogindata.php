@@ -1,7 +1,7 @@
 <?php
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     
+    //Retrieve user form data using POST method
     $email = $_POST['email'];
     $pw = $_POST['password'];
 

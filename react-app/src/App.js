@@ -19,7 +19,10 @@ import { Routes, Route} from "react-router-dom";
 import Navigation from "./Components/Navigation";
 import FooterNav from "./Components/FooterNav";
 import HomePage from "./Pages/HomePage";
+
+// Login page imports
 import Login from "./Pages/Login";
+import StaffLogin from "./Pages/StaffLogin";
 
 
 // Registration page imports
@@ -102,7 +105,10 @@ function App() {
       {/* route for the links to different pages */}
       <Routes>
         <Route path="/" element={<HomePage />} />
+
         <Route path="/login" element={<Login />} />
+        <Route path="/stafflogin" element={<StaffLogin />} />
+
         <Route path="/NhsNumber" element={<NhsNumber />} />
         <Route path="/FirstName" element={<FirstName />} />
         <Route path="/Surname" element={<Surname />} />

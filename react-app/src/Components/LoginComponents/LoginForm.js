@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import jq from "jquery";
 import {
   Main,
@@ -11,7 +11,7 @@ import {
 } from "govuk-react";
 
 function LoginForm() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +22,7 @@ function LoginForm() {
   const submitFormHandler = (e) => {
     e.preventDefault();
 
+    //Retrieve data from db
     jq.ajax({
       url: "http://localhost:4000/patientlogindata.php",
       type: "POST",
@@ -39,6 +40,10 @@ function LoginForm() {
           localStorage.setItem("patientName", patientName);
           console.log("Patient name: " + patientName);
           console.log("NHS no: " + nhsNo);
+
+          setTimeout(() => {
+            navigate("/Patient");
+          }, 2000); // 2 second delay
         }
       },
       error: function (error) {
@@ -48,8 +53,9 @@ function LoginForm() {
     });
   };
 
+  //Input validation
   const emailHandler = (e) => {
-    const input = e.target.value;
+    let input = e.target.value;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(input)) {
       setEmail(input);
@@ -59,8 +65,9 @@ function LoginForm() {
     }
   };
 
+  //Input validation
   const pwHandler = (e) => {
-    const input = e.target.value;
+    let input = e.target.value;
     setPassword(input);
     if (input.length > 4) {
       setValidPw(true);
@@ -110,7 +117,7 @@ function LoginForm() {
         </InsetText>
         <InsetText margin={3}>
           Staff login&nbsp;
-          <Link href="#">here</Link>
+          <Link href="/stafflogin">here</Link>
         </InsetText>
         <br />
         <br />
