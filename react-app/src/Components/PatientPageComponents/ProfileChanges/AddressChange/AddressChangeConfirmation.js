@@ -17,7 +17,7 @@ function AddressChangeConfirmation(){
     const location = useLocation();
     const address = location.state?.address;
 
-    const payload = {address};
+    const payload = address;
 
     useEffect(() => {
         fetch('http://localhost:4000/getData.php')
@@ -33,13 +33,12 @@ function AddressChangeConfirmation(){
     console.log("address:", address);
 
 const updatePostcode = () => {
-  console.log('HTTP method:', 'POST'); // Add this line
   fetch('http://localhost:4000/updatePostcode.php', {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({payload}),
+    body: JSON.stringify({postcode: payload}),
     credentials: 'include',
   })
   .then(response => {
@@ -50,6 +49,7 @@ const updatePostcode = () => {
   })
   .catch(error => console.error(error));
 };
+
 
     return (
         <div>
