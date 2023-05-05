@@ -10,11 +10,8 @@ import {Main, Button, Heading, InsetText, Details,
         } from "govuk-react";
         import Navigation from "../../Components/Navigation";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import { data } from "jquery";
-=======
 import Logout from "../../Components/LoginComponents/Logout";
->>>>>>> bfe71173d04d0fc93b9913a80ad0c5aec8554430
 // NOTE TO SELF, I HAVE BUTTONS ON EVERY PAGE AND 
 // ALL I NEED TO DO IS CHANGE THE NAVIGATE PAGE. CONDENSE IT.
  
@@ -47,11 +44,7 @@ return(
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
 
-<<<<<<< HEAD
-            <Heading>Hello {data.Forename}.</Heading>
-=======
             <Heading>Hello {patientName}.</Heading>
->>>>>>> bfe71173d04d0fc93b9913a80ad0c5aec8554430
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">
                 <Paragraph>You'll be able to do the following:</Paragraph>
