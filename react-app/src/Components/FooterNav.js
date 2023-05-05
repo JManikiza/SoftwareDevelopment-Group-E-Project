@@ -1,9 +1,10 @@
 import { Footer } from "govuk-react";
+import "../Styles/footer.css"
 function FooterNav() {
   return (
     <div>
       
-      <Footer>
+      <Footer className ='footer'>
 
       </Footer>
     </div>

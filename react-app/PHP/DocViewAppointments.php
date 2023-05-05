@@ -3,18 +3,18 @@
 
 	$empID = $_POST['empID'];
 	$pdo = new \PDO("sqlite:LocalDatabase.db");
-	$st = $pdo->query("SELECT a.*, p.Forename, p.*, e.*
-		FROM Appointment a
-		JOIN patients p ON a.NHSNumber = p.NHSNumber
-		JOIN Employee e ON a.empID = e.empID
-		WHERE a.empID = $empID AND a.completed = 0" ); 
-	$st->execute();
+		$st = $pdo->prepare("SELECT a.*, p.Forename, p.*, e.*
+			FROM Appointment a
+			JOIN patients p ON a.NHSNumber = p.NHSNumber
+			JOIN Employee e ON a.empID = e.empID
+			WHERE a.empID = $empID AND a.completed = 0");
+		$st->execute();
 	$AppointmentsList = [];
-	while ($Appointment = $st->fetchObject()) {
-	$AppointmentsList[]=$Appointment;
+	while ($appointment = $st->fetchObject()) {
+	$AppointmentsList[]=$appointment;
 	}
 	if(empty($AppointmentsList)){
-	echo json_encode("there are no appointment has been made");
+		echo json_encode("no appointment has been made");
 	}
 	else
 	{
