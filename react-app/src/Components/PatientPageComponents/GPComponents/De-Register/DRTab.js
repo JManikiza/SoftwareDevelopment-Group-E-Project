@@ -1,7 +1,10 @@
 
 import { H2, Button, Radio, MultiChoice } from "govuk-react";
+import { useNavigate } from "react-router-dom";
 function DRTab(){
 
+  const navigate = useNavigate();
+  
     return(
 
     <div>
@@ -18,7 +21,7 @@ function DRTab(){
       <Radio inline name="leave" selected>No</Radio>
     </MultiChoice>
     <br/>
-    <Button>Confirm</Button>
+    <Button onClick={() => navigate("/DRConfirm")} >Confirm</Button>
   </div>
     
     

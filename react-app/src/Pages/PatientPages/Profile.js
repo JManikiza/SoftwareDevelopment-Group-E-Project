@@ -4,14 +4,31 @@
 * Joven Manikiza
 */
 
-import React from 'react';
-import {Table, Link, Heading, Main, SectionBreak, Pagination} from 'govuk-react';
+import React, { useState, useEffect } from 'react';
+import { Table, Link, Heading, Main, SectionBreak, Pagination } from 'govuk-react';
 import { useNavigate } from "react-router-dom";
 import Navigation from '../../Components/Navigation';
 
-function Profile(){
-
+function Profile() {
   const navigate = useNavigate();
+  const [data, setData] = useState({});
+
+useEffect(() => {
+  fetch('http://localhost:4000/getData.php')
+    .then(response => response.json())
+    .then(data => {
+      setData({
+        fullName: data[0].Forename + ' ' + data[0].Surname,
+        dob: data[0].PersonDOB,
+        gender: data[0].GenderCode === '1' ? 'MALE' : 'FEMALE',
+        address: data[0].Postcode,
+        email: data[0].EmailAddress,
+        contact: data[0].PhoneNumber
+      });
+    })
+    .catch(error => console.error(error));
+}, []);
+
 
   return (
     <div>
@@ -41,7 +58,7 @@ function Profile(){
               Name
             </Table.CellHeader>
             <Table.Cell>
-              Fetched data of Full Name
+              {data.fullName}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/NameChangeStart")} children="Change"/>
@@ -54,7 +71,7 @@ function Profile(){
               D.O.B
             </Table.CellHeader>
             <Table.Cell>
-              Fetched data of D.O.B
+              {data.dob}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/DOBChangeStart")} children="Change"/>
@@ -66,7 +83,7 @@ function Profile(){
               Gender
             </Table.CellHeader>
             <Table.Cell>
-              Fetched data of gender
+              {data.gender}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/GenderChangeStart")} children="Change"/>
@@ -79,7 +96,7 @@ function Profile(){
               Address
             </Table.CellHeader>
             <Table.Cell>
-              Fetched data of Address
+              {data.address}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/AddressChangeStart")} children="Change"/>
@@ -92,7 +109,7 @@ function Profile(){
               Email
             </Table.CellHeader>
             <Table.Cell>
-              Fetched data of Email
+              {data.email}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/EmailChangeStart")} children="Change"/>
@@ -104,7 +121,7 @@ function Profile(){
               Contact No.
             </Table.CellHeader>
             <Table.Cell>
-              Fetched data of Contact No.
+              {data.contact}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/NumberChangeStart")} children="Change"/>

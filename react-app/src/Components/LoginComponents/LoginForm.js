@@ -1,4 +1,6 @@
-//import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import jq from "jquery";
 import {
   Main,
   Fieldset,
@@ -7,56 +9,145 @@ import {
   InsetText,
   Link,
 } from "govuk-react";
-import Navigation from "../Navigation";
+
+import AuthContext from "./AuthContext";
+
 function LoginForm() {
-  //const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPw, setValidPw] = useState(false);
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setTimeout(() => {
+        navigate("/Patient");
+      }, 1000);
+    }
+  }, [isLoggedIn, navigate]);
 
   const submitFormHandler = (e) => {
     e.preventDefault();
+
+    //Retrieve data from db
+    jq.ajax({
+      url: "http://localhost:4000/patientlogindata.php",
+      type: "POST",
+      data: {
+        email: email,
+        password: password,
+      },
+      dataType: "json",
+      success: function (response) {
+        if (response === "no patients") {
+          console.error("No patients found.");
+        } else {
+          let patientName = response[0].Forename + " " + response[0].Surname;
+          let nhsNo = response[0].NHSNumber;
+          localStorage.setItem("patientName", patientName);
+          localStorage.setItem("nhsNo", nhsNo);
+          console.log("Patient name: " + patientName);
+          console.log("NHS no: " + nhsNo);
+
+          setIsLoggedIn(true);
+          console.log("isLoggedIn:", true);
+
+          setTimeout(() => {
+            navigate("/Patient");
+          }, 2000); // 2 second delay
+        }
+      },
+      error: function (error) {
+        console.log(error);
+        // handle error here
+      },
+    });
   };
+
+  //Input validation
+  const emailHandler = (e) => {
+    let input = e.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(input)) {
+      setEmail(input);
+      setValidEmail(true);
+    } else {
+      setValidEmail(false);
+    }
+  };
+
+  //Input validation
+  const pwHandler = (e) => {
+    let input = e.target.value;
+    setPassword(input);
+    if (input.length > 4) {
+      setValidPw(true);
+    } else {
+      setValidPw(false);
+    }
+  };
+
+  // if user already logged in, display redirect message
+  if (isLoggedIn) {
+    return (
+      <Main>
+        <InsetText margin={3}>Redirecting...</InsetText>
+      </Main>
+    );
+  }
 
   return (
     <div>
-            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
-<Main>
+      <Main>
+        <form onSubmit={submitFormHandler}>
+          <Fieldset>
+            <Fieldset.Legend size="LARGE">Login</Fieldset.Legend>
+            <InputField
+              padding={3}
+              onChange={emailHandler}
+              value={email}
+              input={{
+                name: "email",
+                type: "email",
+              }}
+            >
+              Email address
+            </InputField>
+            <InputField
+              padding={3}
+              onChange={pwHandler}
+              value={password}
+              input={{
+                name: "password",
+                type: "password",
+              }}
+            >
+              Password
+            </InputField>
+            <Button type="submit" margin={3} disabled={!validEmail || !validPw}>
+              Continue
+            </Button>
+          </Fieldset>
+        </form>
 
-      <form onSubmit={submitFormHandler}>
-        <Fieldset>
-          <Fieldset.Legend size="LARGE">Login</Fieldset.Legend>
-          <InputField
-            padding={3}
-            input={{
-              autoComplete: "email",
-              name: "group1",
-              type: "email",
-            }}
-          >
-            Email address
-          </InputField>
-          <InputField
-            padding={3}
-            input={{
-              autoComplete: "email",
-              name: "group1",
-              type: "password",
-            }}
-          >
-            Password
-          </InputField>
-          <Button type="submit" margin={3}>
-            Continue
-          </Button>
-        </Fieldset>
-      </form>
-
-      <br />
-      <InsetText margin={3}>
-        New patient? Register&nbsp;
-        <Link href="#">here</Link>
-      </InsetText>
-      <br />
-    </Main></div>
+        <br />
+        <InsetText margin={3}>
+          New patient? Register&nbsp;
+          <Link href="/NhsNumber">here</Link>
+        </InsetText>
+        <InsetText margin={3}>
+          Staff login&nbsp;
+          <Link href="/stafflogin">here</Link>
+        </InsetText>
+        <br />
+        <br />
+      </Main>
+    </div>
   );
 }
 

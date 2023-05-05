@@ -24,7 +24,7 @@ function ViewTab(){
           11:30
         </Table.Cell>
         <Table.Cell>
-          <Link onClick={() => navigate("/CancelAppointment")} children="Cancel"/>
+          <Link onClick={() => navigate("/CancelConfirm")} children="Cancel"/>
         </Table.Cell>
       </Table.Row>
     </Table>
