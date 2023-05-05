@@ -15,6 +15,7 @@ function Password() {
   const [userPassword1, setValue1] = useState("");
   const [userPassword2, setValue2] = useState("");
   const [pwMatch, setPwMatch] = useState(true);
+  const [pwMatchMsg, setPwMatchMsg] = useState("");
   const [shown, setShown] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,7 +35,15 @@ function Password() {
   const postCode = location.state.postCode;
 
   const handleConfirmPassword = () => {
-    setPwMatch(userPassword1 === userPassword2);
+    const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (regex.test(userPassword1) && userPassword1 === userPassword2){
+      setPwMatch(true);
+      setPwMatchMsg("");
+    } else{
+      setPwMatch(false);
+      setPwMatchMsg("Password does not match or are invalid");
+    }
+    
   };
 
 
@@ -86,7 +95,19 @@ function Password() {
 
         <form onSubmit={handleSubmit}>
           <Heading>Account Password</Heading>
-          {!pwMatch && (<p style={{ color: 'red' }}>Passwords do not match</p>)}
+          <label>
+            Password must include:
+            <br/>
+            An upper character*
+            <br/>
+            An lower character*
+            <br/>
+            A number*
+            <br/>
+            <br/>
+            
+          </label>
+          {pwMatchMsg  && <p  style={{ color: 'red' }}>{pwMatchMsg}</p>}
           Create password
           <Input  
                 type={shown ? "text":"password"}  

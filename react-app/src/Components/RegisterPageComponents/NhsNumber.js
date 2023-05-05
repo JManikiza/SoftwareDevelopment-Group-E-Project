@@ -7,10 +7,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InputField, Heading, Button, Main, Breadcrumbs } from "govuk-react";
 import Navigation from "../Navigation";
+import jq from "jquery";
+
 function NhsNumber() {
   //used state to save value of the name
   const [nhsNumber, setValue] = useState("");
   const [validNhs, setValid] = useState(false);
+  const [dbvalid, setDbValid] = useState("")
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,13 +28,40 @@ function NhsNumber() {
     } else {
       setValid(true);
     }
+    
   };
   //handls submit button and moves to the next page transfering the state value of the nhs number inserted by the user
   const handleSubmit = (path) => (e) => {
     e.preventDefault();
-    navigate(path, { state: { nhsNumber } });
-    console.log(nhsNumber);
+    if(dbvalid === "Nhs number not found, Save and Continue"){
+      navigate(path, { state: { nhsNumber } });
+      console.log(nhsNumber);
+    }else{
+      console.log("nhs number already exits");
+    }
   };
+
+  function checkNhsValueDb() {
+    var nhsValue = {
+      nhsNo: nhsNumber,
+    };
+
+    jq.ajax({
+      type: "POST",
+      url: "http://localhost:4000/checkNhsNumber.php",
+      mode: "no-core",
+      data: nhsValue,
+      success(data) {
+        if (data === "Not found") {
+          setDbValid("");
+        } else {
+          var json = jq.parseJSON(data);
+          setDbValid(json);
+          
+        }
+      },
+    });
+  }
 
   return (
     <div>
@@ -68,12 +98,14 @@ function NhsNumber() {
                 Input must have exactly 10 values (including spaces)
               </p>
             )}
+            <br/>
+            {dbvalid && <p style={{ color: dbvalid.includes("Nhs number not found, Save and Continue") ? "green" : "red" }}>{dbvalid}</p>}
           </InputField>
           <br />
           <Button
             type="submit"
             disabled={validNhs || nhsNumber.replace(/\s/g, "").length !== 10}
-            start
+            onClick={checkNhsValueDb}
           >
             Save and Continue
           </Button>

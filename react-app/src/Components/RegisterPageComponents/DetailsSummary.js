@@ -83,15 +83,9 @@ function DetailsSummary() {
       data: addNewpatient,
       success(data) {
         console.log(data);
-/*         if (data === "no patients") {
-          alert("no patients")
-        } else {
-          alert(data);
-          var json = jq.parseJSON(data);
-          alert(json[0].Postcode);
-        } */
       },
     });
+
     navigate("/RegistrationComplete",  {
       state: {
         nhsNumber,
@@ -177,7 +171,8 @@ function DetailsSummary() {
                 <Link onClick={handleSubmit("/Contact")}>Change</Link>
               </Table.Cell>
             </Table.Row>
-            <Table.Row>
+
+            {phoneNumber &&(<Table.Row>
               <Table.Cell>
                 <span style={{ fontWeight: "bold" }}>Phone Number</span>
               </Table.Cell>
@@ -185,7 +180,10 @@ function DetailsSummary() {
               <Table.Cell>
                 <Link onClick={handleSubmit("/Contact")}>Change</Link>
               </Table.Cell>
-            </Table.Row>
+            </Table.Row>)}
+            {/** used the a ternary operator to check if the value inside of county is empty/null or undefined
+             *  if the the variable holds a value it will display the table.row with the county information*/}
+            {address1 &&(
             <Table.Row>
               <Table.Cell>
                 <span style={{ fontWeight: "bold" }}>Address Detail</span>
@@ -194,7 +192,8 @@ function DetailsSummary() {
               <Table.Cell>
                 <Link onClick={handleSubmit("/Address")}>Change</Link>
               </Table.Cell>
-            </Table.Row>
+            </Table.Row>)}
+            {address2 &&(
             <Table.Row>
               <Table.Cell>
                 <span style={{ fontWeight: "bold" }}></span>
@@ -203,7 +202,8 @@ function DetailsSummary() {
               <Table.Cell>
                 <Link onClick={handleSubmit("/Address")}>Change</Link>
               </Table.Cell>
-            </Table.Row>
+            </Table.Row>)}
+            {townCity &&(            
             <Table.Row>
               <Table.Cell>
                 <span style={{ fontWeight: "bold" }}></span>
@@ -212,9 +212,8 @@ function DetailsSummary() {
               <Table.Cell>
                 <Link onClick={handleSubmit("/Address")}>Change</Link>
               </Table.Cell>
-            </Table.Row>
-            {/** used the a ternary operator to check if the value inside of county is empty/null or undefined
-             *  if the the variable holds a value it will display the table.row with the county information*/}
+            </Table.Row>)}
+
             {county && (
               <Table.Row>
                 <Table.Cell>
@@ -229,7 +228,7 @@ function DetailsSummary() {
 
             <Table.Row>
               <Table.Cell>
-                <span style={{ fontWeight: "bold" }}></span>
+                <span style={{ fontWeight: "bold" }}>Postcode</span>
               </Table.Cell>
               <Table.Cell>{postCode}</Table.Cell>
               <Table.Cell>

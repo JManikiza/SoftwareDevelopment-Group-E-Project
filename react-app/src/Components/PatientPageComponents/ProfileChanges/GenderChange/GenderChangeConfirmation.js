@@ -1,4 +1,4 @@
-import { Button, Heading, Main, Paragraph, SectionBreak } from "govuk-react";
+import { Button, Heading, Main, Table} from "govuk-react";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -8,6 +8,7 @@ function GenderChangeConfirmation() {
   const location = useLocation();
   const gender = location.state.gender;
 
+  const payload = gender;
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -21,26 +22,25 @@ function GenderChangeConfirmation() {
       .catch((error) => console.error(error));
   }, []);
 
-  const updateGender = async (newGender) => {
-    try {
-      const response = await fetch("http://localhost:4000/updateGender.php", {
-        method: "POST",
-          headers: {
-    'Content-Type': 'application/json'
-  },
-        body: JSON.stringify({ 'gender': newGender }),
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    console.log("gender:", gender);
 
-  const handleConfirm = () => {
-    updateGender(gender);
-    navigate("/Application");
-  };
+const updateGender = () => {
+  fetch('http://localhost:4000/updateGender.php', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({gender: payload}),
+    credentials: 'include',
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to update postcode');
+    }
+    navigate('/Application');
+  })
+  .catch(error => console.error(error));
+};
 
   return (
     <div>
@@ -56,18 +56,32 @@ function GenderChangeConfirmation() {
         <Heading>Confirm your changes</Heading>
 
         <Heading size="MEDIUM">Previous details were:</Heading>
+        
+                <Table>
+                    <Table.Row>
+                        <Table.CellHeader>
+                            Gender:
+                        </Table.CellHeader>
+                        <Table.Cell>
+                           {data.previousGender === "1" ? "MALE" : "FEMALE"}
+                        </Table.Cell>
+                    </Table.Row>
+                </Table>
+ 
+                <Heading size="MEDIUM">New details are:</Heading>
 
-        <SectionBreak></SectionBreak>
+                <Table>
+                    <Table.Row>
+                        <Table.CellHeader>
+                            Gender:
+                        </Table.CellHeader>
+                        <Table.Cell>
+                            {gender === "1" ? "MALE" : "FEMALE"}
+                        </Table.Cell>
+                    </Table.Row>
+                </Table>
 
-        <Paragraph>Gender:</Paragraph>
-        <p>{data.previousGender === "1" ? "MALE" : "FEMALE"}</p>
-
-        <Heading size="MEDIUM">New details are:</Heading>
-
-        <Paragraph>Gender:</Paragraph>
-        <p>{gender === "1" ? "MALE" : "FEMALE"}</p>
-
-        <Button onClick={handleConfirm}>Confirm</Button>
+        <Button onClick={updateGender}>Confirm</Button>
 
         <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
           Cancel

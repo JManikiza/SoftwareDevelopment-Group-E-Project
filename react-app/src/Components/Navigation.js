@@ -1,3 +1,9 @@
+/**
+ * Author(s) of this code:
+ *
+ * Wallyson Alves Da Silva
+ */
+
 import Crown from "@govuk-react/icon-crown";
 import { TopNav } from "govuk-react";
 import { Link } from "react-router-dom";

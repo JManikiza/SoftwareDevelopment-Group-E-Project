@@ -10,10 +10,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
 function AddressChangeEnter() {
+
   const navigate = useNavigate();
   const [address, setAddress] = useState("");
   const location = useLocation();
-console.log(location.state);
+  
+  console.log(location.state);
 
   const handleSubmit = (e) => {
     e.preventDefault();

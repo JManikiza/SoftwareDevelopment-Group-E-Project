@@ -1,58 +1,57 @@
-/**
-* Author(s) of this code: 
-*
-* Joven Manikiza
-*/
-
-import React from "react";
-import { InputField,  Main, Button, SectionBreak } from "govuk-react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { InputField, Main, Button, SectionBreak } from "govuk-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
-function NameChangeBothNames(){
 
-    const navigate = useNavigate();
-    
-    return(
-        <div>
-                                    <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+function NameChangeBothNames() {
+  const navigate = useNavigate();
+  const [forename, setForename] = useState("");
+  const [surname, setSurname] = useState("");
+  const location = useLocation();
 
-            <Main>
-                <InputField
-                    hint={<>You'll find this on your Deed Poll confirmation letter</>}
-                    input={{  name: 'firstName' }}
-                    meta={{
-                    error: 'Your name must not contain any spaces or special characters',
-                    touched: true
-                    }}>
-                        
-                        Your new first name:
-                </InputField>
-
-                <InputField
-                    hint={<>You'll find this on your Deed poll confirmation letter or marriage certificate</>}
-                    input={{ name: 'lastName' }}
-                    meta={{
-                    error: 'Your name must not contain any spaces or special characters',
-                    touched: true
-                    }}>
-                    
-                        Your new last name:
-                </InputField>
-
-                <Button onClick={() => navigate("/NameChangeConfirmation")}>
-                    Continue
-                </Button>
-
-                 <SectionBreak level="SMALL" visible={false}/>
-                
-                <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
-                    Cancel
-                </Button>
-
-                </Main>
-                </div>
-
-    );
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Send the form data to the next page
+    navigate("/NameChangeConfirmation", { 
+      state: { 
+        forename: forename, 
+        surname: surname 
+      } 
+    });
+  };
+  
+  return (
+    <div>
+      <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register" />
+      <Main>
+        <form onSubmit={handleSubmit}>
+          <InputField
+            hint={<>You'll find this on your Deed Poll confirmation letter</>}
+            value={forename}
+            onChange={(e) => setForename(e.target.value)}
+            input={{ name: "forename" }}
+            meta={{ touched: true }}
+          >
+            Your new first name:
+          </InputField>
+          <InputField
+            hint={<>You'll find this on your Deed poll confirmation letter or marriage certificate</>}
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
+            input={{ name: "surname" }}
+            meta={{ touched: true }}
+          >
+            Your new last name:
+          </InputField>
+          <Button type="submit">Continue</Button>
+          <SectionBreak level="SMALL" visible={false} />
+          <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
+            Cancel
+          </Button>
+        </form>
+      </Main>
+    </div>
+  );
 }
 
 export default NameChangeBothNames;

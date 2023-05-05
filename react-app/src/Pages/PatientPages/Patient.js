@@ -33,8 +33,6 @@ const navigate = useNavigate();
 
 
 
-let patientName = localStorage.getItem("patientName");
-
 return(
     <div>
         <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
@@ -44,7 +42,7 @@ return(
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
 
-            <Heading>Hello {patientName}.</Heading>
+            <Heading>Hello {data.Forename}.</Heading>
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">
                 <Paragraph>You'll be able to do the following:</Paragraph>

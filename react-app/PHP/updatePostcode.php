@@ -13,14 +13,15 @@ if (!$nhs_number) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Methods: PUT, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the form data
-    $postcode = isset($_POST['postcode']) ? $_POST['postcode'] : null;
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    // Get the request data
+    $data = json_decode(file_get_contents("php://input"), true);
+    $postcode = isset($data['postcode']) ? $data['postcode'] : null;
 
     if (empty($postcode)) {
         header('HTTP/1.1 400 Bad Request');

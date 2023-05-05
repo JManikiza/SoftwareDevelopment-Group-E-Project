@@ -1,25 +1,29 @@
 /**
-* Author(s) of this code: 
-*
-* Joven Manikiza
-* Wallyson Alves Da Silva
-* Mohamed Yusef Mohamed
-*
-* Please add your names if you have
-* partaken in coding this page.
-* I would also recommend adding your names above
-* the pages you have solely created
-*/
+ * Author(s) of this code:
+ *
+ * Joven Manikiza
+ * Wallyson Alves Da Silva
+ * Mohamed Yusef Mohamed
+ * Jimmy Le
+ *
+ * Please add your names if you have
+ * partaken in coding this page.
+ * I would also recommend adding your names above
+ * the pages you have solely created
+ */
 
 // React imports
-import React from "react";
-import { Routes, Route} from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 // Layout import
 import FooterNav from "./Components/FooterNav";
 import HomePage from "./Pages/HomePage";
-import Login from "./Pages/Login";
 
+//Login page imports
+import Login from "./Pages/Login";
+import StaffLogin from "./Pages/StaffLogin";
+import AuthContext from "./Components/LoginComponents/AuthContext";
 
 // Registration page imports
 import FirstName from "./Components/RegisterPageComponents/FirstName";
@@ -37,11 +41,10 @@ import RegistrationComplete from "./Components/RegisterPageComponents/Registrati
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 
-
 /**
- * Patient page imports 
+ * Patient page imports
  * Currently only here until it links to login page or testing purposes
- *  */ 
+ *  */
 import Patient from "./Pages/PatientPages/Patient";
 import Profile from "./Pages/PatientPages/Profile";
 import GPServices from "./Pages/PatientPages/GPServices";
@@ -49,8 +52,6 @@ import Application from "./Components/PatientPageComponents/ProfileChanges/Appli
 
 import NameChangeStart from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeStart";
 import NameChangeDetails from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeDetails";
-import NameChangeFirstName from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeFirstName";
-import NameChangeLastName from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeLastName";
 import NameChangeBothNames from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeBothNames";
 import NameChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/NameChange/NameChangeConfirmation";
 
@@ -84,96 +85,123 @@ import PasswordChangeDetails from "./Components/PatientPageComponents/ProfileCha
 import PasswordChangeEnter from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeEnter";
 import PasswordChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeConfirmation";
 
-import DRTab from "./Components/PatientPageComponents/GPComponents/De-Register/DRTab";
-import DoctorTab from "./Components/PatientPageComponents/GPComponents/DoctorsAvailable/DoctorTab";
-import ViewTab from "./Components/PatientPageComponents/GPComponents/ViewAppointment/ViewTab";
-import BookTab from "./Components/PatientPageComponents/GPComponents/BookAppointment/BookTab";
-import GPTabs from "./Components/PatientPageComponents/GPComponents/GPTabs";
 // Custom imports
 
 import Temp from "./Pages/Temp";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div>
+      <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        {/* route for the links to different pages */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/stafflogin" element={<StaffLogin />} />
+          //----------------------------------------------------------------------------------
+          <Route path="/NhsNumber" element={<NhsNumber />} />
+          <Route path="/FirstName" element={<FirstName />} />
+          <Route path="/Surname" element={<Surname />} />
+          <Route path="/DateOfBirth" element={<DateOfBirth />} />
+          <Route path="/Gender" element={<Gender />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/Address" element={<Address />} />
+          <Route path="/Password" element={<Password />} />
+          <Route exact path="/DetailsSummary" element={<DetailsSummary />} />
+          <Route
+            path="/RegistrationComplete"
+            element={<RegistrationComplete />}
+          />
+          //----------------------------------------------------------------------------------
+          <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
+          <Route
+            path="/DoctorViewandUpdate"
+            element={<DoctorViewandUpdate />}
+          />
+          //-------------------------------------------------------------------
+          <Route path="/Patient" element={<Patient />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/GPServices" element={<GPServices />} />
+          <Route path="/Application" element={<Application />} />
+          <Route path="/NameChangeStart" element={<NameChangeStart />} />
+          <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
 
-      {/* route for the links to different pages */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/NhsNumber" element={<NhsNumber />} />
-        <Route path="/FirstName" element={<FirstName />} />
-        <Route path="/Surname" element={<Surname />} />
-        <Route path="/DateOfBirth" element={<DateOfBirth />} />
-        <Route path="/Gender" element={<Gender />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/Address" element={<Address />} />
-        <Route path="/Password" element={<Password />} />
-        <Route exact path="/DetailsSummary" element={<DetailsSummary />} />
-        <Route path="/RegistrationComplete" element={<RegistrationComplete />} />
+          <Route
+            path="/NameChangeBothNames"
+            element={<NameChangeBothNames />}
+          />
+          <Route
+            path="/NameChangeConfirmation"
+            element={<NameChangeConfirmation />}
+          />
+          <Route path="/AddressChangeStart" element={<AddressChangeStart />} />
+          <Route
+            path="/AddressChangeDetails"
+            element={<AddressChangeDetails />}
+          />
+          <Route path="/AddressChangeEnter" element={<AddressChangeEnter />} />
+          <Route
+            path="/AddressChangeConfirmation"
+            element={<AddressChangeConfirmation />}
+          />
+          <Route path="/DOBChangeStart" element={<DOBChangeStart />} />
+          <Route path="/DOBChangeDetails" element={<DOBChangeDetails />} />
+          <Route path="/DOBChangeEnter" element={<DOBChangeEnter />} />
+          <Route
+            path="/DOBChangeConfirmation"
+            element={<DOBChangeConfirmation />}
+          />
+          <Route path="/EmailChangeStart" element={<EmailChangeStart />} />
+          <Route path="/EmailChangeDetails" element={<EmailChangeDetails />} />
+          <Route path="/EmailChangeEnter" element={<EmailChangeEnter />} />
+          <Route
+            path="/EmailChangeConfirmation"
+            element={<EmailChangeConfirmation />}
+          />
+          <Route path="/GenderChangeStart" element={<GenderChangeStart />} />
+          <Route
+            path="/GenderChangeDetails"
+            element={<GenderChangeDetails />}
+          />
+          <Route path="/GenderChangeEnter" element={<GenderChangeEnter />} />
+          <Route
+            path="/GenderChangeConfirmation"
+            element={<GenderChangeConfirmation />}
+          />
+          <Route path="/NumberChangeStart" element={<NumberChangeStart />} />
+          <Route
+            path="/NumberChangeDetails"
+            element={<NumberChangeDetails />}
+          />
+          <Route path="/NumberChangeEnter" element={<NumberChangeEnter />} />
+          <Route
+            path="/NumberChangeConfirmation"
+            element={<NumberChangeConfirmation />}
+          />
+          <Route
+            path="/PasswordChangeStart"
+            element={<PasswordChangeStart />}
+          />
+          <Route
+            path="/PasswordChangeDetails"
+            element={<PasswordChangeDetails />}
+          />
+          <Route
+            path="/PasswordChangeEnter"
+            element={<PasswordChangeEnter />}
+          />
+          <Route
+            path="/PasswordChangeConfirmation"
+            element={<PasswordChangeConfirmation />}
+          />
+          //-------------------------------------------------------------------
+          <Route path="/temp" element={<Temp />} />
+        </Routes>
 
-
-
-//----------------------------------------------------------------------------------
-        <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
-        <Route path="/DoctorViewandUpdate" element={<DoctorViewandUpdate />} />
-
-
-
-//-------------------------------------------------------------------
-        <Route path="/Patient" element={<Patient />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/GPServices" element={<GPServices />} />
-        <Route path="/Application" element={<Application />} />
-
-        <Route path="/NameChangeStart" element={<NameChangeStart />} />
-        <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
-        <Route path="/NameChangeFirstName" element={<NameChangeFirstName/>} />
-        <Route path="/NameChangeLastName" element={<NameChangeLastName/>} />
-        <Route path="/NameChangeBothNames" element={<NameChangeBothNames/>} />
-        <Route path="/NameChangeConfirmation" element={<NameChangeConfirmation/>} />
-
-        <Route path="/AddressChangeStart" element={<AddressChangeStart/>} />
-        <Route path="/AddressChangeDetails" element={<AddressChangeDetails/>} />
-        <Route path="/AddressChangeEnter" element={<AddressChangeEnter/>} />
-        <Route path="/AddressChangeConfirmation" element={<AddressChangeConfirmation/>} />
-
-        <Route path="/DOBChangeStart" element={<DOBChangeStart/>} />
-        <Route path="/DOBChangeDetails" element={<DOBChangeDetails/>} />
-        <Route path="/DOBChangeEnter" element={<DOBChangeEnter/>} />
-        <Route path="/DOBChangeConfirmation" element={<DOBChangeConfirmation/>} />
-
-        <Route path="/EmailChangeStart" element={<EmailChangeStart/>} />
-        <Route path="/EmailChangeDetails" element={<EmailChangeDetails/>} />
-        <Route path="/EmailChangeEnter" element={<EmailChangeEnter/>} />
-        <Route path="/EmailChangeConfirmation" element={<EmailChangeConfirmation/>} />
-
-        <Route path="/GenderChangeStart" element={<GenderChangeStart/>} />
-        <Route path="/GenderChangeDetails" element={<GenderChangeDetails/>} />
-        <Route path="/GenderChangeEnter" element={<GenderChangeEnter/>} />
-        <Route path="/GenderChangeConfirmation" element={<GenderChangeConfirmation/>} />
-
-        <Route path="/NumberChangeStart" element={<NumberChangeStart/>} />
-        <Route path="/NumberChangeDetails" element={<NumberChangeDetails/>} />
-        <Route path="/NumberChangeEnter" element={<NumberChangeEnter/>} />
-        <Route path="/NumberChangeConfirmation" element={<NumberChangeConfirmation/>} />
-
-        <Route path="/PasswordChangeStart" element={<PasswordChangeStart/>} />
-        <Route path="/PasswordChangeDetails" element={<PasswordChangeDetails/>} />
-        <Route path="/PasswordChangeEnter" element={<PasswordChangeEnter/>} />
-        <Route path="/PasswordChangeConfirmation" element={<PasswordChangeConfirmation/>} />
-
-
-
-
-
-//-------------------------------------------------------------------
-      
-        <Route path="/temp" element={<Temp />} />
-
-      </Routes>
-
-      <FooterNav />
+        <FooterNav />
+      </AuthContext.Provider>
     </div>
   );
 }
