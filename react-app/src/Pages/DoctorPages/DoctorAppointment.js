@@ -62,8 +62,9 @@ function DoctorAppointment() {
             PageName2="Doctor Appointment"
            
           />
-          <Logout />
-        
+<br/><br/><br/>
+<Logout/>
+<br/><br/>    
 
 <AppointmentExist appointmentData={appointmentData} />
         </>
@@ -74,7 +75,11 @@ function DoctorAppointment() {
    pageLink2="/DoctorAppointment"
    PageName2="No appointment today"
 
- /><Main><br/>
+ />
+<br/><br/><br/>
+<Logout/>
+<br/><br/>
+ <Main><br/>
     <Breadcrumbs>
 
 <Breadcrumbs.Link href="/DoctorAppointment">

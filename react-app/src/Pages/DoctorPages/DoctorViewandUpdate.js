@@ -12,6 +12,8 @@ import {
 } from "govuk-react";
 import Navigation from "../../Components/Navigation";
 import { useLocation, useNavigate } from "react-router-dom";
+import Logout from "../../Components/LoginComponents/Logout";
+
 import jq from "jquery";
 function DoctorViewandUpdate() {
   const navigate=useNavigate();
@@ -57,10 +59,11 @@ function DoctorViewandUpdate() {
         PageName1="Home"
         pageLink2="/DoctorAppointment"
         PageName2="Doctor List Of Appointments"
-        pageLink3="/"
-        PageName3="Logout"
-      />
 
+      />
+<br/><br/><br/>
+<Logout/>
+<br/><br/>
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link to="/">HomePage</Breadcrumbs.Link>
