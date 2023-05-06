@@ -23,7 +23,7 @@ function NhsNumber() {
     const inputLength = inputValue.replace(/\s/g, "").length;
 
     // Check if the input value has exactly 10 characters (including spaces)
-    if (inputLength === 10) {
+    if (inputLength === 11) {
       setValid(false);
     } else {
       setValid(true);
@@ -33,7 +33,7 @@ function NhsNumber() {
   //handls submit button and moves to the next page transfering the state value of the nhs number inserted by the user
   const handleSubmit = (path) => (e) => {
     e.preventDefault();
-    if(dbvalid === "Nhs number not found, Save and Continue"){
+    if(dbvalid === "Nhs number found, Save and Continue"){
       navigate(path, { state: { nhsNumber } });
       console.log(nhsNumber);
     }else{
@@ -86,7 +86,7 @@ function NhsNumber() {
             onChange={handleChange}
             hint={
               <>
-                Ten digit number
+                11 digit number
                 <br />
                 For example: ‘123 123 4445’.
               </>
@@ -95,7 +95,7 @@ function NhsNumber() {
             <Heading>NHS number</Heading>
             {validNhs && (
               <p style={{ color: "red" }}>
-                Input must have exactly 10 values (including spaces)
+                Input must have exactly 11 values (including spaces)
               </p>
             )}
             <br/>
@@ -104,7 +104,7 @@ function NhsNumber() {
           <br />
           <Button
             type="submit"
-            disabled={validNhs || nhsNumber.replace(/\s/g, "").length !== 10}
+            disabled={validNhs || nhsNumber.replace(/\s/g, "").length !== 11}
             onClick={checkNhsValueDb}
           >
             Save and Continue

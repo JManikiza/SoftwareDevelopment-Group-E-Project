@@ -17,12 +17,15 @@ import Logout from "../../Components/LoginComponents/Logout";
  
 function Patient(){
 
-//let name = localStorage.getItem("patientName");
+let name = localStorage.getItem("patientName");
+
+// use this value to query the db
+let nhsNo = localStorage.getItem("nhsNo");
 
 const navigate = useNavigate();
   const [data, setData] = useState({});
 
-  useEffect(() => {
+ /*  useEffect(() => {
     fetch('http://localhost:4000/getData.php')
       .then(response => response.json())
       .then(data => {
@@ -31,7 +34,7 @@ const navigate = useNavigate();
         });
       })
       .catch(error => console.error(error));
-  }, []);
+  }, []); */
 
 
 
@@ -44,7 +47,7 @@ return(
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
 
-            <Heading>Hello {data.Forename}.</Heading>
+            <Heading>Hello {name}.</Heading>
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">
                 <Paragraph>You'll be able to do the following:</Paragraph>

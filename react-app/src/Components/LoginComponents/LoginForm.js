@@ -26,12 +26,11 @@ function LoginForm() {
   
   useEffect(() => {
     if (isLoggedIn) {
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         navigate("/Patient");
       }, 1000);
-      return () => clearTimeout(timeoutId);
     }
-  
+    // Clear localStorage on page unload
     const handlePageUnload = () => {
       localStorage.clear();
       sessionStorage.clear();
@@ -39,7 +38,6 @@ function LoginForm() {
     window.addEventListener("beforeunload", handlePageUnload);
     return () => window.removeEventListener("beforeunload", handlePageUnload);
   }, [isLoggedIn, navigate]);
-  
 
   const submitFormHandler = (e) => {
     e.preventDefault();
@@ -54,12 +52,13 @@ function LoginForm() {
       },
       dataType: "json",
       success: function (response) {
-        if (response === "no patients") {
+        if (response.passwordMatch === "no patients") {
           console.error("No patients found.");
-        } else {
+        } else if (response.passwordMatch === true) {
           let patientName = response.patientName;
           let nhsNo = response.nhsNo;
           let session_token = response.session_token;
+
           localStorage.setItem("patientName", patientName);
           localStorage.setItem("nhsNo", nhsNo);
           sessionStorage.setItem("session_token", session_token); // Store session token in session storage
