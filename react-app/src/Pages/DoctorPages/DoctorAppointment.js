@@ -62,12 +62,12 @@ function DoctorAppointment() {
   
     });
   }
-  //function to render the appointment data
   //after that comes the apointmentData checking it contains any data and if so it checks 
   //if forename in appointmentData is not null then it will render the appointment data
   //if forename exist i will display the navigation components along with the appointmentExist,.js component
   //else it will display the employeeData content and display the navigation component, breadcrumbs component and logout component
   //and massage stating no appointment has been made.
+  //function to render the appointment data
 
   return (
     <div>

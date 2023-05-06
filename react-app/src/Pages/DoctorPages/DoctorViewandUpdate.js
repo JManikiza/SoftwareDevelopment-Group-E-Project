@@ -72,27 +72,12 @@ function DoctorViewandUpdate() {
       },
     });
     navigate("/DoctorAppointment");};
-/*calling of navigation.js components with props of links to and text name of the link   */
-/*logout.js component called here to use on the page */
-/*Main and breadcrumbs imported from govuk-react with links to privous pages.*/
-        /*BackLink is used to go back to the previous page*/
-/* after that labels and grids are used to display the user data retireved*/
-        /*H3 is used to display the user data retireved*/
-        /*Label is used to display the user data retireved*/
-        /*TextArea is used to display the user data retireved*/
-        /*Button is used to display the user data retireved*/
-        /*GridRow is used to display the user data retireved within the row*/
-        /*GridCol is used to display the user data retireved within the column */
-        //after that editing variable used check if user click or not.
-        // if user click then editing variable is set to true and display the inputfield and save button.
-        // else if will just display the medical record.
-        //once the user clicks on the save button, the data will be updated in the sql using the php and goes back to
-        // the DoctorAppointment.js file. it will also set the appointment to completed and will no longer show up on the 
-        //DoctorAppointment.js file.
+      
         
   return (
     <div>
-
+{/*calling of navigation.js components with props of links to and text name of the link   */
+}
       <Navigation
         pageLink1="/"
         PageName1="Home"
@@ -101,10 +86,13 @@ function DoctorViewandUpdate() {
 
       />
 <br/><br/><br/>
-
+{/*logout.js component called here to use on the page */
+}
 <Logout/>
 <br/><br/>
       <Main>
+        {/*Main and breadcrumbs imported from govuk-react with links to privous pages.*/
+}
         <Breadcrumbs>
           <Breadcrumbs.Link to="/">HomePage</Breadcrumbs.Link>
 
@@ -114,13 +102,19 @@ function DoctorViewandUpdate() {
         </Breadcrumbs>
         <br />
         <br />
-        <BackLink
-  href="/DoctorAppointment"
-  onClick={function noRefCheck(){}}
->
-  Back
-</BackLink>
+        {        /*a tag is used to go back to the previous page*/}
+<a href="/DoctorAppointment" className="govuk-back-link">Back</a>
+    
 <br/>   <br />
+{ /*H3 is used to display the user data retireved*/
+        /*Label is used to display the user data retireved*/
+        /*TextArea is used to display the user data retireved*/
+        /*Button is used to display the user data retireved*/
+        /*GridRow is used to display the user data retireved within the row*/
+        /*GridCol is used to display the user data retireved within the column */
+        //after that editing variable used check if user click or not.
+    
+}
         <H3 size="LARGE" style={{ textAlign: "center" }}>
           View and Update Medical Records
         </H3>
@@ -151,6 +145,11 @@ function DoctorViewandUpdate() {
         </GridRow>
         <br />
         <br />
+        {    /* if user click then editing variable is set to true and display the inputfield and save button.
+         else if will just display the medical record.
+        once the user clicks on the save button, the data will be updated in the sql using the php and goes back to
+         the DoctorAppointment.js file. it will also set the appointment to completed and will no longer show up on the 
+DoctorAppointment.js file.*/}
         {editing ? (
           <GridRow>
             <GridCol>
