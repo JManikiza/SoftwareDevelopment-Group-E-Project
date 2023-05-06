@@ -47,10 +47,13 @@ function LoginForm() {
         if (response === "no patients") {
           console.error("No patients found.");
         } else {
-          let patientName = response[0].Forename + " " + response[0].Surname;
-          let nhsNo = response[0].NHSNumber;
+          let patientName = response.patientName;
+          let nhsNo = response.nhsNo;
+          let session_token = response.session_token;
           localStorage.setItem("patientName", patientName);
           localStorage.setItem("nhsNo", nhsNo);
+          sessionStorage.setItem("session_token", session_token); // Store session token in session storage
+          
           console.log("Patient name: " + patientName);
           console.log("NHS no: " + nhsNo);
 

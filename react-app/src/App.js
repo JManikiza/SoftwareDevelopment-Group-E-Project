@@ -24,6 +24,7 @@ import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import StaffLogin from "./Pages/StaffLogin";
 import AuthContext from "./Components/LoginComponents/AuthContext";
+import PrivateRoute from "./Components/LoginComponents/PrivateRoute";
 
 // Registration page imports
 import FirstName from "./Components/RegisterPageComponents/FirstName";
@@ -121,13 +122,34 @@ function App() {
             element={<DoctorViewandUpdate />}
           />
           //-------------------------------------------------------------------
-          <Route path="/Patient" element={<Patient />} />
+
+          //uncomment
+          {/* <Route path="/Patient" element={<Patient />} /> */}
+
+          <Route
+            path="/Patient"
+            element={ 
+              <PrivateRoute>
+                <Patient />
+              </PrivateRoute>
+            }
+          />
+
           <Route path="/Profile" element={<Profile />} />
+
+          {/* <Route
+            path="/Profile"
+            element={ 
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          /> */}
+
           <Route path="/GPServices" element={<GPServices />} />
           <Route path="/Application" element={<Application />} />
           <Route path="/NameChangeStart" element={<NameChangeStart />} />
           <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
-
           <Route
             path="/NameChangeBothNames"
             element={<NameChangeBothNames />}
