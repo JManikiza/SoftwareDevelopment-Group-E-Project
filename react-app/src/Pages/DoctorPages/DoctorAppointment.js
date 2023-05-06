@@ -3,6 +3,7 @@ import $ from "jquery"; // Importing jQuery library
 import Navigation from "../../Components/Navigation";
 import { Main,Breadcrumbs } from "govuk-react";
 import AppointmentExist from "../../Components/DoctorComponents/AppointmentExist";
+import Logout from "../../Components/LoginComponents/Logout";
 
 
 function DoctorAppointment() {
@@ -61,6 +62,7 @@ function DoctorAppointment() {
             PageName2="Doctor Appointment"
            
           />
+          <Logout />
         
 
 <AppointmentExist appointmentData={appointmentData} />
