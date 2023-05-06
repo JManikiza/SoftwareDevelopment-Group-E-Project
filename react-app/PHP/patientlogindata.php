@@ -21,6 +21,17 @@
     if (empty($patients)) {
         echo json_encode("no patients");
     } else {
-        echo json_encode($patients);
+        // Generate a session token and store it in a session variable
+        session_start();
+        $session_token = bin2hex(random_bytes(16));
+        $_SESSION['session_token'] = $session_token;
+
+        // Return patient details and session token as JSON response
+        $patient_data = [
+            'patientName' => $patients[0]->Forename . ' ' . $patients[0]->Surname,
+            'nhsNo' => $patients[0]->NHSNumber,
+            'session_token' => $session_token
+        ];
+        echo json_encode($patient_data);
     }
 ?>

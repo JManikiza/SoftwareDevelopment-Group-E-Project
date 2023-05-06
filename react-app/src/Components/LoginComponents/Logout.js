@@ -9,6 +9,7 @@ function Logout() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.clear(); // clear local storage
+    sessionStorage.clear(); // clear session storage
     alert("logging out");
     navigate("/login");
   };

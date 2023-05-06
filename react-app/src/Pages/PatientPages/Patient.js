@@ -17,6 +17,8 @@ import Logout from "../../Components/LoginComponents/Logout";
  
 function Patient(){
 
+//let name = localStorage.getItem("patientName");
+
 const navigate = useNavigate();
   const [data, setData] = useState({});
 
