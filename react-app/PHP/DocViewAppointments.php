@@ -1,5 +1,3 @@
-
-
 <?php
 header('Access-Control-Allow-Origin: *');
 
@@ -19,8 +17,7 @@ while ($appointment = $st->fetchObject()) {
 if(empty($AppointmentsList)){
     echo json_encode("no appointment has been made");
 }
-else
-{
+else {
     echo json_encode($AppointmentsList);
 }
 ?>

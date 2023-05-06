@@ -1,18 +1,31 @@
-import { useNavigate } from "react-router-dom";
+/*
+author(s)
+Name:Mohamed Mohamed
+ID:w1830958
+*/
 
+//imported function section
+import { useNavigate } from "react-router-dom";
 import { Main,Table,Button,H3,Breadcrumbs } from "govuk-react";
+
 function AppointmentExist(props) {
+  //diclaration of use state
+
     const navigate=useNavigate();
     return(
     <div>
+         {/* Main container */}  
     <Main>
+     {/*bread crumb element section with links  */} 
       <Breadcrumbs>
 
         <Breadcrumbs.Link href="/DoctorAppointment">
           Doctor Appointment
         </Breadcrumbs.Link>
       </Breadcrumbs>
+          {/*one line spacing  */} 
       <br/>  <br/>
+     {/* heading with appointmentData displayed for employee */} 
 
             <H3 size="LARGE" style={{ textAlign: "center" }}>
               {"Doctor " +
@@ -20,6 +33,7 @@ function AppointmentExist(props) {
                 " " +
                 props.appointmentData[0].empLName}
             </H3>
+                {/* table element from gov with appointmentData printed inside it */} 
             <Table        caption={"List of Appointment"}
         head={
           <Table.Row>
@@ -32,7 +46,7 @@ function AppointmentExist(props) {
 
           </Table.Row>
         }
->
+>    {/*  printintg the data into the designated section of the table */} 
               {props.appointmentData.map((appointment) => (
                 <Table.Row key={appointment.NHSNumber}>
                   <Table.CellHeader style={{ textAlign: "left" }}>
@@ -51,6 +65,7 @@ function AppointmentExist(props) {
                     {appointment.appNotes}
                   </Table.Cell>
                   <Table.Cell numeric style={{ textAlign: "left" }}>
+                        {/*  Button to go to view medical record. it using usenavigate function and pass the data to that page*/} 
                     <Button
                     buttonColour="#f3f2f1"
                     buttonHoverColour="#ffdd00" 

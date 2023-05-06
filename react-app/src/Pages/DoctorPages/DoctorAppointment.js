@@ -1,3 +1,10 @@
+/*
+author(s)
+Name:Mohamed Mohamed
+ID:w1830958
+*/
+
+//imported function section
 import React, { useState, useEffect } from "react";
 import $ from "jquery"; // Importing jQuery library
 import Navigation from "../../Components/Navigation";
@@ -7,13 +14,17 @@ import Logout from "../../Components/LoginComponents/Logout";
 
 
 function DoctorAppointment() {
- 
+ //2 variables to store data inside a list.
   const [Employeedata,setEmployeedata]=useState([]);
   const [appointmentData, setAppointmentData] = useState([]);
-
+//useEffect to get the data from the database and store it to the appointmentData List
   useEffect(() => {
     getAppointmentData();
   }, []);
+//data const storing the data passed from login using the localstorage method to retireve it.
+//data will be used to pass employee id to the php to retireve their appointments data.
+//the first ajax call is made to retireve the data from the database and stores in appointmentData.
+//second ajax call is made to retireve the data from the database and stores in Employeedata.
 
   function getAppointmentData() {
     const data = {
@@ -51,8 +62,16 @@ function DoctorAppointment() {
   
     });
   }
+  //function to render the appointment data
+  //after that comes the apointmentData checking it contains any data and if so it checks 
+  //if forename in appointmentData is not null then it will render the appointment data
+  //if forename exist i will display the navigation components along with the appointmentExist,.js component
+  //else it will display the employeeData content and display the navigation component, breadcrumbs component and logout component
+  //and massage stating no appointment has been made.
+
   return (
     <div>
+     
       {appointmentData.length > 0 && appointmentData[0].Forename != null ? (
         <>
           <Navigation
