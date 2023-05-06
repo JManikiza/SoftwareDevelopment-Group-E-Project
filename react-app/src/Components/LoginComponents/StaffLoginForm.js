@@ -28,7 +28,7 @@ function StaffLoginForm() {
   useEffect(() => {
     if (isLoggedIn) {
       setTimeout(() => {
-        navigate("/DoctorDashboard");
+        navigate("/DoctorAppointment");
       }, 1000);
     }
     // Clear localStorage on page unload
@@ -74,7 +74,7 @@ function StaffLoginForm() {
 
           //navigate("/");
           if (staffType === 'Doctor') {
-            navigate('/DoctorDashboard');
+            navigate('/DoctorAppointment');
           } else {
             navigate('/');
           }

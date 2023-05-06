@@ -42,7 +42,6 @@ import RegistrationComplete from "./Components/RegisterPageComponents/Registrati
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 
-import DoctorDashboard from "./Pages/DoctorPages/DoctorDashboard";
 
 /**
  * Patient page imports
@@ -118,16 +117,15 @@ function App() {
             element={<RegistrationComplete />}
           />
           //----------------------------------------------------------------------------------
-          <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
           <Route
             path="/DoctorViewandUpdate"
             element={<DoctorViewandUpdate />}
           />
           <Route
-            path="/DoctorDashboard"
+            path="/DoctorAppointment"
             element={
               <PrivateRoute>
-                <DoctorDashboard />
+                <DoctorAppointment />
               </PrivateRoute>
             }
           />

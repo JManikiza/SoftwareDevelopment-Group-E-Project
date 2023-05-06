@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import $ from "jquery"; // Importing jQuery library
 import Navigation from "../../Components/Navigation";
-import { Main,Table,Button,H3,Breadcrumbs } from "govuk-react";
+import { Main,Breadcrumbs } from "govuk-react";
 import AppointmentExist from "../../Components/DoctorComponents/AppointmentExist";
 
 
 function DoctorAppointment() {
  
-  const navigate = useNavigate();
   const [Employeedata,setEmployeedata]=useState([]);
   const [appointmentData, setAppointmentData] = useState([]);
 
@@ -18,13 +16,13 @@ function DoctorAppointment() {
 
   function getAppointmentData() {
     const data = {
-      empID: localStorage.getItem("NHSNumber"),
+      empID:localStorage.getItem('empId'),
     };
  
     $.ajax({
       type: "POST",
       url: "http://localhost:4000/DocViewAppointments.php",
-      data: data,
+      data: {empID:data.empID},
       dataType: "json",
       success: function (appoint) {
         console.log(appoint);
@@ -39,7 +37,7 @@ function DoctorAppointment() {
     $.ajax({
       type: "POST",
       url: "http://localhost:4000/docData.php",
-      data: data,
+      data: {empID:data.empID},
       dataType: "json",
       success: function (emp) {
         if (emp === "no patients") {
@@ -52,7 +50,6 @@ function DoctorAppointment() {
   
     });
   }
-
   return (
     <div>
       {appointmentData.length > 0 && appointmentData[0].Forename != null ? (
@@ -66,7 +63,7 @@ function DoctorAppointment() {
           />
         
 
-<AppointmentExist props={appointmentData=appointmentData} />
+<AppointmentExist appointmentData={appointmentData} />
         </>
       ) : (
    <><Navigation
