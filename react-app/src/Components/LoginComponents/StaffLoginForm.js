@@ -1,16 +1,44 @@
-import React, { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import jq from "jquery";
-import { Main, Fieldset, InputField, Button } from "govuk-react";
+import {
+  Main,
+  Fieldset,
+  InputField,
+  Button,
+  InsetText,
+ 
+} from "govuk-react";
+
+import AuthContext from "./AuthContext";
 
 function StaffLoginForm() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [validEmail, setValidEmail] = useState(false);
   const [validPw, setValidPw] = useState(false);
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  let staffType;
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setTimeout(() => {
+        navigate("/DoctorDashboard");
+      }, 1000);
+    }
+    // Clear localStorage on page unload
+    const handlePageUnload = () => {
+      localStorage.clear();
+      sessionStorage.clear();
+    };
+    window.addEventListener("beforeunload", handlePageUnload);
+    return () => window.removeEventListener("beforeunload", handlePageUnload);
+  }, [isLoggedIn, navigate]);
 
   const submitFormHandler = (e) => {
     e.preventDefault();
@@ -28,15 +56,28 @@ function StaffLoginForm() {
         if (response === "no users") {
           console.error("No users found.");
         } else {
-          let empId = response[0].empID;
-          let empName = response[0].empFName + " " + response[0].empLName;
-          let empType = response[0].employeeType;
-          console.log(empId);
-          console.log(empName);
-          console.log(empType);
+          let empId = response.empID;
+          let empFName = response.empFName;
+          let empLName = response.empLName;
+          let empType = response.employeeType;
+          let session_token = response.session_token;
+
+          staffType = empType;
+         
           localStorage.setItem("empId", empId);
+          localStorage.setItem("empFName", empFName);
+          localStorage.setItem("empLName", empLName);
           localStorage.setItem("empType", empType);
+          sessionStorage.setItem("session_token", session_token);
+
+          setIsLoggedIn(true);
+
           //navigate("/");
+          if (staffType === 'Doctor') {
+            navigate('/DoctorDashboard');
+          } else {
+            navigate('/');
+          }
         }
       },
       error: function (error) {
@@ -69,6 +110,13 @@ function StaffLoginForm() {
     }
   };
 
+  if (isLoggedIn) {
+    return (
+      <Main>
+        <InsetText margin={3}>Redirecting...</InsetText>
+      </Main>
+    );
+  }
 
   return (
     <Main>

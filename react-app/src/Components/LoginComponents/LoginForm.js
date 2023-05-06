@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import jq from "jquery";
 import {
   Main,
@@ -14,6 +14,7 @@ import AuthContext from "./AuthContext";
 
 function LoginForm() {
   const navigate = useNavigate();
+ 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,14 +23,23 @@ function LoginForm() {
   const [validPw, setValidPw] = useState(false);
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-
+  
   useEffect(() => {
     if (isLoggedIn) {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         navigate("/Patient");
       }, 1000);
+      return () => clearTimeout(timeoutId);
     }
+  
+    const handlePageUnload = () => {
+      localStorage.clear();
+      sessionStorage.clear();
+    };
+    window.addEventListener("beforeunload", handlePageUnload);
+    return () => window.removeEventListener("beforeunload", handlePageUnload);
   }, [isLoggedIn, navigate]);
+  
 
   const submitFormHandler = (e) => {
     e.preventDefault();

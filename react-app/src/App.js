@@ -42,6 +42,8 @@ import RegistrationComplete from "./Components/RegisterPageComponents/Registrati
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 
+import DoctorDashboard from "./Pages/DoctorPages/DoctorDashboard";
+
 /**
  * Patient page imports
  * Currently only here until it links to login page or testing purposes
@@ -121,22 +123,26 @@ function App() {
             path="/DoctorViewandUpdate"
             element={<DoctorViewandUpdate />}
           />
+          <Route
+            path="/DoctorDashboard"
+            element={
+              <PrivateRoute>
+                <DoctorDashboard />
+              </PrivateRoute>
+            }
+          />
           //-------------------------------------------------------------------
-
           //uncomment
           {/* <Route path="/Patient" element={<Patient />} /> */}
-
           <Route
             path="/Patient"
-            element={ 
+            element={
               <PrivateRoute>
                 <Patient />
               </PrivateRoute>
             }
           />
-
           <Route path="/Profile" element={<Profile />} />
-
           {/* <Route
             path="/Profile"
             element={ 
@@ -145,7 +151,6 @@ function App() {
               </PrivateRoute>
             }
           /> */}
-
           <Route path="/GPServices" element={<GPServices />} />
           <Route path="/Application" element={<Application />} />
           <Route path="/NameChangeStart" element={<NameChangeStart />} />
