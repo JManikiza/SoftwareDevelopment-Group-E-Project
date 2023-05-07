@@ -119,7 +119,11 @@ function App() {
           //----------------------------------------------------------------------------------
           <Route
             path="/DoctorViewandUpdate"
-            element={<DoctorViewandUpdate />}
+            element={
+              <PrivateRoute>
+                <DoctorViewandUpdate />
+              </PrivateRoute>
+            }
           />
           <Route
             path="/DoctorAppointment"
@@ -224,9 +228,8 @@ function App() {
           //-------------------------------------------------------------------
           <Route path="/temp" element={<Temp />} />
         </Routes>
-
-        <FooterNav />
       </AuthContext.Provider>
+      <FooterNav />
     </div>
   );
 }

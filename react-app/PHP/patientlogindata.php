@@ -36,6 +36,7 @@
             'patientName' => $patients[0]->Forename . ' ' . $patients[0]->Surname,
             'nhsNo' => $patients[0]->NHSNumber,
             'session_token' => $session_token,
+            'email' => $patients[0]->EmailAddress,
             'passwordMatch' => $pw_matched
         ];
         echo json_encode($patient_data);
