@@ -22,7 +22,7 @@ let nhsNo = localStorage.getItem("nhsNo");
 
 const navigate = useNavigate();
 
-  
+  useEffect(() => {
     $.ajax({
         url: 'http://localhost:4000/getData.php',
         type: 'POST',
@@ -38,7 +38,7 @@ const navigate = useNavigate();
         }
     });
     
-  
+  }, []);
 
   //SET VARIABLES
   let postcode = response.Postcode;
