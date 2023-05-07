@@ -153,79 +153,254 @@ function App() {
               </PrivateRoute>
             }
           /> 
-          <Route path="/GPServices" element={<GPServices />} />
-          <Route path="/Application" element={<Application />} />
-          <Route path="/NameChangeStart" element={<NameChangeStart />} />
-          <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
+          <Route
+            path="/GPServices"
+            element={
+              <PrivateRoute>
+                <GPServices />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/Application"
+            element={
+              <PrivateRoute>
+                <Application />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/NameChangeStart"
+            element={
+              <PrivateRoute>
+                <NameChangeStart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/NameChangeDetails"
+            element={
+              <PrivateRoute>
+                <NameChangeDetails />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/NameChangeBothNames"
-            element={<NameChangeBothNames />}
+            element={
+              <PrivateRoute>
+                <NameChangeBothNames />
+              </PrivateRoute>
+            }
           />
           <Route
             path="/NameChangeConfirmation"
-            element={<NameChangeConfirmation />}
+            element={
+              <PrivateRoute>
+                <NameChangeConfirmation />
+              </PrivateRoute>
+            }
           />
-          <Route path="/AddressChangeStart" element={<AddressChangeStart />} />
+          <Route
+            path="/AddressChangeStart"
+            element={
+              <PrivateRoute>
+                <AddressChangeStart />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/AddressChangeDetails"
-            element={<AddressChangeDetails />}
+            element={
+              <PrivateRoute>
+                <AddressChangeDetails />
+              </PrivateRoute>
+            }
           />
-          <Route path="/AddressChangeEnter" element={<AddressChangeEnter />} />
+          <Route
+            path="/AddressChangeEnter"
+            element={
+              <PrivateRoute>
+                <AddressChangeEnter />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/AddressChangeConfirmation"
-            element={<AddressChangeConfirmation />}
+            element={
+              <PrivateRoute>
+                <AddressChangeConfirmation />
+              </PrivateRoute>
+            }
           />
-          <Route path="/DOBChangeStart" element={<DOBChangeStart />} />
-          <Route path="/DOBChangeDetails" element={<DOBChangeDetails />} />
-          <Route path="/DOBChangeEnter" element={<DOBChangeEnter />} />
+          <Route
+            path="/DOBChangeStart"
+            element={
+              <PrivateRoute>
+                <DOBChangeStart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/DOBChangeDetails"
+            element={
+              <PrivateRoute>
+                <DOBChangeDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/DOBChangeEnter"
+            element={
+              <PrivateRoute>
+                <DOBChangeEnter />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/DOBChangeConfirmation"
-            element={<DOBChangeConfirmation />}
+            element={
+              <PrivateRoute>
+                <DOBChangeConfirmation />
+              </PrivateRoute>
+            }
           />
-          <Route path="/EmailChangeStart" element={<EmailChangeStart />} />
-          <Route path="/EmailChangeDetails" element={<EmailChangeDetails />} />
-          <Route path="/EmailChangeEnter" element={<EmailChangeEnter />} />
+          <Route
+            path="/EmailChangeStart"
+            element={
+              <PrivateRoute>
+                <EmailChangeStart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/EmailChangeDetails"
+            element={
+              <PrivateRoute>
+                <EmailChangeDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/EmailChangeEnter"
+            element={
+              <PrivateRoute>
+                <EmailChangeEnter />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/EmailChangeConfirmation"
-            element={<EmailChangeConfirmation />}
+            element={
+              <PrivateRoute>
+                <EmailChangeConfirmation />
+              </PrivateRoute>
+            }
           />
-          <Route path="/GenderChangeStart" element={<GenderChangeStart />} />
+          <Route
+            path="/GenderChangeStart"
+            element={
+              <PrivateRoute>
+                <GenderChangeStart />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/GenderChangeDetails"
-            element={<GenderChangeDetails />}
+            element={
+              <PrivateRoute>
+                <GenderChangeDetails />
+              </PrivateRoute>
+            }
           />
-          <Route path="/GenderChangeEnter" element={<GenderChangeEnter />} />
+          <Route
+            path="/GenderChangeEnter"
+            element={
+              <PrivateRoute>
+                <GenderChangeEnter />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/GenderChangeConfirmation"
-            element={<GenderChangeConfirmation />}
+            element={
+              <PrivateRoute>
+                <GenderChangeConfirmation />
+              </PrivateRoute>
+            }
+          /><Route 
+            path="/NumberChangeStart" 
+            element={
+              <PrivateRoute>
+                <NumberChangeStart />
+              </PrivateRoute>
+            }
           />
-          <Route path="/NumberChangeStart" element={<NumberChangeStart />} />
           <Route
             path="/NumberChangeDetails"
-            element={<NumberChangeDetails />}
+            element={
+              <PrivateRoute>
+                <NumberChangeDetails />
+              </PrivateRoute>
+            }
           />
-          <Route path="/NumberChangeEnter" element={<NumberChangeEnter />} />
+          <Route
+            path="/NumberChangeEnter"
+            element={
+              <PrivateRoute>
+                <NumberChangeEnter />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/NumberChangeConfirmation"
-            element={<NumberChangeConfirmation />}
+            element={
+              <PrivateRoute>
+                <NumberChangeConfirmation />
+              </PrivateRoute>
+            }
           />
           <Route
             path="/PasswordChangeStart"
-            element={<PasswordChangeStart />}
+            element={
+              <PrivateRoute>
+                <PasswordChangeStart />
+              </PrivateRoute>
+            }
           />
           <Route
             path="/PasswordChangeDetails"
-            element={<PasswordChangeDetails />}
+            element={
+              <PrivateRoute>
+                <PasswordChangeDetails />
+              </PrivateRoute>
+            }
           />
           <Route
             path="/PasswordChangeEnter"
-            element={<PasswordChangeEnter />}
+            element={
+              <PrivateRoute>
+                <PasswordChangeEnter />
+              </PrivateRoute>
+            }
           />
           <Route
             path="/PasswordChangeConfirmation"
-            element={<PasswordChangeConfirmation />}
+            element={
+              <PrivateRoute>
+                <PasswordChangeConfirmation />
+              </PrivateRoute>
+            }
           />
-          <Route path="/BookConfirm" element={<BookConfirm/>} />
+          <Route
+            path="/BookConfirm"
+            element={
+              <PrivateRoute>
+                <BookConfirm />
+              </PrivateRoute>
+            }
+          />
+
           //-------------------------------------------------------------------
           <Route path="/temp" element={<Temp />} />
         </Routes>
