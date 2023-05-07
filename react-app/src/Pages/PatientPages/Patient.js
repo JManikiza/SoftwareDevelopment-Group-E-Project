@@ -11,34 +11,36 @@ import {Main, Button, Heading, InsetText, Details,
         import Navigation from "../../Components/Navigation";
 import { useNavigate } from "react-router-dom";
 import Logout from "../../Components/LoginComponents/Logout";
+import $ from "jquery";
 
 function Patient(){
-
-useEffect(() => {
-    const title = 'Patient';
-    document.title = title;
-  })
-
+ const [response, setResponse] = useState('');
 let name = localStorage.getItem("patientName");
 
 // use this value to query the db
 let nhsNo = localStorage.getItem("nhsNo");
 
 const navigate = useNavigate();
-  const [data, setData] = useState({});
 
- /*  useEffect(() => {
-    fetch('http://localhost:4000/getData.php')
-      .then(response => response.json())
-      .then(data => {
-        setData({
-          Forename: data[0].Forename
-        });
-      })
-      .catch(error => console.error(error));
-  }, []); */
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhsNo: nhsNo 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); // Handle any errors
+        }
+    });
+    
+  }, []);
 
-
+  let postcode = response.Postcode;
 
 return(
     <div>
@@ -49,7 +51,7 @@ return(
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
 
-            <Heading>Hello {name}.</Heading>
+            <Heading>Hello {response.Forename + ' ' + response.Surname + ' ' + postcode}.</Heading>
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">
                 <Paragraph>You'll be able to do the following:</Paragraph>

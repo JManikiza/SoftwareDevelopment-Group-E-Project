@@ -1,38 +1,38 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
+    
+    //Retrieve user form data using POST method
+    $nhsNo = $_POST['nhsNo'];
 
-header('Access-Control-Allow-Origin: http://localhost:3000');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Credentials: true');
 
-include 'auth.php';
-$nhs_number = $_SESSION['nhs_number'];
-if (!$nhs_number) {
-    // user is not logged in, handle appropriately
-}
+    $pdo = new \PDO("sqlite:LocalDatabase.db");
+    $stmt = $pdo->prepare("SELECT * 
+                          FROM patients
+                          WHERE NhsNumber = :nhsNo");
+    $stmt->bindParam(':nhsNo', $nhsNo);
+    
+    $stmt->execute();
 
-// Open the database file
-try {
-    $db = new PDO('sqlite:LocalDatabase.db');
-} catch (PDOException $e) {
-    die('Could not connect to the database: ' . $e->getMessage());
-}
+    $patients = [];
+    while ($patient = $stmt->fetchObject()) {
+        $patients[] = $patient;
+    }
 
-// Prepare the SQL query with a WHERE clause to only retrieve data for the logged-in user
-$query = 'SELECT NHSNumber, gpID, Forename, surname, EmailAddress, PersonDOB, GenderCode, Postcode, Password, PhoneNumber FROM patients WHERE NHSNumber = ?';
-$stmt = $db->prepare($query);
-
-// Bind the NHS number to the query
-$stmt->bindParam(1, $nhs_number);
-
-// Execute the query
-if (!$stmt->execute()) {
-    die('Error executing query: ' . $stmt->errorInfo()[2]);
-}
-
-// Fetch the results and output them as JSON
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-header('Content-Type: application/json');
-echo json_encode($results);
+    if (empty($patients)) {
+        echo json_encode("no patients");
+    } else {
+        $patient_data = [
+            'Forename' => $patients[0]->Forename,
+            'Surname'  => $patients[0]->Surname,
+            'NHSNumber' => $patients[0]->NHSNumber,
+            'EmailAddress' => $patients[0]->EmailAddress,
+            'PersonDOB' => $patients[0]->PersonDOB,
+            'GenderCode' => $patients[0]->GenderCode,
+            'Postcode' => $patients[0]->Postcode,
+            'PhoneNumber' => $patients[0]->PhoneNumber,
+            'MedicalRecord' => $patients[0]->MedicalRecord
+        ];
+        echo json_encode($patient_data);
+    }
 
 ?>

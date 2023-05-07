@@ -73,9 +73,9 @@ function LoginForm() {
             setIsLoggedIn(true);
             setButtonClicked(false);
 
-            setTimeout(() => {
-              navigate("/Patient");
-            }, 2000); // 1.5 second delay
+          
+            navigate("/Patient");
+             
           }
         } else {
           setRegistered(false);
