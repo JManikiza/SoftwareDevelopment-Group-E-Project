@@ -1,34 +1,42 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import jq from "jquery";
-import {
-  Main,
-  Fieldset,
-  InputField,
-  Button,
-  InsetText,
-  Link,
-} from "govuk-react";
-
+import {  Main, Fieldset, InputField, Button, InsetText, Link } from "govuk-react";
 import AuthContext from "./AuthContext";
 
 function LoginForm() {
   const navigate = useNavigate();
-
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [validEmail, setValidEmail] = useState(false);
   const [validPw, setValidPw] = useState(false);
 
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const [registered, setRegistered] = useState(false);
+  const [pwMatched, setPwMatched] = useState(false);
 
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const handleButtonClick = () => {
+    setButtonClicked(true);
+  }
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  
   useEffect(() => {
     if (isLoggedIn) {
       setTimeout(() => {
         navigate("/Patient");
       }, 1000);
     }
+    // Clear localStorage on page unload
+    const handlePageUnload = () => {
+      localStorage.clear();
+      sessionStorage.clear();
+    };
+    window.addEventListener("beforeunload", handlePageUnload);
+    return () => window.removeEventListener("beforeunload", handlePageUnload);
   }, [isLoggedIn, navigate]);
 
   const submitFormHandler = (e) => {
@@ -45,21 +53,32 @@ function LoginForm() {
       dataType: "json",
       success: function (response) {
         if (response === "no patients") {
+          setRegistered(false);
           console.error("No patients found.");
+        } else if (response.email === email) {
+          setRegistered(true);
+          if (response.passwordMatch === true) {
+            setPwMatched(true);
+            let patientName = response.patientName;
+            let nhsNo = response.nhsNo;
+            let session_token = response.session_token;
+
+            localStorage.setItem("patientName", patientName);
+            localStorage.setItem("nhsNo", nhsNo);
+            sessionStorage.setItem("session_token", session_token); // Store session token in session storage
+
+            console.log("Patient name: " + patientName);
+            console.log("NHS no: " + nhsNo);
+
+            setIsLoggedIn(true);
+            setButtonClicked(false);
+
+            setTimeout(() => {
+              navigate("/Patient");
+            }, 2000); // 1.5 second delay
+          }
         } else {
-          let patientName = response[0].Forename + " " + response[0].Surname;
-          let nhsNo = response[0].NHSNumber;
-          localStorage.setItem("patientName", patientName);
-          localStorage.setItem("nhsNo", nhsNo);
-          console.log("Patient name: " + patientName);
-          console.log("NHS no: " + nhsNo);
-
-          setIsLoggedIn(true);
-          console.log("isLoggedIn:", true);
-
-          setTimeout(() => {
-            navigate("/Patient");
-          }, 2000); // 2 second delay
+          setRegistered(false);
         }
       },
       error: function (error) {
@@ -92,6 +111,8 @@ function LoginForm() {
     }
   };
 
+  let bool = !registered && buttonClicked;
+
   // if user already logged in, display redirect message
   if (isLoggedIn) {
     return (
@@ -115,9 +136,13 @@ function LoginForm() {
                 name: "email",
                 type: "email",
               }}
+              meta={{
+                error: 'Email not found',
+                touched: bool,
+              }}
             >
               Email address
-            </InputField>
+            </InputField> 
             <InputField
               padding={3}
               onChange={pwHandler}
@@ -126,10 +151,14 @@ function LoginForm() {
                 name: "password",
                 type: "password",
               }}
+              meta={{
+                error: 'Incorrect password',
+                touched: registered && !pwMatched && buttonClicked
+              }}
             >
               Password
             </InputField>
-            <Button type="submit" margin={3} disabled={!validEmail || !validPw}>
+            <Button type="submit" margin={3} disabled={!validEmail || !validPw} onClick={ handleButtonClick }>
               Continue
             </Button>
           </Fieldset>

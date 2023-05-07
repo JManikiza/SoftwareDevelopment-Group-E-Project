@@ -24,6 +24,7 @@ import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import StaffLogin from "./Pages/StaffLogin";
 import AuthContext from "./Components/LoginComponents/AuthContext";
+import PrivateRoute from "./Components/LoginComponents/PrivateRoute";
 
 // Registration page imports
 import FirstName from "./Components/RegisterPageComponents/FirstName";
@@ -40,6 +41,7 @@ import RegistrationComplete from "./Components/RegisterPageComponents/Registrati
 // Doctor page imports
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
+
 
 /**
  * Patient page imports
@@ -117,19 +119,46 @@ function App() {
             element={<RegistrationComplete />}
           />
           //----------------------------------------------------------------------------------
-          <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
           <Route
             path="/DoctorViewandUpdate"
-            element={<DoctorViewandUpdate />}
+            element={
+              <PrivateRoute>
+                <DoctorViewandUpdate />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/DoctorAppointment"
+            element={
+              <PrivateRoute>
+                <DoctorAppointment />
+              </PrivateRoute>
+            }
           />
           //-------------------------------------------------------------------
-          <Route path="/Patient" element={<Patient />} />
+          //uncomment
+          {/* <Route path="/Patient" element={<Patient />} /> */}
+          <Route
+            path="/Patient"
+            element={
+              <PrivateRoute>
+                <Patient />
+              </PrivateRoute>
+            }
+          />
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/GPServices/*" element={<GPServices />} />
+          {/* <Route
+            path="/Profile"
+            element={ 
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          /> */}
+          <Route path="/GPServices" element={<GPServices />} />
           <Route path="/Application" element={<Application />} />
           <Route path="/NameChangeStart" element={<NameChangeStart />} />
           <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
-
           <Route
             path="/NameChangeBothNames"
             element={<NameChangeBothNames />}
@@ -202,9 +231,8 @@ function App() {
           //-------------------------------------------------------------------
           <Route path="/temp" element={<Temp />} />
         </Routes>
-
-        <FooterNav />
       </AuthContext.Provider>
+      <FooterNav />
     </div>
   );
 }

@@ -1,15 +1,19 @@
+import { useEffect } from "react";
 import LoginForm from "../Components/LoginComponents/LoginForm";
 import Navigation from "../Components/Navigation";
+
 function Login() {
+
+  useEffect(() => {
+    const title = 'Log in';
+    document.title = title;
+  })
+
   return (
     <>
     <Navigation
         pageLink1="/"
-        PageName1="home"
-        pageLink2="/login"
-        PageName2="Login"
-        pageLink3="/NhsNumber"
-        PageName3="Register"
+        PageName1="Home"
       />
       <LoginForm />
     </>
