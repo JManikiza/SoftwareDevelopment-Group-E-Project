@@ -136,8 +136,7 @@ function App() {
             }
           />
           //-------------------------------------------------------------------
-          //uncomment
-          {/* <Route path="/Patient" element={<Patient />} /> */}
+      
           <Route
             path="/Patient"
             element={
@@ -146,15 +145,14 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/Profile" element={<Profile />} />
-          {/* <Route
+          <Route
             path="/Profile"
             element={ 
               <PrivateRoute>
                 <Profile />
               </PrivateRoute>
             }
-          /> */}
+          /> 
           <Route path="/GPServices" element={<GPServices />} />
           <Route path="/Application" element={<Application />} />
           <Route path="/NameChangeStart" element={<NameChangeStart />} />
