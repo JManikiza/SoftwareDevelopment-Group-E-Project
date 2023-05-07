@@ -4,12 +4,17 @@
 * Joven Manikiza
 */
 
-import React from "react";
+import React, { useEffect } from "react";
 import Navigation from "../../../Navigation";
 import {Main, Heading, InsetText, UnorderedList, ListItem, Button, ButtonArrow, Breadcrumbs} from "govuk-react";
 import { useNavigate } from "react-router-dom";
 
 function PasswordChangeStart(){
+
+    useEffect(() => {
+    const title = 'Password Change';
+    document.title = title;
+  })
 
     const navigate = useNavigate();
     return (

@@ -17,9 +17,14 @@ const [data, setData] = useState({});
 const location = useLocation();
 const number = location.state?.number;
 
+
 console.log("Location:", location);
 console.log("Number:", number);
 
+    useEffect(() => {
+    const title = 'Number Change';
+    document.title = title;
+  })
 
 console.log("Number before fetch:", number);
 

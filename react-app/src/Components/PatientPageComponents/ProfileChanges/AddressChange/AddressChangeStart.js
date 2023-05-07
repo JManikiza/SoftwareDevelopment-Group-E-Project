@@ -4,7 +4,7 @@
 * Joven Manikiza
 */
 
-import React from "react";
+import React, { useEffect } from "react";
 import {Main, Heading, InsetText, UnorderedList, ListItem, Button, ButtonArrow, Breadcrumbs} from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -12,7 +12,13 @@ import Navigation from "../../../Navigation";
 function AddressChangeStart(){
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const title = 'Address Change';
+        document.title = title;
+  })
     return (
+
 
         <div>
             <Navigation pageLink1="/" PageName1="Home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>

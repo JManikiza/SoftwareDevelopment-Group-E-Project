@@ -14,6 +14,11 @@ function Profile() {
   const [data, setData] = useState({});
 
 useEffect(() => {
+    const title = 'Profile';
+    document.title = title;
+  })
+  
+useEffect(() => {
   fetch('http://localhost:4000/getData.php')
     .then(response => response.json())
     .then(data => {

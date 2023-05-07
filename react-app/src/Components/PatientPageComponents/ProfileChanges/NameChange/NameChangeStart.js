@@ -4,13 +4,18 @@
 * Joven Manikiza
 */
 
-import React from "react";
+import React, { useEffect } from "react";
 import {Main, Heading, InsetText, UnorderedList, ListItem, Button, ButtonArrow, Breadcrumbs} from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 function NameChangeStart(){
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+    const title = 'Name Change';
+    document.title = title;
+  })
     return (
 
         <div>

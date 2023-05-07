@@ -10,12 +10,14 @@ import {Main, Button, Heading, InsetText, Details,
         } from "govuk-react";
         import Navigation from "../../Components/Navigation";
 import { useNavigate } from "react-router-dom";
-import { data } from "jquery";
 import Logout from "../../Components/LoginComponents/Logout";
-// NOTE TO SELF, I HAVE BUTTONS ON EVERY PAGE AND 
-// ALL I NEED TO DO IS CHANGE THE NAVIGATE PAGE. CONDENSE IT.
- 
+
 function Patient(){
+
+useEffect(() => {
+    const title = 'Patient';
+    document.title = title;
+  })
 
 let name = localStorage.getItem("patientName");
 

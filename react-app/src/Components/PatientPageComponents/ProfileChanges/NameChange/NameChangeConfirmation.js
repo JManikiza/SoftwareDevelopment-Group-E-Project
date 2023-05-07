@@ -23,6 +23,11 @@ function NameChangeConfirmation() {
   const forename = location.state.forename;
   const surname = location.state.surname;
 
+      useEffect(() => {
+    const title = 'Name Change';
+    document.title = title;
+  })
+
   const [data, setData] = useState({});
 
   useEffect(() => {

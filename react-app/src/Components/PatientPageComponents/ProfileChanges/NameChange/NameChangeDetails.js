@@ -15,6 +15,11 @@ function NameChangeDetails() {
   const [data, setData] = useState({});
   const [selectedRadio, setSelectedRadio] = useState("");
 
+      useEffect(() => {
+    const title = 'Name Change';
+    document.title = title;
+  })
+
   useEffect(() => {
     fetch("http://localhost:4000/getData.php")
       .then((response) => response.json())

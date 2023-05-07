@@ -6,6 +6,7 @@
 
 import { Main, Heading, SectionBreak, Breadcrumbs,
      Paragraph, Button } from "govuk-react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
@@ -13,6 +14,11 @@ import Navigation from "../../../Navigation";
 function PasswordChangeDetails(){
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+    const title = 'Password Change';
+    document.title = title;
+  })
 
     return (
         <div>

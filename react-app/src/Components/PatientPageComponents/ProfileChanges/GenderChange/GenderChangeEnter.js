@@ -3,7 +3,7 @@
 *
 * Joven Manikiza
 */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MultiChoice, Radio, Main, Button, SectionBreak } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -20,6 +20,11 @@ function GenderChangeEnter() {
     event.preventDefault();
     navigate("/GenderChangeConfirmation", { state: { gender } });
   };
+
+          useEffect(() => {
+    const title = 'Gender Change';
+    document.title = title;
+  })
 
   return (
     <div>

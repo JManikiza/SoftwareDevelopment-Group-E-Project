@@ -1,10 +1,15 @@
 import { Main,Pagination, Panel } from "govuk-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../Navigation";
 function Application(){
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+    const title = 'Application';
+    document.title = title;
+  })
 
     return (
 

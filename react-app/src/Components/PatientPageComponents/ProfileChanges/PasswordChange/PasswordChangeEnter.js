@@ -4,7 +4,7 @@
 * Joven Manikiza
 */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { InputField, Link, Main, Button, SectionBreak, InsetText } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -12,6 +12,11 @@ import Navigation from "../../../Navigation";
 function PasswordChangeEnter(){
 
     const navigate = useNavigate();
+    
+    useEffect(() => {
+    const title = 'Password Change';
+    document.title = title;
+  })
     
     return(
         <div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputField, Main, Button, SectionBreak } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -19,6 +19,11 @@ function NameChangeBothNames() {
       } 
     });
   };
+
+      useEffect(() => {
+    const title = 'Name Change';
+    document.title = title;
+  })
   
   return (
     <div>

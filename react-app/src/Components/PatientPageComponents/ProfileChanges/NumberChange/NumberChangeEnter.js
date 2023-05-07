@@ -4,7 +4,7 @@
 * Joven Manikiza
 */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputField, Main, Button, SectionBreak, InsetText } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -14,6 +14,11 @@ function NumberChangeEnter(){
     const navigate = useNavigate();
     const [number, setNumber] = useState("");
     const location = useLocation();
+
+            useEffect(() => {
+    const title = 'Number Change';
+    document.title = title;
+  })
     
     const handleSubmit = (e) => {
         e.preventDefault();

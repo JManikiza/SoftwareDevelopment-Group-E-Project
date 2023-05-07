@@ -4,7 +4,7 @@
 * Joven Manikiza
 */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputField, Main, Button, SectionBreak } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -15,6 +15,10 @@ function EmailChangeEnter(){
     const [email, setEmail] = useState("");
     const location = useLocation();
 
+    useEffect(() => {
+        const title = 'Email Change';
+        document.title = title;
+  })
     console.log(location.state);
 
     const handleSubmit = (e) => {

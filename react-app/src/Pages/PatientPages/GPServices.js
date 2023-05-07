@@ -14,12 +14,17 @@ import DRTab from '../../Components/PatientPageComponents/GPComponents/De-Regist
 import BookTab from '../../Components/PatientPageComponents/GPComponents/BookAppointment/BookTab';
 import ViewTab from '../../Components/PatientPageComponents/GPComponents/ViewAppointment/ViewTab';
 import DoctorTab from '../../Components/PatientPageComponents/GPComponents/DoctorsAvailable/DoctorTab';
+import { useEffect } from 'react';
 
 
 function GPServices() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const title = 'GP Services';
+    document.title = title;
+  })
   return (
     <div>
 

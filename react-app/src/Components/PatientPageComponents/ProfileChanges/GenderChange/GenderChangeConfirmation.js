@@ -11,6 +11,11 @@ function GenderChangeConfirmation() {
   const payload = gender;
   const [data, setData] = useState({});
 
+          useEffect(() => {
+    const title = 'Gender Change';
+    document.title = title;
+  })
+
   useEffect(() => {
     fetch("http://localhost:4000/getData.php")
       .then((response) => response.json())

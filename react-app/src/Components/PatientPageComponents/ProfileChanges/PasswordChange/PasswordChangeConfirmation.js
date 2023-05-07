@@ -5,13 +5,18 @@
 */
 
 import { Button, Heading, Main, Paragraph, SectionBreak } from "govuk-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
 function PasswordChangeConfirmation(){
 
     const navigate = useNavigate();
+
+        useEffect(() => {
+    const title = 'Password Change';
+    document.title = title;
+  })
     return (
         <div>
                         <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>

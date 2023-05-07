@@ -16,6 +16,11 @@ function DOBChangeConfirmation() {
   const { day, month, year } = location.state;
   const dob = { day, month, year };
 
+      useEffect(() => {
+        const title = 'DOB Change';
+        document.title = title;
+  })
+
   useEffect(() => {
     console.log("Fetching data...");
     fetch("http://localhost:4000/getData.php")

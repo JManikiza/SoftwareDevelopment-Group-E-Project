@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputField, Main, Button, SectionBreak } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -11,6 +11,10 @@ function AddressChangeEnter() {
   
   console.log(location.state);
 
+    useEffect(() => {
+        const title = 'Address Change';
+        document.title = title;
+  })
   const handleSubmit = (e) => {
     e.preventDefault();
     const postcodeRegex = /^(?:(?:[A-Za-z][A-Ha-hJ-Yj-y]?\d[A-Za-z\d]? ?\d[A-Za-z]{2})|(?:GIR ?0A{2}))$/;

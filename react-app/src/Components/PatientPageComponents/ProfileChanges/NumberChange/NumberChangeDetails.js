@@ -14,6 +14,11 @@ function NumberChangeDetails(){
     const navigate = useNavigate();
   const [data, setData] = useState({});
 
+    useEffect(() => {
+    const title = 'Number Change';
+    document.title = title;
+  })
+
 useEffect(() => {
   fetch('http://localhost:4000/getData.php')
     .then(response => response.json())

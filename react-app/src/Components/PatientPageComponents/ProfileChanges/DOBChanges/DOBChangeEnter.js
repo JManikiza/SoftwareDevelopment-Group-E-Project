@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DateField, Main, Button } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
@@ -10,6 +10,11 @@ function DOBChangeEnter() {
   const [valid, setValid] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+
+    useEffect(() => {
+        const title = 'DOB Change';
+        document.title = title;
+  })
 
 const handleSubmit = (e) => {
   e.preventDefault();
