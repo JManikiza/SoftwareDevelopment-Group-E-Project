@@ -20,17 +20,9 @@ let name = localStorage.getItem("patientName");
 // use this value to query the db
 let nhsNo = localStorage.getItem("nhsNo");
 
-fetch(`http://localhost:4000/auth.php?nhs_number=${nhsNo}`, {
-  method: 'GET'
-})
-.then(response => response.json())
-.then(data => {
-  // do something with the response data
-})
-.catch(error => console.error(error));
 const navigate = useNavigate();
 
-  useEffect(() => {
+  
     $.ajax({
         url: 'http://localhost:4000/getData.php',
         type: 'POST',
@@ -42,12 +34,13 @@ const navigate = useNavigate();
           
         },
         error: function(error) {
-            console.log(error); // Handle any errors
+            console.log(error); 
         }
     });
     
-  }, []);
+  
 
+  //SET VARIABLES
   let postcode = response.Postcode;
 
 return(
