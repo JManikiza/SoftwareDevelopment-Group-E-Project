@@ -73,7 +73,7 @@ function StaffLoginForm() {
           setIsLoggedIn(true);
 
           //navigate("/");
-          if (staffType === 'd') {
+          if (staffType === 'Doctor') {
             navigate('/DoctorAppointment');
           } else {
             navigate('/');

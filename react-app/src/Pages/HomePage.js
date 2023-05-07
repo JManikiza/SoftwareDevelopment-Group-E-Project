@@ -1,38 +1,60 @@
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "../Styles/footer.css"
+
 // GovUK imports
-import {PhaseBanner,Panel, Button, SectionBreak
-} from "govuk-react";
+import { PhaseBanner, Panel, Button, SectionBreak } from "govuk-react";
 import Navigation from "../Components/Navigation";
 
-
 function HomePage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const title = "Log in";
+    document.title = title;
+  });
+
   return (
     <div>
-            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation
+        pageLink1="/"
+        PageName1="Home"
+        pageLink2="/NhsNumber"
+        PageName2="Register"
+      />
 
-      <SectionBreak level="XLARGE" visible={false}/>
+      <SectionBreak level="XLARGE" visible={false} />
 
-      <Panel title="Welcome to Group E's GovUK React page">
+      <Panel title="Welcome to Group E's GovUK GP Surgery">
         <p>
-        <Button>Patient</Button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Button>Administrator</Button>
+          <Button
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Patient
+          </Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button
+            onClick={() => {
+              navigate("/stafflogin");
+            }}
+          >
+            Staff
+          </Button>
         </p>
       </Panel>
 
-
-      <SectionBreak level="XLARGE" visible={false}/>
-      <SectionBreak level="XLARGE" visible={false}/>
-      <SectionBreak level="LARGE" visible={true}/>
-
-
+      <SectionBreak level="XLARGE" visible={false} />
+      <SectionBreak level="XLARGE" visible={false} />
+      <SectionBreak level="LARGE" visible={true} />
 
       <PhaseBanner level="Alpha">
-        <p>
+        <p className="banner">
           <strong>Alpha 1.2.1</strong> This is a new service – your{" "}
           <a href="#">feedback</a> will help us to improve it.
         </p>
       </PhaseBanner>
-
     </div>
   );
 }

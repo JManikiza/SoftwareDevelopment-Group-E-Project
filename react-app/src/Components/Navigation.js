@@ -22,7 +22,7 @@ function Navigation(props) {
         }
         serviceTitle={
           <TopNav.NavLink target="new">
-            Group E - Web Application
+            Group E - GP Surgery
           </TopNav.NavLink>
         }
       >
