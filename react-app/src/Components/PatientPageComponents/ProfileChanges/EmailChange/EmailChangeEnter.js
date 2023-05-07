@@ -19,7 +19,16 @@ function EmailChangeEnter(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate("/EmailChangeConfirmation", { state: { email: email } });
+
+        // Regular expression to check email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        navigate("/EmailChangeConfirmation", { state: { email: email.toUpperCase() } });
         console.log(email);
     };
 

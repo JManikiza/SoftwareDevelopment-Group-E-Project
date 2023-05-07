@@ -5,7 +5,7 @@
 */
 
 import React from "react";
-import { InputField, Link, Main, Button, SectionBreak } from "govuk-react";
+import { InputField, Link, Main, Button, SectionBreak, InsetText } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
@@ -19,6 +19,7 @@ function PasswordChangeEnter(){
 
             <Main>
 
+<InsetText>THE PASSWORD CHANGE SECTION IS NOT FINISHED BUT THIS IS A PLACEHOLDER</InsetText>
                 <InputField
                     hint="If you have forgotten your password, please use 'Forgotten my password' at the bottom"
                     input={{

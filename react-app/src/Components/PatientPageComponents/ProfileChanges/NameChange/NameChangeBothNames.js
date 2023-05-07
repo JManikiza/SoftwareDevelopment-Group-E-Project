@@ -14,8 +14,8 @@ function NameChangeBothNames() {
     // Send the form data to the next page
     navigate("/NameChangeConfirmation", { 
       state: { 
-        forename: forename, 
-        surname: surname 
+        forename: forename.toUpperCase(), 
+        surname: surname.toUpperCase()
       } 
     });
   };

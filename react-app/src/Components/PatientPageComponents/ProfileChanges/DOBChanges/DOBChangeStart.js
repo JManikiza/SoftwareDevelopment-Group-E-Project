@@ -40,7 +40,7 @@ function DOBChangeStart(){
                     <ListItem>Date of birth in the system is wrong</ListItem>
                 </UnorderedList>
 
-            <Button onClick={() => navigate("/NameChangeCircumstances")}  icon={<ButtonArrow />} start>
+            <Button onClick={() => navigate("/DOBChangeDetails")}  icon={<ButtonArrow />} start>
                 Start now
             </Button>
 

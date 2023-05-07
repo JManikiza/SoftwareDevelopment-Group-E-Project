@@ -17,6 +17,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
 function NameChangeConfirmation() {
+    
   const navigate = useNavigate();
   const location = useLocation();
   const forename = location.state.forename;
@@ -103,7 +104,7 @@ function NameChangeConfirmation() {
           </Table.Row>
         </Table>
 
-                <Button onClick={ () => navigate("/Application")}>
+                <Button onClick={updateFullName}>
                     Confirm
                 </Button>
                                 

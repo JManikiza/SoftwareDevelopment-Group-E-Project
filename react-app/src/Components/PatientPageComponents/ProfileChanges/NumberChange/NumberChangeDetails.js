@@ -22,7 +22,8 @@ useEffect(() => {
         NHSNo: data[0].NHSNumber,
         forename: data[0].Forename,
         surname: data[0].Surname,
-        number: data[0].PhoneNumber
+        number: data[0].PhoneNumber.length === 10 ? '0' + data[0].PhoneNumber : data[0].PhoneNumber,
+
       });
     })
     .catch(error => console.error(error));
@@ -57,7 +58,7 @@ useEffect(() => {
           </Table.Row>
                     <Table.Row>
             <Table.CellHeader>Current number:</Table.CellHeader>
-            <Table.Cell>{data.email}</Table.Cell>
+            <Table.Cell>+44{data.number}</Table.Cell>
           </Table.Row>
         </Table>
 

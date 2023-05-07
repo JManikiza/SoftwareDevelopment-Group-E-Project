@@ -4,46 +4,101 @@
 * Joven Manikiza
 */
 
-import { Button, Heading, Main, Paragraph, SectionBreak } from "govuk-react";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Button, Heading, Main, Table, SectionBreak } from "govuk-react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
-function DOBChangeConfirmation(){
+function DOBChangeConfirmation() {
+  const navigate = useNavigate();
+  const [data, setData] = useState({});
+  const location = useLocation();
+  const { day, month, year } = location.state;
+  const dob = { day, month, year };
 
-    const navigate = useNavigate();
-    return (
-        <div>
-                        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+  useEffect(() => {
+    console.log("Fetching data...");
+    fetch("http://localhost:4000/getData.php")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Fetched data:", data);
+        setData({
+          previousDOB: new Date(data[0].PersonDOB).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),     
 
-            <Main>
+        });
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
-                <Heading>
-                    Confirm your changes
-                </Heading>
+  const updateDOB = () => {
+    console.log("Updating DOB...");
+    // convert dob to YYYY/MM/DD format
+   const dobFormatted = `${location.state.dob.year}/${location.state.dob.month}/${location.state.dob.day}`;
+    console.log("DOB formatted:", dobFormatted);
 
-                <Heading size="MEDIUM">Previous details were:</Heading>
+    fetch("http://localhost:4000/updateDOB.php", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ dob: dobFormatted}),
+      credentials: "include",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update DOB");
+        }
+        navigate("/Application");
+      })
+      .catch((error) => console.error(error));
+  };
 
-                <SectionBreak></SectionBreak>
+  console.log("Current state:", location.state);
 
-                <Paragraph>Date of birth: (Props DOB here)</Paragraph>
+  return (
+    <div>
+      <Navigation
+        pageLink1="/"
+        PageName1="home"
+        pageLink2="/login"
+        PageName2="Login"
+        pageLink3="/NhsNumber"
+        PageName3="Register"
+      />
 
-                <Heading size="MEDIUM">New details are:</Heading>
+      <Main>
+        <Heading>Confirm your changes</Heading>
 
-                <Paragraph>Date of birth: (Props DOB here)</Paragraph>
+        <Heading size="MEDIUM">Previous details were:</Heading>
 
-                <Button onClick={ () => navigate("/Application")}>
-                    Confirm
-                </Button>
-                                
-                <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
-                    Cancel
-                </Button>       
-                
-            </Main>
-        </div>
+        <SectionBreak />
 
-    );
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>Date of birth:</Table.CellHeader>
+            <Table.Cell>{data.previousDOB}</Table.Cell>
+          </Table.Row>
+        </Table>
+
+        <Heading size="MEDIUM">New details are:</Heading>
+
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>Date of birth:</Table.CellHeader>
+            <Table.Cell>{location.state.dob.day}/{location.state.dob.month}/{location.state.dob.year}</Table.Cell>
+          </Table.Row>
+        </Table>
+
+        <Button onClick={updateDOB}>Confirm</Button>
+
+        <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
+          Cancel
+        </Button>
+
+
+      </Main>
+    </div>
+  );
 }
 
 export default DOBChangeConfirmation;

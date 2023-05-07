@@ -19,16 +19,14 @@ useEffect(() => {
     .then(data => {
       setData({
         fullName: data[0].Forename + ' ' + data[0].Surname,
-        dob: data[0].PersonDOB,
-        gender: data[0].GenderCode === '1' ? 'MALE' : 'FEMALE',
+          dob: new Date(data[0].PersonDOB).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),        gender: data[0].GenderCode === '1' ? 'MALE' : 'FEMALE',
         address: data[0].Postcode,
         email: data[0].EmailAddress,
-        contact: data[0].PhoneNumber
-      });
+        number: data[0].PhoneNumber.length === 10 ? '0' + data[0].PhoneNumber : data[0].PhoneNumber, 
+           });
     })
     .catch(error => console.error(error));
 }, []);
-
 
   return (
     <div>
@@ -121,7 +119,7 @@ useEffect(() => {
               Contact No.
             </Table.CellHeader>
             <Table.Cell>
-              {data.contact}
+              +44{data.number}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/NumberChangeStart")} children="Change"/>

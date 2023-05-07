@@ -12,8 +12,6 @@ function DateOfBirth() {
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
-  const [valueValid, setValid] = useState("");
-  const [inputValid, setInputValid] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const nhsNumber = location.state.nhsNumber;
@@ -24,58 +22,24 @@ function DateOfBirth() {
   const handleInputChange = (e, inputName) => {
     const inputValue = e.target.value;
 
-    // Check if input value is in the right range for the day, month and year
-    // If input value is invalid, set error message to display for the user
-    // Otherwise, update the day state with the input value and clear error message
     switch (inputName) {
       case "dayInputName":
         setDay(inputValue);
-        if (isNaN(inputValue) || parseInt(inputValue) < 1 || parseInt(inputValue) > 31) {
-          setValid('Day must be a number between 1 and 31.');
-          setDay('');
-          
-        } else {
-          setValid('');
-          setDay(inputValue);
-          
-        }
         break;
       case "monthInputName":
         setMonth(inputValue);
-        if (isNaN(inputValue) || parseInt(inputValue) < 1 || parseInt(inputValue) > 12) {
-          setValid('Month must be a number between 1 and 12.');
-          setMonth('');
-        } else {
-          setValid('');
-          setMonth(inputValue);
-        }
         break;
       case "yearInputName":
         setYear(inputValue);
-        if (isNaN(inputValue) || parseInt(inputValue) < 1900 || parseInt(inputValue) > 2023) {
-          setValid('Please enter a year between 1900 and 2023');
-        } else {
-          setValid('');
-          setYear(inputValue);  
-        }
         break;
       default:
         break;
     }
-    if(!day.trim() || !month.trim() || !year.trim()){
-      setInputValid(false)
-    }else{
-      setInputValid(true);
-    }
-    
   };
-
-
-
   // handle the states values and parse to the next page
-  const handleSubmit = (path) => (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(path, {
+    navigate("/Gender", {
       state: { nhsNumber, fName, sName, day, month, year },
     });
     console.log(nhsNumber);
@@ -91,13 +55,13 @@ function DateOfBirth() {
       <Main>
         <Breadcrumbs>
           <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
-          <Breadcrumbs.Link >NHS Number</Breadcrumbs.Link>
-          <Breadcrumbs.Link >First Name</Breadcrumbs.Link>
-          <Breadcrumbs.Link >Surname</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/NhsNumber">NHS Number</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/FirstName">First Name</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="/Surname">Surname</Breadcrumbs.Link>
           <Breadcrumbs.Link >Date of birth</Breadcrumbs.Link>
         </Breadcrumbs>
 
-        <form onSubmit={handleSubmit("/Gender")}>
+        <form onSubmit={handleSubmit}>
           <DateField
             input={{
               onBlur: function noRefCheck() {},
@@ -128,9 +92,8 @@ function DateOfBirth() {
             }}
           >
             <Heading>What is your date of birth?</Heading>
-            {valueValid && <p style={{ color: 'red' }}>{valueValid}</p>}
           </DateField>
-          <Button type="submit" disabled={!inputValid} start>Save and Continue</Button>
+          <Button start>Save and Continue</Button>
         </form>
       </Main>
     </div>

@@ -4,16 +4,32 @@
 * Joven Manikiza
 */
 
-import { Checkbox, Heading, Main, Button, SectionBreak, Breadcrumbs } from "govuk-react";
+import { Table, Heading, Main, Button, SectionBreak, Breadcrumbs } from "govuk-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+
 function NameChangeCircumstances(){
 
     const navigate = useNavigate();
-   
-    return(
+     const [data, setData] = useState({});
+
+useEffect(() => {
+  fetch('http://localhost:4000/getData.php')
+    .then(response => response.json())
+    .then(data => {
+      setData({
+        NHSNo: data[0].NHSNumber,
+        forename: data[0].Forename,
+        surname: data[0].Surname,
+        dob: new Date(data[0].PersonDOB).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),      });
+    })
+    .catch(error => console.error(error));
+}, []);
+
+    return (
         <div>
-            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+                        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
 
             <Main>
 
@@ -22,16 +38,29 @@ function NameChangeCircumstances(){
                     <Breadcrumbs.Link>Profile</Breadcrumbs.Link>
                     <Breadcrumbs.Link>Start</Breadcrumbs.Link>
                 </Breadcrumbs>
+                
+                <Heading>About you</Heading>
 
-                <Heading>Change of circumstances</Heading>
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>NHS number:</Table.CellHeader>
+            <Table.Cell>{data.NHSNo}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>First name:</Table.CellHeader>
+            <Table.Cell>{data.forename}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Last name:</Table.CellHeader>
+            <Table.Cell>{data.surname}</Table.Cell>
+          </Table.Row>
+                    <Table.Row>
+            <Table.CellHeader>Current DOB:</Table.CellHeader>
+            <Table.Cell>{data.dob}</Table.Cell>
+          </Table.Row>
+        </Table>
 
-                <Heading size="SMALL">Types of change you wish to notify</Heading>
-
-                <Checkbox>Change of name</Checkbox>
-                <Checkbox>Change of marital or civil partnership status</Checkbox>
-                <Checkbox>Change of title</Checkbox>
-
-                <Button onClick={() => navigate("/NameChangeDetails")}>
+                <Button onClick={() => navigate("/DOBChangeEnter")}>
                     Continue
                 </Button>
 

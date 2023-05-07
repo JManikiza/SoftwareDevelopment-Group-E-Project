@@ -85,6 +85,8 @@ import PasswordChangeDetails from "./Components/PatientPageComponents/ProfileCha
 import PasswordChangeEnter from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeEnter";
 import PasswordChangeConfirmation from "./Components/PatientPageComponents/ProfileChanges/PasswordChange/PasswordChangeConfirmation";
 
+import BookConfirm from "./Components/PatientPageComponents/GPComponents/BookAppointment/BookConfirm";
+
 // Custom imports
 
 import Temp from "./Pages/Temp";
@@ -123,7 +125,7 @@ function App() {
           //-------------------------------------------------------------------
           <Route path="/Patient" element={<Patient />} />
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/GPServices" element={<GPServices />} />
+          <Route path="/GPServices/*" element={<GPServices />} />
           <Route path="/Application" element={<Application />} />
           <Route path="/NameChangeStart" element={<NameChangeStart />} />
           <Route path="/NameChangeDetails" element={<NameChangeDetails />} />
@@ -196,6 +198,7 @@ function App() {
             path="/PasswordChangeConfirmation"
             element={<PasswordChangeConfirmation />}
           />
+          <Route path="/BookConfirm" element={<BookConfirm/>} />
           //-------------------------------------------------------------------
           <Route path="/temp" element={<Temp />} />
         </Routes>

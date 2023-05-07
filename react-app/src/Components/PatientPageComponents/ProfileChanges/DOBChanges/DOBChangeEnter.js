@@ -1,45 +1,94 @@
-/**
-* Author(s) of this code: 
-*
-* Joven Manikiza
-*/
-
-import React from "react";
-import { DateField, Main, Button, SectionBreak } from "govuk-react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { DateField, Main, Button } from "govuk-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 
-function DOBChangeEnter(){
+function DOBChangeEnter() {
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [valid, setValid] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const navigate = useNavigate();
-    
-    return(
-        <div>
-                        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-            <Main>
-                
-                <DateField
-                    errorText="Please use valid dates"
-                    hintText="For example, 31 03 1980"
-                >
-                    What is your date of birth?
-                </DateField>
+  if (isNaN(day) || isNaN(month) || isNaN(year)) {
+    setValid(false);
+    return;
+  }
 
-                <Button onClick={() => navigate("")}>
-                    Continue
-                </Button>
+  const parsedDOB = new Date(year, month - 1, day);
+  const formattedDOB = `${parsedDOB.getDate()}/${parsedDOB.getMonth() + 1}/${parsedDOB.getFullYear()}`;
 
-                 <SectionBreak level="SMALL" visible={false}/>
-                
-                <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
-                    Cancel
-                </Button>
+  console.log("formattedDOB:", formattedDOB);
 
-                </Main>
-                </div>
+  navigate("/DOBChangeConfirmation", {
+    state: { dob: { day, month, year } },
+  });
+};
 
-    );
+  return (
+    <div>
+      <Navigation
+        pageLink1="/"
+        PageName1="home"
+        pageLink2="/login"
+        PageName2="Login"
+        pageLink3="/NhsNumber"
+        PageName3="Register"
+      />
+
+      <Main>
+        <form onSubmit={handleSubmit}>
+          <DateField
+            inputNames={{
+              day: "dayInputName",
+              month: "monthInputName",
+              year: "yearInputName",
+            }}
+            inputs={{
+              day: {
+                autoComplete: "bday-day",
+                value: day,
+                onChange: (e) =>
+                  setDay(e.target.value),
+              },
+              month: {
+                autoComplete: "bday-month",
+                value: month,
+                onChange: (e) =>
+                  setMonth(e.target.value),
+              },
+              year: {
+                autoComplete: "bday-year",
+                value: year,
+                onChange: (e) =>
+                  setYear(e.target.value),
+              },
+            }}
+          >
+            What is your date of birth?
+          </DateField>
+
+          {!valid && (
+            <div style={{ color: "red" }}>
+              Please enter a valid date of birth.
+            </div>
+          )}
+
+          <Button type="submit" disabled={!day || !month || !year}>
+            Continue
+          </Button>
+
+          <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
+            Cancel
+          </Button>
+        </form>
+      </Main>
+    </div>
+  );
 }
 
 export default DOBChangeEnter;

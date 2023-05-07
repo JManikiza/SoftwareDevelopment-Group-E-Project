@@ -1,9 +1,3 @@
-/**
-* Author(s) of this code: 
-*
-* Joven Manikiza
-*/
-
 import React, { useState } from "react";
 import { InputField, Main, Button, SectionBreak } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -19,8 +13,13 @@ function AddressChangeEnter() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-navigate("/AddressChangeConfirmation", { state: { address: address } });
+    const postcodeRegex = /^(?:(?:[A-Za-z][A-Ha-hJ-Yj-y]?\d[A-Za-z\d]? ?\d[A-Za-z]{2})|(?:GIR ?0A{2}))$/;
+    if (postcodeRegex.test(address)) {
+      navigate("/AddressChangeConfirmation", { state: { address: address.toUpperCase() } });
       console.log(address);
+    } else {
+      alert("Please enter a valid UK postcode in the format LN NLL or LLN NLL, where L is a letter and N is a number.");
+    }
   };
 
   return (

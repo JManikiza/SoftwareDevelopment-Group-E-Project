@@ -4,44 +4,54 @@
 * Joven Manikiza
 */
 
-import React from "react";
-import { InputField,  Main, Button, SectionBreak } from "govuk-react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { InputField, Main, Button, SectionBreak, InsetText } from "govuk-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+
 function NumberChangeEnter(){
 
     const navigate = useNavigate();
+    const [number, setNumber] = useState("");
+    const location = useLocation();
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate("/NumberChangeConfirmation", { state: { number: number } });
+        console.log(number, typeof number);
+    };
     
     return(
         <div>
-                                    <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
 
             <Main>
-                
-                <InputField
-                    hint="We’ll only use this to contact you"
-                    input={{
-                        autoComplete: 'Contact number',
-                        name: 'group1',
-                        type: 'number'
-                    }}
-                >
-                    Contact number
-                </InputField>
+                <InsetText>Unfortunately we're only accepting UK numbers</InsetText>
+                <form onSubmit={handleSubmit}>
+                    <InputField
+                        hint="We’ll only use this to contact you"
+                        value={number}
+                        onChange={(e) => setNumber(e.target.value.replace(/[^0-9]/g, "").substring(0, 11))}
+                        input={{ name: "newNumber", type: "tel", pattern: "[0-9]{11}" }}
+                        meta={{
+                          touched: true,
+                        }}
+                    >
+                        Contact number
+                    </InputField>
 
-                <Button onClick={() => navigate("/NumberChangeConfirmation")}>
-                    Continue
-                </Button>
+                    <Button>
+                        Continue
+                    </Button>
 
-                 <SectionBreak level="SMALL" visible={false}/>
-                
-                <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
-                    Cancel
-                </Button>
+                    <SectionBreak level="SMALL" visible={false}/>
 
-                </Main>
-                </div>
-
+                    <Button onClick={() => navigate("/Profile")} buttonColour="GREY">
+                        Cancel
+                    </Button>
+                </form>
+            </Main>
+        </div>
     );
 }
 

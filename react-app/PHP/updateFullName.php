@@ -20,12 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     // Get the request data
     $data = json_decode(file_get_contents("php://input"), true);
-    $name = isset($data['name']) ? $data['name'] : null;
+    $forename = isset($data['forename']) ? $data['forename'] : null;
+    $surname = isset($data['surname']) ? $data['surname'] : null;
 
-    if (empty($name)) {
+    if (empty($forename) || empty($surname)) {
         header('HTTP/1.1 400 Bad Request');
         header('Content-Type: application/json; charset=UTF-8');
-        die(json_encode(array('message' => 'Name is required')));
+        die(json_encode(array('message' => 'Forename and surname are required')));
     }
 
     // Open the database file
@@ -36,11 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     }
 
     // Prepare the SQL query with an UPDATE statement for the logged-in user
-    $query = 'UPDATE patients SET FullName = :name WHERE NHSNumber = :nhs_number';
+    $query = 'UPDATE patients SET Forename = :forename, Surname = :surname WHERE NHSNumber = :nhs_number';
     $stmt = $db->prepare($query);
 
     // Bind the form data and the NHS number to the query
-    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':forename', $forename);
+    $stmt->bindParam(':surname', $surname);
     $stmt->bindParam(':nhs_number', $nhs_number);
 
     // Execute the query
@@ -52,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
 
     // Output a success message as JSON
     header('Content-Type: application/json; charset=UTF-8');
-    echo json_encode(array('message' => 'Name updated successfully'));
+    echo json_encode(array('message' => 'Forename and surname updated successfully'));
 } else {
     header('HTTP/1.1 405 Method Not Allowed');
     header('Content-Type: application/json; charset=UTF-8');
