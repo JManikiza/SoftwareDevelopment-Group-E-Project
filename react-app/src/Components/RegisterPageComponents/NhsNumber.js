@@ -33,11 +33,11 @@ function NhsNumber() {
   //handls submit button and moves to the next page transfering the state value of the nhs number inserted by the user
   const handleSubmit = (path) => (e) => {
     e.preventDefault();
-    if(dbvalid === "Nhs number found, Save and Continue"){
+    if(dbvalid === "Nhs number not found, Save and Continue"){
       navigate(path, { state: { nhsNumber } });
       console.log(nhsNumber);
     }else{
-      console.log("nhs number already exits");
+      console.log("This NHS number is already registered");
     }
   };
 
