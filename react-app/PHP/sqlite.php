@@ -29,7 +29,7 @@ Appointment.AppTimeAssigned, Appointment.appNotes, Appointment.completed, patien
 patients.Surname, patients.EmailAddress, patients.PersonDOB,patients.GenderCode, patients.Postcode, patients.PhoneNumber, Employee.empLName
 FROM Appointment
 JOIN patients ON Appointment.NHSNumber = patients.NHSNumber
-JOIN Employee On Appointment.empID - Employee.empID");
+JOIN Employee On Appointment.empID = Employee.empID");
 
 
 
