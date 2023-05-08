@@ -403,7 +403,14 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/admin" element={<Adminpanel />} />
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <Adminpanel />
+              </PrivateRoute>
+            }
+          />
           //-------------------------------------------------------------------
           <Route path="/temp" element={<Temp />} />
         </Routes>

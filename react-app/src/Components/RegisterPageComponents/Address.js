@@ -118,7 +118,7 @@ function Address() {
           </InputField>
           <br />
           <Button type="submit" disabled={!postCodeValid} start>
-            Submit
+            Save and Continue
           </Button>
         </form>
       </Main>
