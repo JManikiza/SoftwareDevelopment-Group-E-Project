@@ -83,9 +83,9 @@ const updateEmail = () => {
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/EmailChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/EmailChangeDetails">Details</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/EmailChangeEnter">Enter</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/EmailChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/EmailChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/EmailChangeEnter">Enter</Breadcrumbs.Link>
                 </Breadcrumbs>
 
                 <Heading>

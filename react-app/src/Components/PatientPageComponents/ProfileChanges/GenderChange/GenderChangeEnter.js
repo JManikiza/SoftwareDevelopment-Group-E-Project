@@ -38,8 +38,8 @@ function GenderChangeEnter() {
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/GenderChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/GenderChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/GenderChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/GenderChangeDetails">Details</Breadcrumbs.Link>
                 </Breadcrumbs>
         <form onSubmit={handleSubmit}>
           <MultiChoice label="What is your gender?">
