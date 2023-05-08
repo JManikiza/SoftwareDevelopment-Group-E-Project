@@ -77,7 +77,7 @@ function StaffLoginForm() {
           if (staffType === 'Doctor') {
             navigate('/DoctorAppointment');
           } else {
-            navigate('/');
+            navigate('/admin');
           }
         }
       },

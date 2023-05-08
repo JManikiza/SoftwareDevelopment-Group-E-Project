@@ -42,6 +42,8 @@ import RegistrationComplete from "./Components/RegisterPageComponents/Registrati
 import DoctorAppointment from "./Pages/DoctorPages/DoctorAppointment";
 import DoctorViewandUpdate from "./Pages/DoctorPages/DoctorViewandUpdate";
 
+// Admin page imports
+import Adminpanel from "./Pages/Adminpanel";
 
 /**
  * Patient page imports
@@ -136,7 +138,6 @@ function App() {
             }
           />
           //-------------------------------------------------------------------
-      
           <Route
             path="/Patient"
             element={
@@ -147,12 +148,12 @@ function App() {
           />
           <Route
             path="/Profile"
-            element={ 
+            element={
               <PrivateRoute>
                 <Profile />
               </PrivateRoute>
             }
-          /> 
+          />
           <Route
             path="/GPServices"
             element={
@@ -328,8 +329,9 @@ function App() {
                 <GenderChangeConfirmation />
               </PrivateRoute>
             }
-          /><Route 
-            path="/NumberChangeStart" 
+          />
+          <Route
+            path="/NumberChangeStart"
             element={
               <PrivateRoute>
                 <NumberChangeStart />
@@ -400,7 +402,7 @@ function App() {
               </PrivateRoute>
             }
           />
-
+          <Route path="/admin" element={<Adminpanel />} />
           //-------------------------------------------------------------------
           <Route path="/temp" element={<Temp />} />
         </Routes>
