@@ -7,7 +7,9 @@
 import { Main,Pagination, Panel } from "govuk-react";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Logout from "../../LoginComponents/Logout";
 import Navigation from "../../Navigation";
+
 function Application(){
 
     const navigate = useNavigate();
@@ -27,7 +29,7 @@ randomizer = randomizer.toUpperCase();
     return (
 
         <div>
-                                    <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
 
             <Main>
 

@@ -9,6 +9,7 @@ import { Table, Link, Heading, Main, SectionBreak, Pagination } from 'govuk-reac
 import { useNavigate } from "react-router-dom";
 import Navigation from '../../Components/Navigation';
 import $ from "jquery";
+import Logout from '../../Components/LoginComponents/Logout';
 
 function Profile() {
   
@@ -45,7 +46,8 @@ let nhs_number = localStorage.getItem("nhsNo");
 
   return (
     <div>
-      <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/>
+      <Logout />
 
       <Main>
  

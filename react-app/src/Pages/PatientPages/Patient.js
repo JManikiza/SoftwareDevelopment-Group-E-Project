@@ -40,7 +40,7 @@ const navigate = useNavigate();
 
 return(
     <div>
-        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+        <Navigation pageLink1="/" PageName1="Home" />
         <Logout />
         <Main>
             <Breadcrumbs>

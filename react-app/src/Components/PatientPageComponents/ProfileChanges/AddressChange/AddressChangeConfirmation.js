@@ -4,11 +4,12 @@
 * Joven Manikiza
 */
 
-import { Button, Heading, Main, Paragraph, SectionBreak, Table } from "govuk-react";
+import { Button, Heading, Main, Paragraph, SectionBreak, Table, Breadcrumbs } from "govuk-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
 import $ from 'jquery';
+import Logout from "../../../LoginComponents/Logout";
 
 function AddressChangeConfirmation(){
 
@@ -72,9 +73,18 @@ const updatePostcode = () => {
 
     return (
         <div>
-            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
 
             <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/AddressChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/AddressChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/AddressChangeEnter">Enter</Breadcrumbs.Link>
+                </Breadcrumbs>
+                
                 <Heading>
                     Confirm your changes
                 </Heading>

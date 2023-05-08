@@ -10,7 +10,7 @@ function FooterNav() {
   return (
     <div>
       
-      <Footer className ='footer'>
+      <Footer>
 
       </Footer>
     </div>

@@ -22,7 +22,7 @@ function NhsNumber() {
     // Remove any spaces in the input value and count the length of the remaining characters
     const inputLength = inputValue.replace(/\s/g, "").length;
 
-    // Check if the input value has exactly 10 characters (including spaces)
+    // Check if the input value has exactly 11 characters (including spaces)
     if (inputLength === 11) {
       setValid(false);
     } else {
@@ -88,7 +88,7 @@ function NhsNumber() {
               <>
                 11 digit number
                 <br />
-                For example: ‘123 123 4445’.
+                For example: ‘123 123 44455’.
               </>
             }
           >

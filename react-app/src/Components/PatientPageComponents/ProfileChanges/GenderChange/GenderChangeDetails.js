@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 import $ from 'jquery';
+import Logout from "../../../LoginComponents/Logout";
+
 
 function GenderChangeDetails(){
 
@@ -44,14 +46,14 @@ let nhs_number = localStorage.getItem("nhsNo");
 
     return (
         <div>
-                                    <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
 
             <Main>
 
                 <Breadcrumbs>
-                    <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
-                    <Breadcrumbs.Link>Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link>Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/GenderChangeStart">Start</Breadcrumbs.Link>
                 </Breadcrumbs>
                 
                 <Heading>About you</Heading>

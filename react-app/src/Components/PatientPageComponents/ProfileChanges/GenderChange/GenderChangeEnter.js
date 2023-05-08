@@ -5,9 +5,11 @@
 */
 
 import React, { useEffect, useState } from "react";
-import { MultiChoice, Radio, Main, Button, SectionBreak } from "govuk-react";
+import { MultiChoice, Radio, Main, Button, SectionBreak, Breadcrumbs } from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import Logout from "../../../LoginComponents/Logout";
+
 
 function GenderChangeEnter() {
   const navigate = useNavigate();
@@ -29,15 +31,16 @@ function GenderChangeEnter() {
 
   return (
     <div>
-      <Navigation
-        pageLink1="/"
-        PageName1="home"
-        pageLink2="/login"
-        PageName2="Login"
-        pageLink3="/NhsNumber"
-        PageName3="Register"
-      />
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
+
       <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/GenderChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/GenderChangeDetails">Details</Breadcrumbs.Link>
+                </Breadcrumbs>
         <form onSubmit={handleSubmit}>
           <MultiChoice label="What is your gender?">
             <Radio inline name="gender" value="1" onChange={handleGenderChange}>
