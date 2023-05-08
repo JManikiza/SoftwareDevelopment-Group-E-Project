@@ -1,37 +1,43 @@
-import React, { useState, useEffect } from 'react';
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
+
+import React, { useState } from 'react';
 import { Button, H2, MultiChoice, Radio } from 'govuk-react';
 import $ from 'jquery';
 
 function DRTab() {
   const [confirm, setConfirm] = useState(true);
-  const [nhsNumber, setNhsNumber] = useState('');
-
-  useEffect(() => {
-    setNhsNumber(localStorage.getItem('nhsNo'));
-  }, []);
+  const nhs_number = localStorage.getItem('nhsNo');
 
   const handleConfirmClick = () => {
     if (confirm) {
       if (window.confirm("Once you confirm, it cannot be undone and you will have to register again. Are you truly sure you would like to de-register from our GP?")) {
         if (window.confirm("'Understand this... things are in motion now, that cannot be undone.' -- Mithrandir, The Grey Pilgrim")) {
-          console.log(`cancelling appointment nhs_number=${nhsNumber}`);
+          console.log(`cancelling appointment nhs_number=${nhs_number}`);
 
           $.ajax({
             url: 'http://localhost:4000/GPS_De-Reg.php',
-            type: 'POST',
+            method: 'POST',
             data: {
-              nhs_number: nhsNumber
+              nhs_number: nhs_number
             },
             success: function (data) {
-              alert(data.message);
-              // redirect to login page or do any other necessary actions
+              console.log(data);
+              window.location.href = "/";
             },
-            error: (xhr, status, error) => {
-              alert(`Error deleting appointments: ${error}`);
+            error: function (xhr, status, error) {
+              console.log(error);
             }
           });
         }
+      } else {
+        window.location.href = "/";
       }
+    } else {
+      window.location.reload();
     }
   };
 
@@ -48,7 +54,7 @@ function DRTab() {
         <Radio inline name="leave" checked={confirm} onChange={() => setConfirm(true)}>Yes</Radio>
       </MultiChoice>
       <br />
-      <Button onClick={() => handleConfirmClick()}>Confirm</Button>
+      <Button onClick={handleConfirmClick}>Confirm</Button>
     </div>
   );
 }

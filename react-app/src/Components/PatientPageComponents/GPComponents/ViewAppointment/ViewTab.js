@@ -1,3 +1,9 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
+
 import { Table, H2, Link } from "govuk-react";
 import { useState, useEffect } from "react";
 import $ from 'jquery';
@@ -90,7 +96,7 @@ const handleCancel = (appID) => {
             return (
               <Table.Row key={appointment.appID}>
                 <Table.Cell>
-                  Dr. {doctor ? doctor.empLName : ''}
+                  DR. {doctor ? doctor.empLName : ''}
                 </Table.Cell>
                 <Table.Cell>
                   {appointment.appDateAssigned}

@@ -1,3 +1,10 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+* Jimmy Le
+*
+*/
 <?php
     header("Access-Control-Allow-Origin: *");
     

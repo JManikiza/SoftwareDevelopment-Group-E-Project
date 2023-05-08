@@ -1,29 +1,50 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
 <?php
-  header("Access-Control-Allow-Origin: *");
-  header("Content-Type: application/json; charset=UTF-8");
 
-  $data = json_decode(file_get_contents("php://input"));
-  $nhs_number = $data->nhs_number;
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header('Content-Type: application/json');
 
-  try {
-      $db = new SQLite3('LocalDatabase.db');
-      $db->exec('PRAGMA foreign_keys = ON;');
-      $db->beginTransaction();
+if (isset($_POST['nhs_number'])) {
+    $nhs_number = $_POST['nhs_number'];
+error_log("NHS number received: " . $nhs_number);
 
-      $stmt = $db->prepare('DELETE FROM Appointments WHERE NHSNumber = :nhs_number;');
-      $stmt->bindValue(':nhs_number', $nhs_number, SQLITE3_TEXT);
-      $result = $stmt->execute();
-      $stmt->close();
+    // rest of your code
+} else {
+    echo json_encode(array("success" => false, "message" => "No NHS number provided"));
+}
+$data = json_decode(file_get_contents("php://input"), true);
 
-      $stmt = $db->prepare('DELETE FROM Patients WHERE NHSNumber = :nhs_number;');
-      $stmt->bindValue(':nhs_number', $nhs_number, SQLITE3_TEXT);
-      $result = $stmt->execute();
-      $stmt->close();
 
-      $db->commit();
-      echo json_encode(array('message' => 'De-registration successful'));
-  } catch (Exception $e) {
-      $db->rollback();
-      echo json_encode(array('message' => 'Error de-registering from GP: ' . $e->getMessage()));
-  }
-?>
+
+try {
+    $conn = new PDO("sqlite:LocalDatabase.db");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->beginTransaction();
+
+    $stmt = $conn->prepare("DELETE FROM Appointment WHERE NHSNumber = :nhs_number");
+    $stmt->bindParam(':nhs_number', $nhs_number, PDO::PARAM_STR);
+    $stmt->execute();
+    error_log($stmt->rowCount() . " Appointments deleted");
+
+    $stmt = $conn->prepare("DELETE FROM patients WHERE NHSNumber = :nhs_number");
+    $stmt->bindParam(':nhs_number', $nhs_number, PDO::PARAM_STR);
+    $stmt->execute();
+    error_log($stmt->rowCount() . " Patients deleted");
+
+    $conn->commit();
+    error_log("Transaction committed");
+
+    $response = array("success" => true, "message" => "Successfully de-registered from GP");
+    echo json_encode($response);
+} catch (PDOException $e) {
+    $conn->rollBack();
+    error_log("Transaction rolled back: " . $e->getMessage());
+
+    $response = array("success" => false, "message" => "Failed to de-register from GP");
+    echo json_encode($response);
+}

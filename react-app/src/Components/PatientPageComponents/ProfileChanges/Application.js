@@ -1,3 +1,9 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
+
 import { Main,Pagination, Panel } from "govuk-react";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +17,13 @@ function Application(){
     document.title = title;
   })
 
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+let randomizer = '';
+for (let i = 0; i < 15; i++) {
+  randomizer += characters.charAt(Math.floor(Math.random() * characters.length));
+}
+randomizer = randomizer.toUpperCase();
+
     return (
 
         <div>
@@ -20,7 +33,7 @@ function Application(){
 
                 <Pagination>
 
-                    <Pagination.Anchor onClick={() => navigate("/Patient")} previousPage>
+                    <Pagination.Anchor onClick={() => navigate("/Profile")} previousPage>
                         Profile
                     </Pagination.Anchor>
 
@@ -31,7 +44,7 @@ function Application(){
                 </Pagination>
 
                 <Panel title="Application Confirmation">
-                  <p>No. (number ++)</p>
+                  <p>No. {randomizer}</p>
                 </Panel>
 
             </Main>

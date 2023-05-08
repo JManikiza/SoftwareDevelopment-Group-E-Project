@@ -1,3 +1,8 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/footer.css"
@@ -51,7 +56,7 @@ function HomePage() {
 
       <PhaseBanner level="Alpha">
         <p className="banner">
-          <strong>Alpha 1.2.1</strong> This is a new service – your{" "}
+          <strong>Beta 2.2.1</strong> This is a new service – your{" "}
           <a href="#">feedback</a> will help us to improve it.
         </p>
       </PhaseBanner>

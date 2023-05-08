@@ -1,3 +1,9 @@
+/**
+* Author(s) of this code: 
+*
+* Joven Manikiza
+*/
+
 <?php
 
 header('Access-Control-Allow-Origin: http://localhost:3000');
@@ -18,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $postcode = isset($data['postcode']) ? $data['postcode'] : null;
     $nhs_number = isset($data['nhs_number']) ? $data['nhs_number'] : null;
 
-    
+
     if (empty($postcode)) {
         header('HTTP/1.1 400 Bad Request');
         header('Content-Type: application/json; charset=UTF-8');
