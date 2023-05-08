@@ -5,7 +5,7 @@
  */
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Input,Heading, Button, Main, Breadcrumbs } from "govuk-react";
+import { Input,Heading, Button, Main, Breadcrumbs, Label } from "govuk-react";
 
 
 import Navigation from "../Navigation";
@@ -95,20 +95,13 @@ function Password() {
 
         <form onSubmit={handleSubmit}>
           <Heading>Account Password</Heading>
-          <label>
-            Password must include:
-            <br/>
-            An upper character*
-            <br/>
-            An lower character*
-            <br/>
-            A number*
-            <br/>
-            <br/>
-            
-          </label>
+            <Label>Password must include:</Label>
+            <Label>An upper character*</Label>
+            <Label>An lower character*</Label>
+            <Label>A number*</Label>
+            <br />
           {pwMatchMsg  && <p  style={{ color: 'red' }}>{pwMatchMsg}</p>}
-          Create password
+          <Label>Create password</Label>
           <Input  
                 type={shown ? "text":"password"}  
                 value={userPassword1}
@@ -117,7 +110,7 @@ function Password() {
               />
           <br/>
           <br/>
-          Confirm password
+          <Label>Confirm password</Label>
           <Input  
                 type={shown ? "text":"password"}  
                 value={userPassword2}
