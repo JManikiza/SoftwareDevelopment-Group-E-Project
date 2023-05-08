@@ -2,14 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
+function sanitizeHtml(html) {
+  return DOMPurify.sanitize(html);
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+      <App />
+      <div dangerouslySetInnerHTML={{ __html: sanitizeHtml('<p>&nbsp</p>') }}></div>
+    </React.StrictMode>
   </BrowserRouter>
 );
 
