@@ -86,9 +86,9 @@ const updateDOB = () => {
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/DOBChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/DOBChangeDetails">Details</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/DOBChangeEnter">Enter</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/DOBChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/DOBChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/DOBChangeEnter">Enter</Breadcrumbs.Link>
                 </Breadcrumbs>
         <Heading>Confirm your changes</Heading>
 

@@ -44,7 +44,7 @@ return(
         <Logout />
         <Main>
             <Breadcrumbs>
-                <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
+                <Breadcrumbs.Link href="/">Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
 
             <Heading>Hello {response.Forename}.</Heading>

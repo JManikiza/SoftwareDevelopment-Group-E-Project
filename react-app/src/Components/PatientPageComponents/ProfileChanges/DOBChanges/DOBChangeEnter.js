@@ -52,8 +52,8 @@ const handleSubmit = (e) => {
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/DOBChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/DOBChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/DOBChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/DOBChangeDetails">Details</Breadcrumbs.Link>
                 </Breadcrumbs>
         <form onSubmit={handleSubmit}>
           <DateField

@@ -89,9 +89,9 @@ const updateFullName = () => {
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/NameChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/NameChangeDetails">Details</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/NameChangeBothNames">Enter</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/NameChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/NameChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/NameChangeBothNames">Enter</Breadcrumbs.Link>
                 </Breadcrumbs>
         <Heading>Confirm your changes</Heading>
 

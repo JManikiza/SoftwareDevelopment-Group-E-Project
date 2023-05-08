@@ -28,9 +28,9 @@ function PasswordChangeConfirmation(){
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/PasswordChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/PasswordChangeDetails">Details</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/PasswordChangeEnter">Enter</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/PasswordChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/PasswordChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/PasswordChangeEnter">Enter</Breadcrumbs.Link>
                 </Breadcrumbs>
 
                 <Heading>

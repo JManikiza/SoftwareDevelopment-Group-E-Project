@@ -17,16 +17,26 @@ function NameChangeBothNames() {
   const [surname, setSurname] = useState("");
   const location = useLocation();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Send the form data to the next page
-    navigate("/NameChangeConfirmation", { 
-      state: { 
-        forename: forename.toUpperCase(), 
-        surname: surname.toUpperCase()
-      } 
-    });
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (!forename || !surname) {
+    alert("Please enter your new first and last name.");
+    return;
+  }
+
+  if (/\d/.test(forename) || /\d/.test(surname)) {
+    alert("Names cannot contain numbers.");
+    return;
+  }
+
+  navigate("/NameChangeConfirmation", {
+    state: {
+      forename: forename.toUpperCase(),
+      surname: surname.toUpperCase(),
+    },
+  });
+};
 
       useEffect(() => {
     const title = 'Name Change';
@@ -41,8 +51,8 @@ function NameChangeBothNames() {
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/NameChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/NameChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/NameChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/NameChangeDetails">Details</Breadcrumbs.Link>
                 </Breadcrumbs>
 
         <form onSubmit={handleSubmit}>

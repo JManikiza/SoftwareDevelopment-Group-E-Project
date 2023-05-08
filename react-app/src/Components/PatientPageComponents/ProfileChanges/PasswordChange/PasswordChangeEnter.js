@@ -29,8 +29,8 @@ function PasswordChangeEnter(){
                 <Breadcrumbs>
                     <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
                     <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/PasswordChangeStart">Start</Breadcrumbs.Link>
-                    <Breadcrumbs.Link hred="/PasswordChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/PasswordChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/PasswordChangeDetails">Details</Breadcrumbs.Link>
                 </Breadcrumbs>
 
 <InsetText>THE PASSWORD CHANGE SECTION IS NOT FINISHED BUT THIS IS A PLACEHOLDER</InsetText>
