@@ -4,11 +4,13 @@
 * Joven Manikiza
 */
 
-import { Button, Heading, Main, Table} from "govuk-react";
+import { Button, Heading, Main, Table, Breadcrumbs} from "govuk-react";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
 import $ from 'jquery';
+import Logout from "../../../LoginComponents/Logout";
+
 
 function GenderChangeConfirmation() {
   const navigate = useNavigate();
@@ -72,15 +74,17 @@ const updateGender = () => {
 
   return (
     <div>
-      <Navigation
-        pageLink1="/"
-        PageName1="home"
-        pageLink2="/login"
-        PageName2="Login"
-        pageLink3="/NhsNumber"
-        PageName3="Register"
-      />
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
+
       <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/GenderChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/GenderChangeDetails">Details</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/GenderChangeEnter">Enter</Breadcrumbs.Link>
+                </Breadcrumbs>
         <Heading>Confirm your changes</Heading>
 
         <Heading size="MEDIUM">Previous details were:</Heading>

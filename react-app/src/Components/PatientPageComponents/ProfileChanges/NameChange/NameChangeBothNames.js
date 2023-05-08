@@ -5,9 +5,11 @@
 */
 
 import React, { useEffect, useState } from "react";
-import { InputField, Main, Button, SectionBreak } from "govuk-react";
+import { InputField, Main, Button, SectionBreak, Breadcrumbs } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import Logout from "../../../LoginComponents/Logout";
+
 
 function NameChangeBothNames() {
   const navigate = useNavigate();
@@ -33,8 +35,16 @@ function NameChangeBothNames() {
   
   return (
     <div>
-      <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register" />
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
       <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/NameChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/NameChangeDetails">Details</Breadcrumbs.Link>
+                </Breadcrumbs>
+
         <form onSubmit={handleSubmit}>
           <InputField
             hint={<>You'll find this on your Deed Poll confirmation letter</>}

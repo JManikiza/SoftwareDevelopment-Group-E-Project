@@ -5,9 +5,11 @@
 */
 
 import React, { useEffect, useState } from "react";
-import { InputField, Main, Button, SectionBreak, InsetText } from "govuk-react";
+import { InputField, Main, Button, SectionBreak, InsetText, Breadcrumbs } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import Logout from "../../../LoginComponents/Logout";
+
 
 function NumberChangeEnter(){
 
@@ -28,9 +30,17 @@ function NumberChangeEnter(){
     
     return(
         <div>
-            <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
 
             <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/NumberChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/NumberChangeDetails">Details</Breadcrumbs.Link>
+                </Breadcrumbs>
+
                 <InsetText>Unfortunately we're only accepting UK numbers</InsetText>
                 <form onSubmit={handleSubmit}>
                     <InputField

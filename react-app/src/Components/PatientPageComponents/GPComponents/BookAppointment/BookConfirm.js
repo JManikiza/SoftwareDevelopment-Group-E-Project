@@ -9,6 +9,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
 import jq from 'jquery';
+import Logout from "../../../LoginComponents/Logout";
+
 
 function BookConfirm() {
 
@@ -111,14 +113,8 @@ const makeAppointment = () => {
 
   return (
     <div>
-      <Navigation
-        pageLink1="/"
-        PageName1="home"
-        pageLink2="/login"
-        PageName2="Login"
-        pageLink3="/NhsNumber"
-        PageName3="Register"
-      />
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
+
 
       <Main>
         <Heading>Confirm your booking</Heading>

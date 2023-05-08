@@ -8,6 +8,8 @@ import React, { useEffect } from "react";
 import Navigation from "../../../Navigation";
 import {Main, Heading, InsetText, UnorderedList, ListItem, Button, ButtonArrow, Breadcrumbs} from "govuk-react";
 import { useNavigate } from "react-router-dom";
+import Logout from "../../../LoginComponents/Logout";
+
 
 function PasswordChangeStart(){
 
@@ -20,13 +22,13 @@ function PasswordChangeStart(){
     return (
 
         <div>
-                        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
 
             <Main>
 
                 <Breadcrumbs>
-                    <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
-                    <Breadcrumbs.Link>Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
                 </Breadcrumbs>
 
                 <Heading>

@@ -5,9 +5,11 @@
 */
 
 import React, { useEffect, useState } from "react";
-import { InputField, Main, Button, SectionBreak } from "govuk-react";
+import { InputField, Main, Button, SectionBreak, Breadcrumbs } from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import Logout from "../../../LoginComponents/Logout";
+
 
 function AddressChangeEnter() {
 
@@ -34,16 +36,17 @@ function AddressChangeEnter() {
 
   return (
     <div>
-      <Navigation
-        pageLink1="/"
-        PageName1="home"
-        pageLink2="/login"
-        PageName2="Login"
-        pageLink3="/NhsNumber"
-        PageName3="Register"
-      />
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
+
 
       <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/AddressChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/AddressChangeDetails">Details</Breadcrumbs.Link>
+                </Breadcrumbs>
         <form onSubmit={handleSubmit}>
           <InputField
             value={address}

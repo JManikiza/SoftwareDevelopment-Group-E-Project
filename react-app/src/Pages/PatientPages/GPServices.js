@@ -15,6 +15,7 @@ import BookTab from '../../Components/PatientPageComponents/GPComponents/BookApp
 import ViewTab from '../../Components/PatientPageComponents/GPComponents/ViewAppointment/ViewTab';
 import DoctorTab from '../../Components/PatientPageComponents/GPComponents/DoctorsAvailable/DoctorTab';
 import { useEffect } from 'react';
+import Logout from '../../Components/LoginComponents/Logout';
 
 
 function GPServices() {
@@ -35,7 +36,7 @@ function GPServices() {
         <Route path="/De-register" element={<DRTab />} />
       </Routes>
 
-<Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
 
 
       <Main>

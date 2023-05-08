@@ -92,6 +92,7 @@ import BookConfirm from "./Components/PatientPageComponents/GPComponents/BookApp
 // Custom imports
 
 import Temp from "./Pages/Temp";
+import { SectionBreak } from "govuk-react";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

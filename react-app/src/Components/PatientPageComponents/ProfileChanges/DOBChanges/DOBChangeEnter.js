@@ -5,9 +5,11 @@
 */
 
 import React, { useEffect, useState } from "react";
-import { DateField, Main, Button } from "govuk-react";
+import { DateField, Main, Button, Breadcrumbs} from "govuk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import Logout from "../../../LoginComponents/Logout";
+
 
 function DOBChangeEnter() {
   const [day, setDay] = useState("");
@@ -42,16 +44,17 @@ const handleSubmit = (e) => {
 
   return (
     <div>
-      <Navigation
-        pageLink1="/"
-        PageName1="home"
-        pageLink2="/login"
-        PageName2="Login"
-        pageLink3="/NhsNumber"
-        PageName3="Register"
-      />
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
+
 
       <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/DOBChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/DOBChangeDetails">Details</Breadcrumbs.Link>
+                </Breadcrumbs>
         <form onSubmit={handleSubmit}>
           <DateField
             inputNames={{

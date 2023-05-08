@@ -5,9 +5,11 @@
 */
 
 import React, { useEffect } from "react";
-import { InputField, Link, Main, Button, SectionBreak, InsetText } from "govuk-react";
+import { InputField, Link, Main, Button, SectionBreak, InsetText, Breadcrumbs} from "govuk-react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import Logout from "../../../LoginComponents/Logout";
+
 
 function PasswordChangeEnter(){
 
@@ -20,9 +22,16 @@ function PasswordChangeEnter(){
     
     return(
         <div>
-                        <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
+      <Navigation pageLink1="/" PageName1="Home"/><Logout />
 
             <Main>
+
+                <Breadcrumbs>
+                    <Breadcrumbs.Link href="/Patient">Home Page</Breadcrumbs.Link>
+                    <Breadcrumbs.Link href="/Profile">Profile</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/PasswordChangeStart">Start</Breadcrumbs.Link>
+                    <Breadcrumbs.Link hred="/PasswordChangeDetails">Details</Breadcrumbs.Link>
+                </Breadcrumbs>
 
 <InsetText>THE PASSWORD CHANGE SECTION IS NOT FINISHED BUT THIS IS A PLACEHOLDER</InsetText>
                 <InputField
