@@ -5,7 +5,7 @@ ID:w1830958
 */
 
 //imported function section
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Main,
   Breadcrumbs,
@@ -24,6 +24,31 @@ import jq from "jquery";
 
 
 function DoctorViewandUpdate() {
+  const [vaccineData, setVaccineData] = useState('');
+
+  useEffect(() => {
+    // Make the AJAX call here
+    jq.ajax({
+      type: "POST",
+      url: "http://localhost:4000/vaccinedata.php",
+      data: { nhs: NHSNumber},
+      dataType: "json",
+      success: function(response) {
+        if (response === "no vaccines") {
+          console.log('no vaccine');
+        } else {
+          // Set the vaccineData state here
+          setVaccineData(response);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error("AJAX error: " + status + " - " + error);
+      }
+    });
+  }, []);
+let manu = vaccineData.VaccineManufacturer;
+
+
   //use navigation to get to another page 
   const navigate=useNavigate();
   //current date function generator. 
@@ -73,6 +98,25 @@ function DoctorViewandUpdate() {
     });
     navigate("/DoctorAppointment");};
       
+    const getVaccineData = () => {
+      jq.ajax({
+        type: "POST",
+        url: "http://localhost:4000/vaccines.php",
+        data: { nhsNo: NHSNumber },
+        dataType: "json",
+        success: function(response) {
+          if (response === "no vaccines") {
+            alert("No vaccines found.");
+          } else {
+            alert(response.DoseNo)
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error("AJAX error: " + status + " - " + error);
+        }
+      });
+      
+    }
         
   return (
     <div>
@@ -140,6 +184,7 @@ function DoctorViewandUpdate() {
           <GridCol>
             <div>
               <p>Date Of Birth: {DOB}</p>
+              <p>vaccine manu{manu}</p>
             </div>
           </GridCol>
         </GridRow>
