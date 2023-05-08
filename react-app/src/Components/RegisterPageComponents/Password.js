@@ -41,7 +41,7 @@ function Password() {
       setPwMatchMsg("");
     } else{
       setPwMatch(false);
-      setPwMatchMsg("Password does not match or are invalid");
+      setPwMatchMsg("Password does not match or is invalid");
     }
     
   };

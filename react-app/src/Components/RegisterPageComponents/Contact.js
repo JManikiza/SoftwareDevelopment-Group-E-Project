@@ -97,16 +97,16 @@ function Contact() {
 
         <form onSubmit={handleSubmit}>
           <H1>Contact details</H1>
-          <InputField value={email} onChange={handleEmailChange}>
-            Email
-          </InputField>
-          <br />
-          {mobileError && <p style={{ color: 'red' }}>{mobileError}</p>}
           <InputField
             value={phoneNumber}
             onChange={handleMobileChange}
           >
             Phone Number
+          </InputField>
+          <br />
+          {mobileError && <p style={{ color: 'red' }}>{mobileError}</p>}
+          <InputField value={email} onChange={handleEmailChange}>
+            Email
           </InputField>
           <br />
           <Button type="submit" disabled={!validEmail} start>
