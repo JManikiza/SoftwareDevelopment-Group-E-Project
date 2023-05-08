@@ -8,6 +8,7 @@ import { Button, Heading, Main,Table, SectionBreak } from "govuk-react";
 import React, {useEffect, useState} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import $ from 'jquery'; 
 
 function EmailChangeConfirmation(){
 
@@ -17,42 +18,57 @@ function EmailChangeConfirmation(){
     const location = useLocation();
     const email = location.state?.email;
 
-    const payload = email;
-
     useEffect(() => {
         const title = 'Email Change';
         document.title = title;
   })
   
-    useEffect(() => {
-        fetch('http://localhost:4000/getData.php')
-          .then(response => response.json())
-          .then(data => {
-            setData({
-                previousEmail: data[0].EmailAddress,
-            });
-          })
-          .catch(error => console.error(error));
-    }, []);
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
+
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
+  }, []);
 
     console.log("emailAddress:", email);
 
+    const payload = {
+    email: email,
+    nhs_number: nhs_number
+};
+
 const updateEmail = () => {
-  fetch('http://localhost:4000/updateEmail.php', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({email: payload}),
-    credentials: 'include',
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to update postcode');
-    }
-    navigate('/Application');
-  })
-  .catch(error => console.error(error));
+
+  $.ajax({
+        url: "http://localhost:4000/updateEmail.php",
+        type: "PUT",
+        data: JSON.stringify(payload),
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            navigate("/Application");
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
 };
 
 
@@ -76,7 +92,7 @@ const updateEmail = () => {
                             Email:
                         </Table.CellHeader>
                         <Table.Cell>
-                           {data.previousEmail}
+                           {response.EmailAddress}
                         </Table.Cell>
                     </Table.Row>
                 </Table>

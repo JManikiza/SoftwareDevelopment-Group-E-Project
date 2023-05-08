@@ -25,12 +25,15 @@ function BookConfirm() {
   const doctorInt = parseInt(selectedDoctor[0]);
 console.log(typeof selectedDoctor[0], typeof randomDate,randomDate, typeof randomTime,randomTime)
  console.log('DOCTORINT TYPE:',typeof doctorInt);
+let nhs_number = localStorage.getItem("nhsNo");
+
 const makeAppointment = () => {
 
           var addNewAppointment = {
         doctor: doctorInt,
         time: randomTime,
-        date: randomDate
+        date: randomDate,
+        nhs_number:nhs_number
     };
 
     jq.ajax({
@@ -43,37 +46,7 @@ const makeAppointment = () => {
     },
   });
 }
-  /*  const data = {
-      doctor: selectedDoctor[0],
-      date: randomDate,
-      time: randomTime
-    };
-    console.log(data.doctor, typeof data.doctor, data.date, typeof data.date, data.time, typeof data.time);
-
-console.log("Selected Doctor: ", selectedDoctor[0]);
-   fetch("http://localhost:4000/GPS_Booking_App.php", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({doctor: selectedDoctor[0]}),
-  credentials: "include",
-})
-.then((response) => {
-  if (!response.ok) {
-    throw new Error("Failed to make appointment");
-  }
-  return response.json();
-})
-.then((data) => {
-  if (data.error) {
-    throw new Error(data.error);
-  }
-  navigate("/Application");
-})
-.catch((error) => console.error(error));
-  }
-  */
+  
   const handleClick = () => {
     // Perform any action needed on confirmation
     makeAppointment();

@@ -8,6 +8,7 @@ import { Button, Heading, Main,Table, SectionBreak } from "govuk-react";
 import React, {useEffect, useState} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import $ from 'jquery';
 
 function NumberChangeConfirmation(){
 
@@ -28,44 +29,59 @@ console.log("Number:", number);
 
 console.log("Number before fetch:", number);
 
-useEffect(() => {
-    fetch('http://localhost:4000/getData.php')
-      .then(response => response.json())
-      .then(data => {
-        console.log("Response:", data);
-        setData({
-            previousNumber: data[0].PhoneNumber.length === 10 ? '0' + data[0].PhoneNumber : data[0].PhoneNumber,
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
 
-        });
-      })
-      .catch(error => console.error(error));
-}, []);
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
+  }, []);
 
 console.log("Number from DB:", data.previousNumber);
 
 console.log("Number before PUT:", number);
 
-const updateNumber = () => {
   const numberInt = parseInt(number);
   console.log("Payload:", numberInt, typeof numberInt);
-
-  fetch('http://localhost:4000/updateNumber.php', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ phone_number: numberInt }),
-    credentials: 'include',
-  })
-  .then(response => {
-    console.log("Response status:", response.status);
-    if (!response.ok) {
-      throw new Error('Failed to update number');
-    }
-    navigate('/Application');
-  })
-  .catch(error => console.error(error));
+  
+    const payload = {
+    phone_number: numberInt,
+    nhs_number: nhs_number
 };
+
+const updateNumber = () => {
+
+    $.ajax({
+        url: "http://localhost:4000/updateNumber.php",
+        type: "PUT",
+        data: JSON.stringify(payload),
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            navigate("/Application");
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
+};
+
 return (
     <div>
         <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
@@ -86,7 +102,7 @@ return (
                         Number:
                     </Table.CellHeader>
                     <Table.Cell>
-                       +44{data.previousNumber}
+                       {response.PhoneNumber}
                     </Table.Cell>
                 </Table.Row>
             </Table>

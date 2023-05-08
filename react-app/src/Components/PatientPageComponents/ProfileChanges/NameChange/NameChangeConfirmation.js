@@ -8,13 +8,13 @@ import {
   Button,
   Heading,
   Main,
-  Paragraph,
   SectionBreak,
   Table,
 } from "govuk-react";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import $ from 'jquery';
 
 function NameChangeConfirmation() {
     
@@ -28,45 +28,54 @@ function NameChangeConfirmation() {
     document.title = title;
   })
 
-  const [data, setData] = useState({});
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
 
   useEffect(() => {
-    fetch("http://localhost:4000/getData.php")
-      .then((response) => response.json())
-      .then((data) => {
-        setData({
-          previousForename: data[0].Forename,
-          previousSurname: data[0].Surname,
-        });
-      })
-      .catch((error) => console.error(error));
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
   }, []);
 
   console.log("forename:", forename);
   console.log("surname:", surname);
 
-  const payload = {
+const payload = {
     forename: forename,
     surname: surname,
-  };
+    nhs_number: nhs_number
+};
 
-  const updateFullName = () => {
-    fetch("http://localhost:4000/updateFullName.php", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-      credentials: "include",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to update full name");
+const updateFullName = () => {
+    $.ajax({
+        url: "http://localhost:4000/updateFullName.php",
+        type: "PUT",
+        data: JSON.stringify(payload),
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            navigate("/Application");
+        },
+        error: function (error) {
+            console.error(error);
         }
-        navigate("/Application");
-      })
-      .catch((error) => console.error(error));
-  };
+    });
+};
 
   return (
     <div>
@@ -88,11 +97,11 @@ function NameChangeConfirmation() {
         <Table>
           <Table.Row>
             <Table.CellHeader>Forename:</Table.CellHeader>
-            <Table.Cell>{data.previousForename}</Table.Cell>
+            <Table.Cell>{response.Forename}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>Surname:</Table.CellHeader>
-            <Table.Cell>{data.previousSurname}</Table.Cell>
+            <Table.Cell>{response.Surname}</Table.Cell>
           </Table.Row>
         </Table>
 

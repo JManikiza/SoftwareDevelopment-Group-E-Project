@@ -8,6 +8,7 @@ import { Table, Heading, Main, Button, SectionBreak, Breadcrumbs } from "govuk-r
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import $ from 'jquery';
 
 function NameChangeCircumstances(){
 
@@ -19,18 +20,27 @@ function NameChangeCircumstances(){
         document.title = title;
   })
 
-useEffect(() => {
-  fetch('http://localhost:4000/getData.php')
-    .then(response => response.json())
-    .then(data => {
-      setData({
-        NHSNo: data[0].NHSNumber,
-        forename: data[0].Forename,
-        surname: data[0].Surname,
-        dob: new Date(data[0].PersonDOB).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),      });
-    })
-    .catch(error => console.error(error));
-}, []);
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
+
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
+  }, []);
 
     return (
         <div>
@@ -49,19 +59,19 @@ useEffect(() => {
         <Table>
           <Table.Row>
             <Table.CellHeader>NHS number:</Table.CellHeader>
-            <Table.Cell>{data.NHSNo}</Table.Cell>
+            <Table.Cell>{response.NHSNumber}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>First name:</Table.CellHeader>
-            <Table.Cell>{data.forename}</Table.Cell>
+            <Table.Cell>{response.Forename}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>Last name:</Table.CellHeader>
-            <Table.Cell>{data.surname}</Table.Cell>
+            <Table.Cell>{response.Surname}</Table.Cell>
           </Table.Row>
                     <Table.Row>
             <Table.CellHeader>Current DOB:</Table.CellHeader>
-            <Table.Cell>{data.dob}</Table.Cell>
+            <Table.Cell>{response.PersonDOB}</Table.Cell>
           </Table.Row>
         </Table>
 

@@ -8,51 +8,65 @@ import { Button, Heading, Main, Paragraph, SectionBreak, Table } from "govuk-rea
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import $ from 'jquery';
 
 function AddressChangeConfirmation(){
 
     const navigate = useNavigate();
 
-    const [data, setData] = useState({});
     const location = useLocation();
     const address = location.state?.address;
-
-    const payload = address;
 
     useEffect(() => {
         const title = 'Address Change';
         document.title = title;
   })
   
-    useEffect(() => {
-        fetch('http://localhost:4000/getData.php')
-          .then(response => response.json())
-          .then(data => {
-            setData({
-                previousAddress: data[0].Postcode,
-            });
-          })
-          .catch(error => console.error(error));
-    }, []);
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
+
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
+  }, []);
 
     console.log("address:", address);
 
+const payload = {
+    postcode: address,
+    nhs_number: nhs_number
+};
+
 const updatePostcode = () => {
-  fetch('http://localhost:4000/updatePostcode.php', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({postcode: payload}),
-    credentials: 'include',
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to update postcode');
-    }
-    navigate('/Application');
-  })
-  .catch(error => console.error(error));
+    $.ajax({
+        url: "http://localhost:4000/updatePostcode.php",
+        type: "PUT",
+        data: JSON.stringify(payload),
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            navigate("/Application");
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
 };
 
 
@@ -75,7 +89,7 @@ const updatePostcode = () => {
                             Postcode:
                         </Table.CellHeader>
                         <Table.Cell>
-                           {data.previousAddress}
+                           {response.Postcode}
                         </Table.Cell>
                     </Table.Row>
                 </Table>

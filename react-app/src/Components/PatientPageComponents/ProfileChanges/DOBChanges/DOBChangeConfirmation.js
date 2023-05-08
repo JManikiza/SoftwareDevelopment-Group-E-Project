@@ -8,6 +8,7 @@ import { Button, Heading, Main, Table, SectionBreak } from "govuk-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import $ from 'jquery';
 
 function DOBChangeConfirmation() {
   const navigate = useNavigate();
@@ -21,43 +22,56 @@ function DOBChangeConfirmation() {
         document.title = title;
   })
 
-  useEffect(() => {
-    console.log("Fetching data...");
-    fetch("http://localhost:4000/getData.php")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Fetched data:", data);
-        setData({
-          previousDOB: new Date(data[0].PersonDOB).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),     
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
 
-        });
-      })
-      .catch((error) => console.error(error));
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
   }, []);
 
-  const updateDOB = () => {
-    console.log("Updating DOB...");
-    // convert dob to YYYY/MM/DD format
+
+ 
    const dobFormatted = `${location.state.dob.year}/${location.state.dob.month}/${location.state.dob.day}`;
     console.log("DOB formatted:", dobFormatted);
 
-    fetch("http://localhost:4000/updateDOB.php", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ dob: dobFormatted}),
-      credentials: "include",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to update DOB");
-        }
-        navigate("/Application");
-      })
-      .catch((error) => console.error(error));
-  };
+    const payload = {
+    dob: dobFormatted,
+    nhs_number: nhs_number
+};
 
+const updateDOB = () => {
+
+    $.ajax({
+        url: "http://localhost:4000/updateDOB.php",
+        type: "PUT",
+        data: JSON.stringify(payload),
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            navigate("/Application");
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
+};
   console.log("Current state:", location.state);
 
   return (
@@ -81,7 +95,7 @@ function DOBChangeConfirmation() {
         <Table>
           <Table.Row>
             <Table.CellHeader>Date of birth:</Table.CellHeader>
-            <Table.Cell>{data.previousDOB}</Table.Cell>
+            <Table.Cell>{response.PersonDOB}</Table.Cell>
           </Table.Row>
         </Table>
 

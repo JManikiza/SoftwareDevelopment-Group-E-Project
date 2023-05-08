@@ -2,13 +2,13 @@ import { Button, Heading, Main, Table} from "govuk-react";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
+import $ from 'jquery';
 
 function GenderChangeConfirmation() {
   const navigate = useNavigate();
   const location = useLocation();
   const gender = location.state.gender;
 
-  const payload = gender;
   const [data, setData] = useState({});
 
           useEffect(() => {
@@ -16,35 +16,52 @@ function GenderChangeConfirmation() {
     document.title = title;
   })
 
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
+
   useEffect(() => {
-    fetch("http://localhost:4000/getData.php")
-      .then((response) => response.json())
-      .then((data) => {
-        setData({
-          previousGender: data[0].GenderCode,
-        });
-      })
-      .catch((error) => console.error(error));
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
   }, []);
 
     console.log("gender:", gender);
 
+    const payload = {
+    gender: gender,
+    nhs_number: nhs_number
+};
+
 const updateGender = () => {
-  fetch('http://localhost:4000/updateGender.php', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({gender: payload}),
-    credentials: 'include',
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to update postcode');
-    }
-    navigate('/Application');
-  })
-  .catch(error => console.error(error));
+
+  $.ajax({
+        url: "http://localhost:4000/updateGender.php",
+        type: "PUT",
+        data: JSON.stringify(payload),
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            navigate("/Application");
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
 };
 
   return (
@@ -68,7 +85,7 @@ const updateGender = () => {
                             Gender:
                         </Table.CellHeader>
                         <Table.Cell>
-                           {data.previousGender === "1" ? "MALE" : "FEMALE"}
+                           {response.GenderCode}
                         </Table.Cell>
                     </Table.Row>
                 </Table>

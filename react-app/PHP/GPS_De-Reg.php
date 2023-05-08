@@ -1,62 +1,29 @@
 <?php
+  header("Access-Control-Allow-Origin: *");
+  header("Content-Type: application/json; charset=UTF-8");
 
-header('Access-Control-Allow-Origin: http://localhost:3000');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Credentials: true');
+  $data = json_decode(file_get_contents("php://input"));
+  $nhs_number = $data->nhs_number;
 
-// Include the auth.php file to get the nhs_number
-include 'auth.php';
+  try {
+      $db = new SQLite3('LocalDatabase.db');
+      $db->exec('PRAGMA foreign_keys = ON;');
+      $db->beginTransaction();
 
-// Get the NHSNumber parameter from the request
-$nhs_number = $_SESSION['nhs_number'];
-if (!$nhs_number) {
-    // user is not logged in, handle appropriately
-}
+      $stmt = $db->prepare('DELETE FROM Appointments WHERE NHSNumber = :nhs_number;');
+      $stmt->bindValue(':nhs_number', $nhs_number, SQLITE3_TEXT);
+      $result = $stmt->execute();
+      $stmt->close();
 
-// Open the database file
-try {
-    $db = new PDO('sqlite:LocalDatabase.db');
-} catch (PDOException $e) {
-    die('Could not connect to the database: ' . $e->getMessage());
-}
+      $stmt = $db->prepare('DELETE FROM Patients WHERE NHSNumber = :nhs_number;');
+      $stmt->bindValue(':nhs_number', $nhs_number, SQLITE3_TEXT);
+      $result = $stmt->execute();
+      $stmt->close();
 
-// Begin a transaction
-$db->beginTransaction();
-
-// Prepare the SQL query to delete the rows from the Appointment table where NHSNumber matches
-$query = 'DELETE FROM Appointment WHERE NHSNumber=:nhs_number';
-$stmt = $db->prepare($query);
-
-// Bind the parameters to the query
-$stmt->bindParam(':nhs_number', $nhs_number);
-
-// Execute the query
-if (!$stmt->execute()) {
-    // Rollback the transaction if there was an error
-    $db->rollBack();
-    die('Error deleting appointments: ' . $stmt->errorInfo()[2]);
-}
-
-// Prepare the SQL query to delete the row from the Patient table where NHSNumber matches
-$query = 'DELETE FROM patients WHERE NHSNumber=:nhs_number';
-$stmt = $db->prepare($query);
-
-// Bind the parameters to the query
-$stmt->bindParam(':nhs_number', $nhs_number);
-
-// Execute the query
-if (!$stmt->execute()) {
-    // Rollback the transaction if there was an error
-    $db->rollBack();
-    die('Error deleting patient: ' . $stmt->errorInfo()[2]);
-}
-
-// Commit the transaction if both queries executed successfully
-$db->commit();
-
-// Output a success message as JSON
-header('Content-Type: application/json');
-echo json_encode(array('message' => 'Patient and appointments deleted successfully.'));
-
+      $db->commit();
+      echo json_encode(array('message' => 'De-registration successful'));
+  } catch (Exception $e) {
+      $db->rollback();
+      echo json_encode(array('message' => 'Error de-registering from GP: ' . $e->getMessage()));
+  }
 ?>

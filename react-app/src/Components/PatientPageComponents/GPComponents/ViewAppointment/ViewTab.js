@@ -1,17 +1,16 @@
 import { Table, H2, Link } from "govuk-react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import $ from 'jquery';
 
 function ViewTab(){
 
-  const navigate = useNavigate();
-
   const [fetchedAppointments, setFetchedAppointments] = useState([]);
   const [doctors, setDoctors] = useState([]);
+  const [response, setResponse] = useState('');
+  let nhs_number = localStorage.getItem("nhsNo");
 
   useEffect(() => {
-    // Fetch appointments data from the server using the NHSNumber as a parameter
-    fetch(`http://localhost:4000/GPS_View_App.php`, {
+    fetch(`http://localhost:4000/GPS_View_App.php?nhs_number=${nhs_number}`, {
       credentials: "include",
     })
     .then(response => response.json())
@@ -20,7 +19,7 @@ function ViewTab(){
       setFetchedAppointments(data);
     })
     .catch(error => console.error(error));
-  }, []);
+  }, [nhs_number]);
 
   useEffect(() => {
     // Fetch doctors data from the server
@@ -35,38 +34,45 @@ function ViewTab(){
     .catch(error => console.error(error));
   }, []);
 
-  const handleCancel = (appID) => {
-    if (window.confirm("Are you sure you want to cancel this appointment?")) {
-      // Find the appointment to cancel and its associated doctor
-      const appointment = fetchedAppointments.find(appointment => appointment.appID === appID);
-      const doctor = doctors.find(doctor => doctor.empID === appointment.empID);
-      console.log("appointment: ", appointment);
-      console.log("doctor: ", doctor);
-      // Send a DELETE request to the server to cancel the appointment with the specified ID
-      fetch(`http://localhost:4000/GPS_Cancel_App.php?appID=${appID}`, {
-        method: "DELETE",
-        credentials: "include",
-      })
-      .then(response => response.json())
-      .then(data => {
+const handleCancel = (appID) => {
+  if (window.confirm("Are you sure you want to cancel this appointment?")) {
+    // Find the appointment to cancel and its associated doctor
+    const appointment = fetchedAppointments.find(appointment => appointment.appID === appID);
+    const doctor = doctors.find(doctor => doctor.empID === appointment.empID);
+    console.log("appointment: ", appointment);
+    console.log("doctor: ", doctor);
+    console.log(`cancelling appointment with appID=${appID} for nhs_number=${nhs_number}`);
+
+    $.ajax({
+      url: 'http://localhost:4000/GPS_Cancel_App.php',
+      type: 'POST',
+      data: {
+        appID: appID,
+        nhs_number: nhs_number
+      },
+      success: function (data) {
         if (data.error) {
           throw new Error(data.error);
         }
         console.log("cancelled appointment: ", data);
+
         // Reload the appointments data after the cancellation
-        fetch(`http://localhost:4000/GPS_View_App.php`, {
+        fetch(`http://localhost:4000/GPS_View_App.php?nhs_number=${nhs_number}`, {
           credentials: "include",
         })
-        .then(response => response.json())
-        .then(data => {
-          console.log("fetched appointments after cancellation: ", data);
-          setFetchedAppointments(data);
-        })
-        .catch(error => console.error(error));
-      })
-      .catch(error => console.error(error));
-    }
-  };
+          .then(response => response.json())
+          .then(data => {
+            console.log("fetched appointments: ", data);
+            setFetchedAppointments(data);
+          })
+          .catch(error => console.error(error));
+      },
+      error: function (error) {
+        console.error(error);
+      }
+    });
+  }
+};
 
   return(
     <div>
@@ -94,7 +100,7 @@ function ViewTab(){
             {appointment.AppTimeAssigned}
           </Table.Cell>
           <Table.Cell>
-            <Link onClick={() => handleCancel(appointment.appID)} children="Cancel"/>
+            { <Link onClick={() => handleCancel(appointment.appID)} children="Cancel"/>}
           </Table.Cell>
         </Table.Row>
       );

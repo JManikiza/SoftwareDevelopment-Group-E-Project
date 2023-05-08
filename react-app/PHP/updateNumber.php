@@ -5,12 +5,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Credentials: true');
 
-include 'auth.php';
 
-$nhs_number = $_SESSION['nhs_number'];
-if (!$nhs_number) {
-    // user is not logged in, handle appropriately
-}
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Methods: PUT, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
@@ -20,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     // Get the request data
     $data = json_decode(file_get_contents("php://input"), true);
     $phone_number = isset($data['phone_number']) ? $data['phone_number'] : null;
+    $nhs_number = isset($data['nhs_number']) ? $data['nhs_number'] : null;
 
     if (empty($phone_number)) {
         header('HTTP/1.1 400 Bad Request');

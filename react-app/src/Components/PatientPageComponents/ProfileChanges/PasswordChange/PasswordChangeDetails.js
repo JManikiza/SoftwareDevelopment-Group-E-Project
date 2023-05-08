@@ -4,12 +4,11 @@
 * Joven Manikiza
 */
 
-import { Main, Heading, SectionBreak, Breadcrumbs,
-     Paragraph, Button } from "govuk-react";
-import { useEffect } from "react";
+import { Main, Heading, SectionBreak, Breadcrumbs, Button, Table } from "govuk-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
-
+import $ from 'jquery';
 
 function PasswordChangeDetails(){
 
@@ -19,6 +18,28 @@ function PasswordChangeDetails(){
     const title = 'Password Change';
     document.title = title;
   })
+
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
+
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
+  }, []);
 
     return (
         <div>
@@ -34,12 +55,24 @@ function PasswordChangeDetails(){
                 
                 <Heading>About you</Heading>
 
-                <Paragraph>NHS number: (Props NHS number here)</Paragraph>
-                <Paragraph>First name: (Props First name here)</Paragraph>
-                <Paragraph>Last name: (Props Last name here)</Paragraph>
-
-                <Paragraph>Current password: (Props password (in asterix))</Paragraph>
-
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>NHS number:</Table.CellHeader>
+            <Table.Cell>{response.NHSNumber}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>First name:</Table.CellHeader>
+            <Table.Cell>{response.Forename}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Last name:</Table.CellHeader>
+            <Table.Cell>{response.Surname}</Table.Cell>
+          </Table.Row>
+                    <Table.Row>
+            <Table.CellHeader>Current password:</Table.CellHeader>
+            <Table.Cell>***********</Table.Cell>
+          </Table.Row>
+        </Table>
 
                 <Button onClick={() => navigate("/PasswordChangeEnter")}>
                     Continue

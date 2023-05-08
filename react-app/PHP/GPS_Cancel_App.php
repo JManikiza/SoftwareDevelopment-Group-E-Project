@@ -1,21 +1,12 @@
 <?php
 
 header('Access-Control-Allow-Origin: http://localhost:3000');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Credentials: true');
 
-// Include the auth.php file to get the nhs_number
-include 'auth.php';
-
-// Get the appID parameter from the request
-$appID = $_GET['appID'];
-
-$nhs_number = $_SESSION['nhs_number'];
-if (!$nhs_number) {
-    // user is not logged in, handle appropriately
-}
-
+$appID = $_POST['appID'];
+$nhs_number = $_POST['nhs_number'];
 
 // Open the database file
 try {
@@ -24,13 +15,11 @@ try {
     die('Could not connect to the database: ' . $e->getMessage());
 }
 
-// Prepare the SQL query to delete the row from the Appointment table where nhs_number and appID match
-$query = 'DELETE FROM Appointment WHERE NHSNumber=:nhs_number AND appID=:appID';
+// Prepare the SQL query to cancel the appointment
+$query = 'DELETE FROM Appointment WHERE appID=:appID AND NHSNumber=:nhs_number';
 $stmt = $db->prepare($query);
-
-// Bind the parameters to the query
-$stmt->bindParam(':nhs_number', $nhs_number);
-$stmt->bindParam(':appID', $appID);
+$stmt->bindValue(':appID', $appID);
+$stmt->bindValue(':nhs_number', $nhs_number);
 
 // Execute the query
 if (!$stmt->execute()) {
@@ -39,6 +28,6 @@ if (!$stmt->execute()) {
 
 // Output a success message as JSON
 header('Content-Type: application/json');
-echo json_encode(array('message' => 'Appointment cancelled successfully.'));
+echo json_encode(['message' => 'Appointment cancelled successfully.']);
 
 ?>

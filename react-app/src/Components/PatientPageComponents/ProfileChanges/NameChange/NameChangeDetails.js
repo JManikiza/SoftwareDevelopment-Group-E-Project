@@ -8,30 +8,36 @@ import { Main, Table, Button, Heading, Breadcrumbs, Paragraph, MultiChoice, Radi
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../../Navigation";
-import NameChangeBothNames from "./NameChangeBothNames";
+import $ from 'jquery';
 
 function NameChangeDetails() {
   const navigate = useNavigate();
-  const [data, setData] = useState({});
-  const [selectedRadio, setSelectedRadio] = useState("");
 
       useEffect(() => {
     const title = 'Name Change';
     document.title = title;
   })
 
+    const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
+
   useEffect(() => {
-    fetch("http://localhost:4000/getData.php")
-      .then((response) => response.json())
-      .then((data) => {
-        setData({
-          forename: data[0].Forename,
-          surname: data[0].Surname,
-          NHSNo: data[0].NHSNumber,
-          address: data[0].Postcode,
-        });
-      })
-      .catch((error) => console.error(error));
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
   }, []);
 
 
@@ -59,15 +65,15 @@ function NameChangeDetails() {
         <Table>
           <Table.Row>
             <Table.CellHeader>NHS number:</Table.CellHeader>
-            <Table.Cell>{data.NHSNo}</Table.Cell>
+            <Table.Cell>{response.NHSNumber}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>First name:</Table.CellHeader>
-            <Table.Cell>{data.forename}</Table.Cell>
+            <Table.Cell>{response.Forename}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.CellHeader>Last name:</Table.CellHeader>
-            <Table.Cell>{data.surname}</Table.Cell>
+            <Table.Cell>{response.Surname}</Table.Cell>
           </Table.Row>
         </Table>
       

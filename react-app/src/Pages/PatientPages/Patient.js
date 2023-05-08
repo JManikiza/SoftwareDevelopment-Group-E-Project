@@ -15,10 +15,8 @@ import $ from "jquery";
 
 function Patient(){
  const [response, setResponse] = useState('');
-let name = localStorage.getItem("patientName");
-
 // use this value to query the db
-let nhsNo = localStorage.getItem("nhsNo");
+let nhs_number = localStorage.getItem("nhsNo");
 
 const navigate = useNavigate();
 
@@ -27,7 +25,7 @@ const navigate = useNavigate();
         url: 'http://localhost:4000/getData.php',
         type: 'POST',
         data: {
-            nhsNo: nhsNo 
+            nhs_number: nhs_number 
         },
         success: function(response) {
             setResponse(JSON.parse(response));  
@@ -40,9 +38,6 @@ const navigate = useNavigate();
     
   }, []);
 
-  //SET VARIABLES
-  let postcode = response.Postcode;
-
 return(
     <div>
         <Navigation pageLink1="/" PageName1="home" pageLink2="/login" PageName2="Login" pageLink3="/NhsNumber" PageName3="Register"/>
@@ -52,7 +47,7 @@ return(
                 <Breadcrumbs.Link>Home Page</Breadcrumbs.Link>
             </Breadcrumbs>
 
-            <Heading>Hello {response.Forename + ' ' + response.Surname + ' ' + postcode}.</Heading>
+            <Heading>Hello {response.Forename}.</Heading>
             <InsetText>Navigate to your GP services or Profile from this page</InsetText>
             <Details summary="What can I do with GP Services?">
                 <Paragraph>You'll be able to do the following:</Paragraph>

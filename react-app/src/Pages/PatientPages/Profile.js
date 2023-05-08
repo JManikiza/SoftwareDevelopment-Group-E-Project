@@ -8,30 +8,40 @@ import React, { useState, useEffect } from 'react';
 import { Table, Link, Heading, Main, SectionBreak, Pagination } from 'govuk-react';
 import { useNavigate } from "react-router-dom";
 import Navigation from '../../Components/Navigation';
+import $ from "jquery";
 
 function Profile() {
+  
   const navigate = useNavigate();
-  const [data, setData] = useState({});
 
 useEffect(() => {
     const title = 'Profile';
     document.title = title;
   })
+
+  const [response, setResponse] = useState('');
+// use this value to query the db
+let nhs_number = localStorage.getItem("nhsNo");
+
+  useEffect(() => {
+    $.ajax({
+        url: 'http://localhost:4000/getData.php',
+        type: 'POST',
+        data: {
+            nhs_number: nhs_number 
+        },
+        success: function(response) {
+            setResponse(JSON.parse(response));  
+          
+        },
+        error: function(error) {
+            console.log(error); 
+        }
+    });
+    
+  }, []);
   
-useEffect(() => {
-  fetch('http://localhost:4000/getData.php')
-    .then(response => response.json())
-    .then(data => {
-      setData({
-        fullName: data[0].Forename + ' ' + data[0].Surname,
-          dob: new Date(data[0].PersonDOB).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),        gender: data[0].GenderCode === '1' ? 'MALE' : 'FEMALE',
-        address: data[0].Postcode,
-        email: data[0].EmailAddress,
-        number: data[0].PhoneNumber.length === 10 ? '0' + data[0].PhoneNumber : data[0].PhoneNumber, 
-           });
-    })
-    .catch(error => console.error(error));
-}, []);
+  let fullName = response.Forename + ' ' + response.Surname;
 
   return (
     <div>
@@ -61,7 +71,7 @@ useEffect(() => {
               Name
             </Table.CellHeader>
             <Table.Cell>
-              {data.fullName}
+              {fullName}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/NameChangeStart")} children="Change"/>
@@ -74,7 +84,7 @@ useEffect(() => {
               D.O.B
             </Table.CellHeader>
             <Table.Cell>
-              {data.dob}
+              {response.PersonDOB}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/DOBChangeStart")} children="Change"/>
@@ -86,7 +96,7 @@ useEffect(() => {
               Gender
             </Table.CellHeader>
             <Table.Cell>
-              {data.gender}
+              {response.GenderCode}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/GenderChangeStart")} children="Change"/>
@@ -99,7 +109,7 @@ useEffect(() => {
               Address
             </Table.CellHeader>
             <Table.Cell>
-              {data.address}
+              {response.Postcode}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/AddressChangeStart")} children="Change"/>
@@ -112,7 +122,7 @@ useEffect(() => {
               Email
             </Table.CellHeader>
             <Table.Cell>
-              {data.email}
+              {response.EmailAddress}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/EmailChangeStart")} children="Change"/>
@@ -124,7 +134,7 @@ useEffect(() => {
               Contact No.
             </Table.CellHeader>
             <Table.Cell>
-              +44{data.number}
+              {response.PhoneNumber}
             </Table.Cell>
             <Table.Cell>
               <Link onClick={() => navigate("/NumberChangeStart")} children="Change"/>
