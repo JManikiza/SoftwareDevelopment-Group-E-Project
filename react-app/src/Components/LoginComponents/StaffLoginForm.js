@@ -68,6 +68,7 @@ function StaffLoginForm() {
           localStorage.setItem("empFName", empFName);
           localStorage.setItem("empLName", empLName);
           localStorage.setItem("empType", empType);
+          localStorage.setItem("userType", empType);
           sessionStorage.setItem("session_token", session_token);
 
           setIsLoggedIn(true);

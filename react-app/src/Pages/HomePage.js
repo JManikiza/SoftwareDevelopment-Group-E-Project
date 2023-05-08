@@ -9,6 +9,8 @@ import Navigation from "../Components/Navigation";
 function HomePage() {
   const navigate = useNavigate();
 
+  let userType = localStorage.getItem("userType");
+
   useEffect(() => {
     const title = "Log in";
     document.title = title;
@@ -31,6 +33,7 @@ function HomePage() {
             onClick={() => {
               navigate("/login");
             }}
+            disabled={userType === "Doctor" || userType === "Admin"}
           >
             Patient
           </Button>
@@ -39,6 +42,7 @@ function HomePage() {
             onClick={() => {
               navigate("/stafflogin");
             }}
+            disabled={userType === "Patient"}
           >
             Staff
           </Button>
