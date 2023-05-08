@@ -65,6 +65,7 @@ function LoginForm() {
 
             localStorage.setItem("patientName", patientName);
             localStorage.setItem("nhsNo", nhsNo);
+            localStorage.setItem("userType", 'Patient');
             sessionStorage.setItem("session_token", session_token); // Store session token in session storage
 
             console.log("Patient name: " + patientName);

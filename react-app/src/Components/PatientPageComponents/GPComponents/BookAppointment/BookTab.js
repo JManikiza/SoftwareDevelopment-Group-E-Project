@@ -108,6 +108,7 @@ const doctorOptions = doctors.map((doc) => (
           Book Appointment
         </Button>
       </form>
+      <br /> <br /> <br /><br />
     </div>
   );
 }
