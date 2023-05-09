@@ -5,11 +5,8 @@ function Login() {
     <>
     <Navigation
         pageLink1="/"
-        PageName1="home"
-        pageLink2="/login"
-        PageName2="Login"
-        pageLink3="/NhsNumber"
-        PageName3="Register"
+        PageName1="Home"
+  
       />
       <StaffLoginForm />
     </>

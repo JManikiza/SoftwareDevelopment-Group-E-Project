@@ -1,38 +1,5 @@
 <?php
-// header("Access-Control-Allow-Origin: *");
-// header("Access-Control-Allow-Headers: *");
-// header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-
-// // Retrieve the POST data sent by the client
-// $data = json_decode(file_get_contents('php://input'), true);
-
-// // Extract the ID from the POST data
-// $remove = $data['remove'];
-
-// // SQLite database file path
-// $database_file = 'LocalDatabase.db';
-
-// // PDO connection string
-// $dsn = 'sqlite:' . $database_file;
-
-// // PDO connection options
-// $options = array(
-//     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-// );
-
-// // Connect to the database
-// try {
-//     $pdo = new PDO($dsn, null, null, $options);
-
-//     // Remove row based on Appid
-//     $stmt = $pdo->prepare("DELETE FROM Appointments WHERE Appid = ?");
-//     $stmt->execute([1]);
-
-//     echo "Row removed successfully!<br>";
-
-// } catch(PDOException $e) {
-//     echo "Connection failed: " . $e->getMessage();
-// }
+// Author of this page Laurence Baboolal
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
@@ -45,7 +12,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $remove = $data['remove'];
 
 // SQLite database file path
-$database_file = 'C:\Users\carme\OneDrive\Documents\GitHub\SoftwareDevelopment-Group-E-Project\react-app\Database\LocalDatabase.db';
+$database_file = 'LocalDatabase.db';
 
 // PDO connection string
 $dsn = 'sqlite:' . $database_file;
