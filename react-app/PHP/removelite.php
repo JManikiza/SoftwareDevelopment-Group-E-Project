@@ -45,7 +45,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $remove = $data['remove'];
 
 // SQLite database file path
-$database_file = 'C:\Users\carme\OneDrive\Documents\GitHub\SoftwareDevelopment-Group-E-Project\react-app\Database\LocalDatabase.db';
+$database_file = 'LocalDatabase.db';
 
 // PDO connection string
 $dsn = 'sqlite:' . $database_file;
