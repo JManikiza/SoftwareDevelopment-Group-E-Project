@@ -16,6 +16,7 @@ import {
   GridCol,
   TextArea,
   BackLink,
+  Table,
 } from "govuk-react";
 import Navigation from "../../Components/Navigation";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -46,7 +47,23 @@ function DoctorViewandUpdate() {
       }
     });
   }, []);
-let manu = vaccineData.VaccineManufacturer;
+
+let manufacturer = vaccineData.VaccineManufacturer;
+let doseNo = vaccineData.DoseNo;
+let vaccinationDate = vaccineData.VaccinationDate;
+let diseaseTargeted = vaccineData.DiseaseTargeted;
+let vaccineType = vaccineData.VaccineType;
+let product = vaccineData.Product;
+let vaccineBatchNumber = vaccineData.VaccineBatchNumber;
+let countryOfVaccination = vaccineData.CountryOfVaccination;
+let authority = vaccineData.Authority;
+let site = vaccineData.Site;
+let doseSeries = vaccineData.DoseSeries;
+let displayName = vaccineData.DisplayName;
+let snomedCode = vaccineData.SnomedCode;
+let dateEntered = vaccineData.DateEntered;
+let procedureCode = vaccineData.ProcedureCode;
+let booster = vaccineData.Booster;
 
 
   //use navigation to get to another page 
@@ -164,30 +181,78 @@ let manu = vaccineData.VaccineManufacturer;
         </H3>
         <br />
         <br />
-        <GridRow>
-          <GridCol>
-            <div>
-              <Label>
-                <p>NHS Number: {NHSNumber}</p>
-              </Label>
-            </div>
-          </GridCol>
-        </GridRow>
-        <GridRow>
-          <GridCol>
-            <div>
-              <p>
-                Patient Name: {FName} {SName}
-              </p>
-            </div>
-          </GridCol>
-          <GridCol>
-            <div>
-              <p>Date Of Birth: {DOB}</p>
-              <p>vaccine manu{manu}</p>
-            </div>
-          </GridCol>
-        </GridRow>
+
+      
+
+      <Table>
+        <Table.Row>
+          <Table.CellHeader>NHS Number</Table.CellHeader>
+          <Table.Cell>{NHSNumber}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.CellHeader>Patient Name</Table.CellHeader>
+          <Table.Cell>{FName} {SName}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.CellHeader>Date Of Birth</Table.CellHeader>
+          <Table.Cell>{DOB}</Table.Cell>
+        </Table.Row>
+        <br/>
+        <br/>
+        <br/>
+        <Table.Row>
+          <Table.CellHeader>Manufacturer</Table.CellHeader>
+          <Table.CellHeader>Dose No.</Table.CellHeader>
+          <Table.CellHeader>Vac Date</Table.CellHeader>
+          <Table.CellHeader>Disease Targeted</Table.CellHeader>
+          <Table.CellHeader>Vac Type</Table.CellHeader>
+          <Table.CellHeader>Product.</Table.CellHeader>
+          <Table.CellHeader>Batch No.</Table.CellHeader>
+          <Table.CellHeader>Country of Vac</Table.CellHeader>
+
+        </Table.Row>
+
+        <Table.Row>
+          <Table.Cell>{manufacturer}</Table.Cell>
+          <Table.Cell>{doseNo}</Table.Cell>
+          <Table.Cell>{vaccinationDate}</Table.Cell>
+          <Table.Cell>{diseaseTargeted}</Table.Cell>
+          <Table.Cell>{vaccineType}</Table.Cell>
+          <Table.Cell>{product}</Table.Cell>
+          <Table.Cell>{vaccineBatchNumber}</Table.Cell>
+          <Table.Cell>{countryOfVaccination}</Table.Cell>
+
+        </Table.Row>
+
+        <br/>
+        <br/>
+        <Table.Row>
+          <Table.CellHeader>Authority</Table.CellHeader>
+          <Table.CellHeader>Site</Table.CellHeader>
+          <Table.CellHeader>Dose Series</Table.CellHeader>
+          <Table.CellHeader>Display Name</Table.CellHeader>
+          <Table.CellHeader>Snomed Code</Table.CellHeader>
+          <Table.CellHeader>Date Entered</Table.CellHeader>
+          <Table.CellHeader>Procedure Code</Table.CellHeader>
+          <Table.CellHeader>Booster</Table.CellHeader>
+
+
+        </Table.Row>
+
+        <Table.Row>
+          <Table.Cell>{authority}</Table.Cell>
+          <Table.Cell>{site}</Table.Cell>
+          <Table.Cell>{doseSeries}</Table.Cell>
+          <Table.Cell>{displayName}</Table.Cell>
+          <Table.Cell>{snomedCode}</Table.Cell>
+          <Table.Cell>{dateEntered}</Table.Cell>
+          <Table.Cell>{procedureCode}</Table.Cell>
+          <Table.Cell>{booster}</Table.Cell>
+        </Table.Row>
+     
+        
+
+      </Table>
         <br />
         <br />
         {/* if user click then editing variable is set to true and display the inputfield and save button.

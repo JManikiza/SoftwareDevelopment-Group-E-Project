@@ -36,7 +36,12 @@
             'CountryOfVaccination' => $vaccines[0]->CountryOfVaccination,
             'Authority' => $vaccines[0]->Authority,
             'Site' => $vaccines[0]->Site,
-        
+            'DoseSeries' => $vaccines[0]->TotalSeriesOfDoses,
+            'DisplayName' => $vaccines[0]->DisplayName,
+            'SnomedCode' => $vaccines[0]->SnomedCode,
+            'DateEntered' => $vaccines[0]->DateEntered,
+            'ProcedureCode' => $vaccines[0]->ProcedureCode,
+            'Booster' => $vaccines[0]->Booster
 
         ];
         echo json_encode($vaccine_data);
