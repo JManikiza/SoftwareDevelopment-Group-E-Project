@@ -4,7 +4,7 @@
     //Retrieve user form data using POST method
     $nhs = $_POST['nhs'];
   
-  error_log($nhs);
+    error_log($nhs);
 
     $pdo = new \PDO("sqlite:vaccines.db");
     $stmt = $pdo->prepare("SELECT * 
@@ -19,31 +19,32 @@
         $vaccines[] = $vaccine;
     }
 
-
     if (empty($vaccines)) {
         echo json_encode("no vaccines");
     } else {
    
         // Return patient details and session token as JSON response
-        $vaccine_data = [
-            'DoseNo' => $vaccines[0]->DoseNo,
-            'VaccinationDate' => $vaccines[0]->VaccinationDate,
-            'VaccineManufacturer' => $vaccines[0]->VaccineManufacturer,
-            'DiseaseTargeted' => $vaccines[0]->DiseaseTargeted,
-            'VaccineType' => $vaccines[0]->VaccineType,
-            'Product' => $vaccines[0]->Product,
-            'VaccineBatchNumber' => $vaccines[0]->VaccineBatchNumber,
-            'CountryOfVaccination' => $vaccines[0]->CountryOfVaccination,
-            'Authority' => $vaccines[0]->Authority,
-            'Site' => $vaccines[0]->Site,
-            'DoseSeries' => $vaccines[0]->TotalSeriesOfDoses,
-            'DisplayName' => $vaccines[0]->DisplayName,
-            'SnomedCode' => $vaccines[0]->SnomedCode,
-            'DateEntered' => $vaccines[0]->DateEntered,
-            'ProcedureCode' => $vaccines[0]->ProcedureCode,
-            'Booster' => $vaccines[0]->Booster
-
-        ];
+        $vaccine_data = [];
+        foreach ($vaccines as $vaccine) {
+            $vaccine_data[] = [
+                'DoseNo' => $vaccine->DoseNo,
+                'VaccinationDate' => $vaccine->VaccinationDate,
+                'VaccineManufacturer' => $vaccine->VaccineManufacturer,
+                'DiseaseTargeted' => $vaccine->DiseaseTargeted,
+                'VaccineType' => $vaccine->VaccineType,
+                'Product' => $vaccine->Product,
+                'VaccineBatchNumber' => $vaccine->VaccineBatchNumber,
+                'CountryOfVaccination' => $vaccine->CountryOfVaccination,
+                'Authority' => $vaccine->Authority,
+                'Site' => $vaccine->Site,
+                'DoseSeries' => $vaccine->TotalSeriesOfDoses,
+                'DisplayName' => $vaccine->DisplayName,
+                'SnomedCode' => $vaccine->SnomedCode,
+                'DateEntered' => $vaccine->DateEntered,
+                'ProcedureCode' => $vaccine->ProcedureCode,
+                'Booster' => $vaccine->Booster
+            ];
+        }
         echo json_encode($vaccine_data);
     }
 ?>

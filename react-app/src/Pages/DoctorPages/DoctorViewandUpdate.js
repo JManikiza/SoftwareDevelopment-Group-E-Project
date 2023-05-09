@@ -23,52 +23,31 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Logout from "../../Components/LoginComponents/Logout";
 import jq from "jquery";
 
-
 function DoctorViewandUpdate() {
-  const [vaccineData, setVaccineData] = useState('');
+  const [vaccineData, setVaccineData] = useState([]);
 
   useEffect(() => {
-    // Make the AJAX call here
     jq.ajax({
       type: "POST",
       url: "http://localhost:4000/vaccinedata.php",
-      data: { nhs: NHSNumber},
+      data: { nhs: NHSNumber },
       dataType: "json",
-      success: function(response) {
+      success: function (response) {
         if (response === "no vaccines") {
-          console.log('no vaccine');
+          console.log("no vaccine");
         } else {
-          // Set the vaccineData state here
           setVaccineData(response);
         }
       },
-      error: function(xhr, status, error) {
+      error: function (xhr, status, error) {
         console.error("AJAX error: " + status + " - " + error);
-      }
+      },
     });
   }, []);
 
-let manufacturer = vaccineData.VaccineManufacturer;
-let doseNo = vaccineData.DoseNo;
-let vaccinationDate = vaccineData.VaccinationDate;
-let diseaseTargeted = vaccineData.DiseaseTargeted;
-let vaccineType = vaccineData.VaccineType;
-let product = vaccineData.Product;
-let vaccineBatchNumber = vaccineData.VaccineBatchNumber;
-let countryOfVaccination = vaccineData.CountryOfVaccination;
-let authority = vaccineData.Authority;
-let site = vaccineData.Site;
-let doseSeries = vaccineData.DoseSeries;
-let displayName = vaccineData.DisplayName;
-let snomedCode = vaccineData.SnomedCode;
-let dateEntered = vaccineData.DateEntered;
-let procedureCode = vaccineData.ProcedureCode;
-let booster = vaccineData.Booster;
-
-
-  //use navigation to get to another page 
-  const navigate=useNavigate();
-  //current date function generator. 
+  //use navigation to get to another page
+  const navigate = useNavigate();
+  //current date function generator.
   const date = new Date();
   //useLocalte to retrieve the data passed from the previous page(DoctorAppointment.js).
   const location = useLocation();
@@ -81,7 +60,7 @@ let booster = vaccineData.Booster;
   const DOB = location.state.PatientDOB;
   //use state for editing the medical record with boolean
   const [editing, setEditing] = useState(false);
-  //use state for storing retireved medical record and editing the medical record with string 
+  //use state for storing retireved medical record and editing the medical record with string
   const [MedicalRecord, setMedicalRecord] = useState(
     location.state.PatientMedicalNote
   );
@@ -113,28 +92,9 @@ let booster = vaccineData.Booster;
         console.log("completed");
       },
     });
-    navigate("/DoctorAppointment");};
-      
-    const getVaccineData = () => {
-      jq.ajax({
-        type: "POST",
-        url: "http://localhost:4000/vaccines.php",
-        data: { nhsNo: NHSNumber },
-        dataType: "json",
-        success: function(response) {
-          if (response === "no vaccines") {
-            alert("No vaccines found.");
-          } else {
-            alert(response.DoseNo)
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error("AJAX error: " + status + " - " + error);
-        }
-      });
-      
-    }
-        
+    navigate("/DoctorAppointment");
+  };
+
   return (
     <div>
       {/*calling of navigation.js components with props of links to and text name of the link   */}
@@ -163,7 +123,11 @@ let booster = vaccineData.Booster;
         <br />
         <br />
         {/*a tag is used to go back to the previous page*/}
-        <BackLink onClick={() => {window.history.back()}}>
+        <BackLink
+          onClick={() => {
+            window.history.back();
+          }}
+        >
           Back
         </BackLink>
         <br /> <br />
@@ -181,78 +145,75 @@ let booster = vaccineData.Booster;
         </H3>
         <br />
         <br />
+        <Table>
+          <Table.Row>
+            <Table.CellHeader>NHS Number</Table.CellHeader>
+            <Table.Cell>{NHSNumber}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Patient Name</Table.CellHeader>
+            <Table.Cell>
+              {FName} {SName}
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.CellHeader>Date Of Birth</Table.CellHeader>
+            <Table.Cell>{DOB}</Table.Cell>
+          </Table.Row>
+          <br />
+          <br />
+          <br />
 
-      
+          <Table.Row>
+            <Table.CellHeader>Manufacturer</Table.CellHeader>
+            <Table.CellHeader>Dose No.</Table.CellHeader>
+            <Table.CellHeader>Vac Date</Table.CellHeader>
+            <Table.CellHeader>Disease Targeted</Table.CellHeader>
+            <Table.CellHeader>Vac Type</Table.CellHeader>
+            <Table.CellHeader>Product.</Table.CellHeader>
+            <Table.CellHeader>Batch No.</Table.CellHeader>
+            <Table.CellHeader>Country of Vac</Table.CellHeader>
+          </Table.Row>
 
-      <Table>
-        <Table.Row>
-          <Table.CellHeader>NHS Number</Table.CellHeader>
-          <Table.Cell>{NHSNumber}</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.CellHeader>Patient Name</Table.CellHeader>
-          <Table.Cell>{FName} {SName}</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.CellHeader>Date Of Birth</Table.CellHeader>
-          <Table.Cell>{DOB}</Table.Cell>
-        </Table.Row>
-        <br/>
-        <br/>
-        <br/>
-        <Table.Row>
-          <Table.CellHeader>Manufacturer</Table.CellHeader>
-          <Table.CellHeader>Dose No.</Table.CellHeader>
-          <Table.CellHeader>Vac Date</Table.CellHeader>
-          <Table.CellHeader>Disease Targeted</Table.CellHeader>
-          <Table.CellHeader>Vac Type</Table.CellHeader>
-          <Table.CellHeader>Product.</Table.CellHeader>
-          <Table.CellHeader>Batch No.</Table.CellHeader>
-          <Table.CellHeader>Country of Vac</Table.CellHeader>
+          {vaccineData.map((vaccine, index) => (
+            <Table.Row key={index}>
+              <Table.Cell>{vaccine.VaccineManufacturer}</Table.Cell>
+              <Table.Cell>{vaccine.DoseNo}</Table.Cell>
+              <Table.Cell>{vaccine.VaccinationDate}</Table.Cell>
+              <Table.Cell>{vaccine.DiseaseTargeted}</Table.Cell>
+              <Table.Cell>{vaccine.VaccineType}</Table.Cell>
+              <Table.Cell>{vaccine.Product}</Table.Cell>
+              <Table.Cell>{vaccine.VaccineBatchNumber}</Table.Cell>
+              <Table.Cell>{vaccine.CountryOfVaccination}</Table.Cell>
+            </Table.Row>
+          ))}
 
-        </Table.Row>
+          <br />
+          <br />
+          <Table.Row>
+            <Table.CellHeader>Authority</Table.CellHeader>
+            <Table.CellHeader>Site</Table.CellHeader>
+            <Table.CellHeader>Dose Series</Table.CellHeader>
+            <Table.CellHeader>Display Name</Table.CellHeader>
+            <Table.CellHeader>Snomed Code</Table.CellHeader>
+            <Table.CellHeader>Date Entered</Table.CellHeader>
+            <Table.CellHeader>Procedure Code</Table.CellHeader>
+            <Table.CellHeader>Booster</Table.CellHeader>
+          </Table.Row>
 
-        <Table.Row>
-          <Table.Cell>{manufacturer}</Table.Cell>
-          <Table.Cell>{doseNo}</Table.Cell>
-          <Table.Cell>{vaccinationDate}</Table.Cell>
-          <Table.Cell>{diseaseTargeted}</Table.Cell>
-          <Table.Cell>{vaccineType}</Table.Cell>
-          <Table.Cell>{product}</Table.Cell>
-          <Table.Cell>{vaccineBatchNumber}</Table.Cell>
-          <Table.Cell>{countryOfVaccination}</Table.Cell>
-
-        </Table.Row>
-
-        <br/>
-        <br/>
-        <Table.Row>
-          <Table.CellHeader>Authority</Table.CellHeader>
-          <Table.CellHeader>Site</Table.CellHeader>
-          <Table.CellHeader>Dose Series</Table.CellHeader>
-          <Table.CellHeader>Display Name</Table.CellHeader>
-          <Table.CellHeader>Snomed Code</Table.CellHeader>
-          <Table.CellHeader>Date Entered</Table.CellHeader>
-          <Table.CellHeader>Procedure Code</Table.CellHeader>
-          <Table.CellHeader>Booster</Table.CellHeader>
-
-
-        </Table.Row>
-
-        <Table.Row>
-          <Table.Cell>{authority}</Table.Cell>
-          <Table.Cell>{site}</Table.Cell>
-          <Table.Cell>{doseSeries}</Table.Cell>
-          <Table.Cell>{displayName}</Table.Cell>
-          <Table.Cell>{snomedCode}</Table.Cell>
-          <Table.Cell>{dateEntered}</Table.Cell>
-          <Table.Cell>{procedureCode}</Table.Cell>
-          <Table.Cell>{booster}</Table.Cell>
-        </Table.Row>
-     
-        
-
-      </Table>
+          {vaccineData.map((vaccine, index) => (
+            <Table.Row key={index}>
+              <Table.Cell>{vaccine.Authority}</Table.Cell>
+              <Table.Cell>{vaccine.Site}</Table.Cell>
+              <Table.Cell>{vaccine.DoseSeries}</Table.Cell>
+              <Table.Cell>{vaccine.DisplayName}</Table.Cell>
+              <Table.Cell>{vaccine.SnomedCode}</Table.Cell>
+              <Table.Cell>{vaccine.DateEntered}</Table.Cell>
+              <Table.Cell>{vaccine.ProcedureCode}</Table.Cell>
+              <Table.Cell>{vaccine.Booster}</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table>
         <br />
         <br />
         {/* if user click then editing variable is set to true and display the inputfield and save button.
